@@ -1,5 +1,38 @@
 import { Formik } from "formik";
+
 const Register = () => {
+
+  const validateFormInputs = (values) => {
+    const errors = {};
+    if (!values.name) {
+      errors.name = "Es necesario ingresar tu nombre ";
+    } else if (!/^([A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]+[\s]*)+$/.test(values.name)) {
+      errors.name = "Debe empezar con mayusculas y solo contener letras";
+    }
+    if (!values.surname) {
+      errors.surname = "Es necesario ingresar tu apellido ";
+    } else if (!/^([A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]+[\s]*)+$/.test(values.surname)) {
+      errors.surname = "Debe empezar con mayusculas y solo contener letras";
+    }
+    if (!values.email) {
+      errors.email = "Es necesario ingresar tu email ";
+    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
+      errors.email = "Ingrese un email válido ";
+    }
+    if (!values.password) {
+      errors.password = "Es necesaria una contraseña ";
+    } else if (values.password.length < 6) {
+      errors.password = "Ingresa al menos 6 carácteres ";
+    }
+
+    return errors;
+  };
+
+  const handleSubmit = (values) => {
+    const user = values;
+    //Send data to API register endpoint
+    console.log("Usuario: ", user);
+  };
 
   return (
     <div className="w-screen h-screen bg-slate-200 flex flex-col items-center justify-center">
@@ -7,39 +40,8 @@ const Register = () => {
         <div className="text-2xl text-indigo-600">Crear nuevo usuario</div>
         <Formik
           initialValues={{ name: "", surname: "", email: "", password: "" }}
-          validate={(values) => {
-          
-            const errors = {};
-            if (!values.name) {
-              errors.name = "Es necesario ingresar tu nombre ";
-            }else if(!/^([A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]+[\s]*)+$/.test(values.name)){
-                errors.name = ("Debe empezar con mayusculas y solo contener letras")
-            }
-            if (!values.surname) {
-              errors.surname = "Es necesario ingresar tu apellido ";
-            }else if(!/^([A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]+[\s]*)+$/.test(values.surname)){
-                errors.surname = ("Debe empezar con mayusculas y solo contener letras")
-            }
-            if (!values.email) {
-              errors.email = "Es necesario ingresar tu email ";
-            } else if (
-              !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-            ) {
-              errors.email = "Ingrese un email válido ";
-            }
-            if (!values.password) {
-              errors.password = "Es necesaria una contraseña ";
-            } else if (values.password.length < 6) {
-              errors.password = "Ingresa al menos 6 carácteres ";
-            }
-
-            return errors;
-          }}
-          onSubmit={(values) => {
-            const user = values;
-            //Send data to API register endpoint
-            console.log("Usuario: ", user);
-          }}
+          validate={validateFormInputs}
+          onSubmit={handleSubmit}
         >
           {({ errors, touched, handleSubmit, handleChange, isSubmitting }) => (
             <form
@@ -121,19 +123,18 @@ const Register = () => {
                 >
                   Crear usuario
                 </button>
-                
               </div>
               <div className="w-full flex flex-row items-center justify-center">
-              <a className="text-sm text-indigo-500 hover:underline" href="#">
-                  Ya tengo una cuenta 
-                </a> 
-                <span className="mx-6 font-bold text-xl text-indigo-600 ">&#183;</span>
+                <a className="text-sm text-indigo-500 hover:underline" href="#">
+                  Ya tengo una cuenta
+                </a>
+                <span className="mx-6 font-bold text-xl text-indigo-600 ">
+                  &#183;
+                </span>
                 <a className="text-sm text-indigo-500 hover:underline" href="#">
                   Acerca de ONG somos más
                 </a>
-              
               </div>
-             
             </form>
           )}
         </Formik>
