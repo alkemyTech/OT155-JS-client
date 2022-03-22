@@ -3,10 +3,14 @@ import { Formik } from 'formik';
 
 export const Login = () => {
   return (
-    <div className="w-screen h-screen bg-slate-200 flex flex-col items-center justify-center">
-      <div className="w-2/3  h-5/6  bg-blue-400 rounded-md shadow-md flex flex-col items-center justify-center">   
-        <div className= "text-gray-100 mb-6 text-2xl">Acceso de usuarios</div> 
-          <Formik
+    <div className="flex">
+      <div className= " bg-blue-300	 w-1/2 h-screen" >
+
+      </div>
+      <div className= "w-1/2 h-screen flex flex-col items-center justify-center">
+        <p className="w-1/2 mx-auto text-left ">Bienvenido</p>
+        <h2 className="w-1/2 mx-auto text-left text-2xl mb-6 ">Inicia sesión en tu cuenta!</h2>
+        <Formik
           initialValues={{ email: '', password: '' }}
           validate={values => {
             const errors = {};
@@ -41,9 +45,10 @@ export const Login = () => {
             isSubmitting,
           }) => (
             <form  className="flex flex-col items-center justify-center" onSubmit={handleSubmit}>
-              <div className=" px-3 mb-6 py-1">
+              <div className="text-left  px-3 mb-6 py-1">
+              <label className="text-left ">Email</label>
               <input
-                className= "w-2/3 text-xl block px-3 py-2 rounded-lg w-full bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none"
+                className= "w-80 text-xl block px-3 py-2 rounded-lg w-full bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none"
                 type="email"
                 name="email"
                 placeholder='Ingresa tu email'
@@ -51,11 +56,12 @@ export const Login = () => {
                 onBlur={handleBlur}
                 value={values.email}
               />
-              <div className="text-red-700 text-center">{errors.email && touched.email && errors.email}</div>
+              <div className="text-red-700 text-left text-sm">{errors.email && touched.email && errors.email}</div>
               </div>
-              <div className=" px-3 mb-6 py-1">
+              <div className="text-left px-3 mb-6 py-1">
+              <label className= "text-left">Contraseña</label>
               <input
-              className= "w-2/3 text-xl block px-3 py-2 rounded-lg w-full bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none"
+              className= "w-80 text-xl block px-3 py-2 rounded-lg w-full bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none"
                 type="password"
                 name="password"
                 placeholder='Ingresa tu password'
@@ -63,14 +69,17 @@ export const Login = () => {
                 onBlur={handleBlur}
                 value={values.password}
               />
-              <div className="text-red-700 text-center">{errors.password && touched.password && errors.password}</div>
+              <div className="text-red-700 text-left text-sm">{errors.password && touched.password && errors.password}</div>
               </div>
-              <button className="bg-gray-600 text-white px-4 py-2 rounded-md text-1xl font-medium hover:bg-gray-700 transition duration-300 mt-6" type="submit" disabled={isSubmitting}>
-                Ingresar
+              <button className="bg-blue-300 w-80 text-white px-4 py-2 rounded-md text-1xl font-medium hover:bg-gray-700 transition duration-300 mt-6" type="submit" disabled={isSubmitting}>
+                Login Now
               </button>
             </form>
           )}
         </Formik>
+        <div className="mt-6">
+          <p>No tienes cuenta? <a href="#" className="text-blue-600">Join free today</a></p>
+        </div>
       </div>
     </div>
   )
