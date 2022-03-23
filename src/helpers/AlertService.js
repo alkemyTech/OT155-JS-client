@@ -1,6 +1,6 @@
 import Swal from "sweetalert2";
 
-function error(msg) {
+function errorAlert(title,description) {
   const errorCard = Swal.mixin({
     toast: true,
     showCancelButton: true,
@@ -14,10 +14,12 @@ function error(msg) {
 
   errorCard.fire({
     icon: "error",
+    title: `${title}`,
+    text: `${description}`
   });
 }
 
-function confirmation() {
+function confirmationAlert(title,description) {
   const signedInCardAlert = Swal.mixin({
     toast: true,
     position: "top-end",
@@ -32,11 +34,13 @@ function confirmation() {
 
   signedInCardAlert.fire({
     icon: 'success',
+    title: `${title}`,
+    text: `${description}`
   })
 }
 
 
-function information(){
+function informationAlert(title,description){
   const registerCard = Swal.mixin({
     toast: true,
     position: "top-end",
@@ -51,7 +55,9 @@ function information(){
 
   registerCard.fire({
     icon: 'info',
+    title: `${title}`,
+    text: `${description}`
   })
 }
 
-export { error, confirmation, information}
+export { errorAlert, confirmationAlert, informationAlert}
