@@ -1,29 +1,52 @@
 import { Formik } from "formik";
 
 const Register = () => {
+  const nameRegExp = /^([A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]+[\s]*)+$/;
+  const emailRegExp = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
 
-  const validateFormInputs = (values) => {
-    const errors = {};
+  const validateName = ({ errors, values }) => {
     if (!values.name) {
       errors.name = "Es necesario ingresar tu nombre ";
-    } else if (!/^([A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]+[\s]*)+$/.test(values.name)) {
+    } else if (!nameRegExp.test(values.name)) {
       errors.name = "Debe empezar con mayusculas y solo contener letras";
     }
+    return errors;
+  }
+
+  const validateSurname = ({ errors, values }) =>{
     if (!values.surname) {
       errors.surname = "Es necesario ingresar tu apellido ";
-    } else if (!/^([A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]+[\s]*)+$/.test(values.surname)) {
+    } else if (!nameRegExp.test(values.surname)) {
       errors.surname = "Debe empezar con mayusculas y solo contener letras";
     }
+    return errors;
+  }
+
+  const validateEmail = ({ errors, values }) => {
     if (!values.email) {
       errors.email = "Es necesario ingresar tu email ";
-    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
+    } else if (!emailRegExp.test(values.email)) {
       errors.email = "Ingrese un email válido ";
     }
+
+    return errors;
+  }
+  const validatePassword = ({ errors, values }) => {
     if (!values.password) {
       errors.password = "Es necesaria una contraseña ";
     } else if (values.password.length < 6) {
       errors.password = "Ingresa al menos 6 carácteres ";
     }
+    return errors;
+  }
+
+  const validateFormInputs = (values) => {
+    const errors = {};
+
+    validateName({ errors, values });
+    validateSurname({ errors, values });
+    validateEmail({ errors, values });
+    validatePassword({ errors, values });
 
     return errors;
   };
