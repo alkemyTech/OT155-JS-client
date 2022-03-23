@@ -1,11 +1,9 @@
 export const Items = ({ text, imageUrl, index }) => {
+  const option1 = 'carousel-item active relative float-left w-full';
+  const option2 = 'carousel-item relative float-left w-full';
+
   return (
-    <div
-      className={
-        index === 0
-          ? 'carousel-item active relative float-left w-full '
-          : 'carousel-item relative float-left w-full '
-      }>
+    <div className={index === 0 ? option1 : option2}>
       <img
         src={imageUrl}
         className="block w-full rounded-md "
