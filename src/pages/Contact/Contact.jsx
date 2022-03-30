@@ -1,6 +1,7 @@
 import React from "react";
 import { useFormik } from "formik";
-import { informationAlert } from "../../helpers/AlertService";
+import { informationAlert, errorAlert } from "../../helpers/AlertService";
+import { apiConnectionWithoutToken } from "../../helpers/apiConnection";
 import Input from "../../components/Form/Input";
 import TextArea from "../../components/Form/TextArea";
 
@@ -35,9 +36,16 @@ const Contact = () => {
     },
     validate,
     onSubmit: (values, { resetForm }) => {
-      informationAlert("Mensaje enviado", "Gracias por contactarnos");
-      console.log(values);
-      resetForm();
+      apiConnectionWithoutToken("/contact", values, "post")
+        .then(() => {
+          informationAlert("Mensaje enviado", "Gracias por contactarnos");
+          console.log(values);
+          resetForm();
+        })
+        .catch((error) => {
+          errorAlert("Error", "No se pudo enviar el mensaje");
+          console.log(error);
+        });
     },
   });
 
