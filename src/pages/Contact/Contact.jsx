@@ -1,6 +1,8 @@
 import React from "react";
 import { useFormik } from "formik";
 import { informationAlert } from "../../helpers/AlertService";
+import Input from "../../components/Form/Input";
+import TextArea from "../../components/Form/TextArea";
 
 const Contact = () => {
   const validate = (values) => {
@@ -54,59 +56,44 @@ const Contact = () => {
           </p>
         </div>
         <div className="lg:w-1/2">
-          <h1 className="text-3xl text-center font-bold mb-4">
+          <h2 className="text-3xl text-center font-bold mb-4">
             ¡Contactáte con nosotros!
-          </h1>
+          </h2>
           <form onSubmit={formik.handleSubmit}>
-            <div className="mb-2">
-              <label>Nombre</label>
-              <input
-                type="text"
-                name="contactName"
-                placeholder="Tu nombre"
-                className="text-xl block px-3 py-2 rounded-lg w-full bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none"
-                value={formik.values.contactName}
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-              />
-              <div className="text-red-600">
-                {formik.errors.contactName &&
-                  formik.touched.contactName &&
-                  formik.errors.contactName}
-              </div>
-            </div>
-            <div className="mb-2">
-              <label>Email</label>
-              <input
-                type="email"
-                name="contactEmail"
-                placeholder="Tu email"
-                className="text-xl block px-3 py-2 rounded-lg w-full bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none"
-                value={formik.values.contactEmail}
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-              />
-              <div className="text-red-600">
-                {formik.errors.contactEmail &&
-                  formik.touched.contactEmail &&
-                  formik.errors.contactEmail}
-              </div>
-            </div>
-            <div className="mb-2">
-              <label>Mensaje</label>
-              <textarea
-                name="message"
-                placeholder="Escribe tu mensaje aqui..."
-                value={formik.values.message}
-                onChange={formik.handleChange}
-                className="text-xl h-40 block px-3 py-2 rounded-lg w-full bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none resize-none"
-              ></textarea>
-              <div className="text-red-600">
-                {formik.errors.message &&
-                  formik.touched.message &&
-                  formik.errors.message}
-              </div>
-            </div>
+            <Input
+              label="Nombre"
+              error={formik.errors.contactName}
+              touched={formik.touched.contactName}
+              type="text"
+              name="contactName"
+              placeholder="Tu nombre"
+              value={formik.values.contactName}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+            />
+
+            <Input
+              label="Email"
+              error={formik.errors.contactEmail}
+              touched={formik.touched.contactEmail}
+              type="email"
+              name="contactEmail"
+              placeholder="Tu email"
+              value={formik.values.contactEmail}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+            />
+
+            <TextArea
+              label="Mensaje"
+              error={formik.errors.message}
+              touched={formik.touched.message}
+              name="message"
+              placeholder="Escribe tu mensaje aqui..."
+              value={formik.values.message}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+            />
             <button
               className="w-full bg-blue-500 hover:bg-blue-700 disabled:bg-blue-300  text-white px-4 py-2 rounded-md text-1xl font-medium  transition duration-300 mt-6"
               type="submit"
