@@ -41,9 +41,11 @@ const Contact = () => {
 
   return (
     <div className="container m-auto">
-      <div className="flex p-8">
-        <div className="w-1/2">
-          <h1 className="text-4xl text-center mb-6">¿Quieres contribuir?</h1>
+      <div className="lg:flex p-8">
+        <div className="lg:w-1/2 mb-8">
+          <h1 className="text-4xl text-center font-bold mb-6">
+            ¿Quieres contribuir?
+          </h1>
           <p>
             Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vitae
             velit dolores repudiandae cum voluptatem. Dicta animi fugit
@@ -51,8 +53,8 @@ const Contact = () => {
             vel nesciunt, modi mollitia repudiandae?
           </p>
         </div>
-        <div className="w-1/2">
-          <h1 className="text-3xl text-center mb-4">
+        <div className="lg:w-1/2">
+          <h1 className="text-3xl text-center font-bold mb-4">
             ¡Contactáte con nosotros!
           </h1>
           <form onSubmit={formik.handleSubmit}>
