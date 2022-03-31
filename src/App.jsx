@@ -12,7 +12,10 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/news" element={<News />} />
         <Route path="/register" element={<Register />}></Route>
+
+        {/* To add to private routes soon */}
         <Route path="/backoffice/users" element={<UserList />} />
+        {/* <Route path="/backoffice/users/edituser:id" element={<UserList />} /> */}
       
       </Routes>
     </>
