@@ -11,17 +11,16 @@ export const UserList = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    const queryAPI = async () => {
+      try {
+        const { data } = await apiConnectionWithoutToken('/users');
+        setUsers(data.users.rows);
+        setLoading(false);
+      } catch (error) {
+        console.log(error);
+      }
+    };
     if (users) {
-      const queryAPI = async () => {
-        try {
-          const { data } = await apiConnectionWithoutToken('/users');
-          setUsers(data.users.rows);
-          setLoading(false);
-        } catch (error) {
-          console.log(error);
-        }
-      };
-
       queryAPI();
     }
   }, []);
