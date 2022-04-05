@@ -1,5 +1,8 @@
 import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2/dist/sweetalert2.all.js';
+import { errorAlert } from '../helpers/AlertService';
 import { useForm } from '../hooks/useForm';
+
 
 export const HomeEdit = () => {
     const navigate = useNavigate();
@@ -9,31 +12,31 @@ export const HomeEdit = () => {
   });
 
   const [imageSlides1, handleImageSlides1] = useForm({
-      id1: '',
+      id1: '1',
       imageUrl1: '',
       text1: '',
   });
   const [imageSlides2, handleImageSlides2] = useForm({
-      id2: '',
+      id2: '2',
       imageUrl2: '',
       text2: '',
   });
   const [imageSlides3, handleImageSlides3] = useForm({
-      id3: '',
+      id3: '3',
       imageUrl3: '',
       text3: '',
   });
 
   const { welcomeText } = welcomeValues;
-  const { id1, imageUrl1, text1 } = imageSlides1;
-  const { id2, imageUrl2, text2 } = imageSlides2;
-  const { id3, imageUrl3, text3 } = imageSlides3;
+  const { imageUrl1, text1 } = imageSlides1;
+  const { imageUrl2, text2 } = imageSlides2;
+  const { imageUrl3, text3 } = imageSlides3;
   
 
   const handleSubmit1 = (e) => {
       e.preventDefault();
       if(welcomeText.length < 20){
-            alert('El texto debe tener al menos 20 caracteres');
+        errorAlert('Error','El texto debe tener al menos 20 caracteres');
             return;
         }
         console.log('envío 1');
@@ -50,10 +53,11 @@ export const HomeEdit = () => {
 
   return (
     <>
-      <div className="container mx-auto h-full lg:flex gap-4 mt-20">
-        <div className="block p-6 rounded-lg shadow-lg bg-gray-200  container mx-auto">
+        <h1 className='text-2xl sm:text-4xl m-10 text-center'>Editar Datos de Home</h1>
+      <div className="container mx-auto h-full lg:flex gap-4 mt-10">
+        <div className="block p-6 rounded-lg shadow-lg bg-gray-200  container mx-auto mb-10 lg:m-0">
           <form onSubmit={handleSubmit1}>
-            <h2 className="text-2xl text-center">
+            <h2 className="text-xl sm:text-2xl text-center">
               Modificar texto de Bienvenida
             </h2>
             <div className="flex-col mt-6">
@@ -114,7 +118,7 @@ export const HomeEdit = () => {
 
         <div className="block p-6 rounded-lg shadow-lg bg-gray-200 container mx-auto">
           <form onSubmit={handleSubmit2}>
-            <h2 className="text-2xl text-center">
+            <h2 className="text-xl sm:text-2xl text-center">
               Modificar texto y imágenes de Sliders
             </h2>
             <div className="flex justify-center my-4">
@@ -126,6 +130,7 @@ export const HomeEdit = () => {
                 </label>
                 <input
                   type="text"
+                  required={true}
                   className="form-control
                     block
                     w-full
@@ -166,6 +171,7 @@ export const HomeEdit = () => {
                     ease-in-out
                     m-0
                     focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                  required={true}  
                   type="file"
                   id="formFile"
                   accept="image/png, image/jpeg"
@@ -199,6 +205,7 @@ export const HomeEdit = () => {
                     name='text2'
                     value={text2}
                     onChange={handleImageSlides2}
+                    required={true} 
                 />
                 <label
                   htmlFor="formFile"
@@ -224,6 +231,7 @@ export const HomeEdit = () => {
                   type="file"
                   id="formFile"
                   accept="image/png, image/jpeg"
+                  required
                 />
               </div>
             </div>
