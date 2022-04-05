@@ -36,7 +36,7 @@ const Home = () => {
 						alimentación y trabajo social.
 					</p>
 					<div className="flex justify-center mt-5">
-						<button className='contact'>Contact Us</button>
+						<button className='contact'>Contáctenos</button>
 					</div>
 				</div>
 				<div className='slider width__mean'></div>
