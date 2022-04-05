@@ -1,51 +1,30 @@
 import { useState } from "react";
 import logo from "./logo.svg";
 import Home from './pages/Home'
+import { Route, Routes } from "react-router-dom";
 import "./App.css";
+import Contacts from "./pages/Contacts/Contacts";
+import { UserList } from "./components/UserList/UserList";
+import Home from "./pages/Home";
+import News from "./pages/News";
+import Contact from "./pages/Contact/Contact";
+import Register from "./pages/Register/Register";
 
 function App() {
-	const [count, setCount] = useState(0);
-
-	return (
-		<div className="App">
-			{/* <header className="App-header">
-				<img src={logo} className="App-logo" alt="logo" />
-				<p>Hello Vite + React!</p>
-				<p>
-					<button
-						className="bg-slate-500 px-3 py-1 rounded-xl"
-						type="button"
-						onClick={() => setCount((count) => count + 1)}
-					>
-						count is: {count}
-					</button>
-				</p>
-				<p>
-					Edit <code>App.jsx</code> and save to test HMR updates.
-				</p>
-				<p>
-					<a
-						className="App-link"
-						href="https://reactjs.org"
-						target="_blank"
-						rel="noopener noreferrer"
-					>
-						Learn React
-					</a>
-					{" | "}
-					<a
-						className="App-link"
-						href="https://vitejs.dev/guide/features.html"
-						target="_blank"
-						rel="noopener noreferrer"
-					>
-						Vite Docs
-					</a>
-				</p>
-			</header> */}
-			<Home/>
-		</div>
-	);
+  return (
+    <>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/news" element={<News />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/register" element={<Register />}></Route>
+        <Route path="/backoffice/contacts" element={<Contacts />}></Route>
+        {/* To add to private routes soon */}
+        <Route path="/backoffice/users" element={<UserList />} />
+        {/* <Route path="/backoffice/users/edituser:id" element={<UserList />} /> */}
+      </Routes>
+    </>
+  );
 }
 
 export default App;
