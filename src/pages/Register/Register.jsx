@@ -1,15 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import { Formik } from "formik";
 import { apiConnectionWithoutToken } from "../../helpers/apiConnection";
 import { useNavigate } from "react-router-dom";
+import { errorAlert } from "../../helpers/AlertService";
 
 const Register = () => {
   const navigate = useNavigate();
-  const [showModal, setShowModal] = useState(false);
-
-  const handleModal = () => {
-    setShowModal(!showModal);
-  };
 
   const nameRegExp = /^([A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]+[\s]*)+$/;
   const emailRegExp = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
@@ -68,7 +64,7 @@ const Register = () => {
       email: values.email,
       password: values.password,
     };
-   
+
     return apiConnectionWithoutToken("/users/register", user, "post")
       .then((res) => {
         const data = res.data;
@@ -78,7 +74,7 @@ const Register = () => {
         }
       })
       .catch((err) => {
-        handleModal();
+        errorAlert("Error.", "Datos inválidos. Ese email ya está registrado.");
 
         return err;
       });
@@ -197,21 +193,6 @@ const Register = () => {
           )}
         </Formik>
       </div>
-      {showModal && (
-        <div className="w-screen h-screen fixed backdrop-blur-sm flex justify-center items-center">
-          <div className="w-1/2 h-1/3 bg-white flex flex-col justify-center items-center rounded">
-            <span className=" my-4 text-2xl">
-              Datos inválidos. Intente nuevamente
-            </span>
-            <button
-              className="px-12 py-2 rounded my-4 bg-red-500 text-white text-xl"
-              onClick={handleModal}
-            >
-              Ok
-            </button>
-          </div>
-        </div>
-      )}
     </div>
   );
 };
