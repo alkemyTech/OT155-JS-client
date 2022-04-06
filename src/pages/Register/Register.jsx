@@ -1,6 +1,12 @@
+import React from "react";
 import { Formik } from "formik";
+import { apiConnectionWithoutToken } from "../../helpers/apiConnection";
+import { useNavigate } from "react-router-dom";
+import { errorAlert } from "../../helpers/AlertService";
 
 const Register = () => {
+  const navigate = useNavigate();
+
   const nameRegExp = /^([A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]+[\s]*)+$/;
   const emailRegExp = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
 
@@ -11,16 +17,16 @@ const Register = () => {
       errors.name = "Debe empezar con mayusculas y solo contener letras";
     }
     return errors;
-  }
+  };
 
-  const validateSurname = ({ errors, values }) =>{
+  const validateSurname = ({ errors, values }) => {
     if (!values.surname) {
       errors.surname = "Es necesario ingresar tu apellido ";
     } else if (!nameRegExp.test(values.surname)) {
       errors.surname = "Debe empezar con mayusculas y solo contener letras";
     }
     return errors;
-  }
+  };
 
   const validateEmail = ({ errors, values }) => {
     if (!values.email) {
@@ -30,7 +36,7 @@ const Register = () => {
     }
 
     return errors;
-  }
+  };
   const validatePassword = ({ errors, values }) => {
     if (!values.password) {
       errors.password = "Es necesaria una contraseña ";
@@ -38,7 +44,7 @@ const Register = () => {
       errors.password = "Ingresa al menos 6 carácteres ";
     }
     return errors;
-  }
+  };
 
   const validateFormInputs = (values) => {
     const errors = {};
@@ -51,10 +57,27 @@ const Register = () => {
     return errors;
   };
 
-  const handleSubmit = (values) => {
-    const user = values;
-    //Send data to API register endpoint
-    console.log("Usuario: ", user);
+  const handleRegister = (values) => {
+    const user = {
+      firstName: values.name,
+      lastName: values.surname,
+      email: values.email,
+      password: values.password,
+    };
+
+    return apiConnectionWithoutToken("/users/register", user, "post")
+      .then((res) => {
+        const data = res.data;
+        if (data.value) {
+          window.sessionStorage.setItem("jwt", JSON.stringify(data.jwt));
+          navigate("/");
+        }
+      })
+      .catch((err) => {
+        errorAlert("Error.", "Datos inválidos. Ese email ya está registrado.");
+
+        return err;
+      });
   };
 
   return (
@@ -64,7 +87,9 @@ const Register = () => {
         <Formik
           initialValues={{ name: "", surname: "", email: "", password: "" }}
           validate={validateFormInputs}
-          onSubmit={handleSubmit}
+          onSubmit={(values) => {
+            return handleRegister(values);
+          }}
         >
           {({ errors, touched, handleSubmit, handleChange, isSubmitting }) => (
             <form
@@ -140,12 +165,18 @@ const Register = () => {
               </div>
 
               <div className="w-full h-16 my-4 flex flex-col items-center justify-center">
-                <button
-                  disabled={isSubmitting}
-                  className="bg-indigo-600 text-white text-lg font-semibold px-16 py-2 rounded-md hover:bg-indigo-500 mb-4 hover:cursor-pointer"
-                >
-                  Crear usuario
-                </button>
+                {isSubmitting ? (
+                  <span className="bg-indigo-600 text-white text-lg font-semibold px-16 py-2 rounded-md hover:bg-indigo-500 mb-4 hover:cursor-pointer">
+                    Validando...
+                  </span>
+                ) : (
+                  <button
+                    type="submit"
+                    className="bg-indigo-600 text-white text-lg font-semibold px-16 py-2 rounded-md hover:bg-indigo-500 mb-4 hover:cursor-pointer"
+                  >
+                    Crear usuario
+                  </button>
+                )}
               </div>
               <div className="w-full flex flex-row items-center justify-center">
                 <a className="text-sm text-indigo-500 hover:underline" href="#">
