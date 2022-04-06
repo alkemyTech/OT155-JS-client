@@ -3,7 +3,8 @@ import "./App.css";
 import Contacts from "./pages/Contacts/Contacts";
 import { UserList } from "./components/UserList/UserList";
 import Home from "./pages/Home";
-import News from "./pages/News";
+import News from "./pages/News/News";
+import NewsDetails from "./pages/News/NewsDetails";
 import Contact from "./pages/Contact/Contact";
 import Register from "./pages/Register/Register";
 
@@ -12,7 +13,10 @@ function App() {
     <>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/news" element={<News />} />
+        <Route path="news">
+          <Route index element={<News />} />
+          <Route path=":newsId" element={<NewsDetails />} />
+        </Route>
         <Route path="/contact" element={<Contact />} />
         <Route path="/register" element={<Register />}></Route>
         <Route path="/backoffice/contacts" element={<Contacts />}></Route>
