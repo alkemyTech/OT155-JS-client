@@ -44,9 +44,9 @@ const NewsDetails = () => {
     <div className="container mx-auto">
       <div className="w-full py-8 px-4">
         <h1 className="text-4xl text-center font-bold">{name}</h1>
-        <div className="xl:flex xl:justify-around">
+        <div className="xl:flex xl:justify-center">
           {image && (
-            <div className="w-full xl:h-96">
+            <div className="xl:w-1/2 w-full xl:h-96">
               <img
                 className="max-w-full max-h-full mx-auto my-4 object-cover "
                 src={image}
@@ -54,7 +54,7 @@ const NewsDetails = () => {
               />
             </div>
           )}
-          <p className="mt-3 mb-1 text-justify xl:w-3/4">{content}</p>
+          <p className="mt-3 mb-1 xl:ml-2 text-justify xl:w-3/4">{content}</p>
         </div>
       </div>
       <div className="bg-blue-400 w-full h-1 rounded"></div>
