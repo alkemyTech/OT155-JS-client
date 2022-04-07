@@ -5,8 +5,8 @@ import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import Contacts from "./pages/Contacts/Contacts";
 import { UserList } from "./components/UserList/UserList";
-import Home from "./pages/Home";
-import News from "./pages/News";
+
+import News from "./pages/News/News";
 import Contact from "./pages/Contact/Contact";
 import Register from "./pages/Register/Register";
 import Login from "../src/pages/Login/Login"
