@@ -24,13 +24,14 @@ const NewsDetails = () => {
 
     //Quitar cunado se implemente el endpoint
     setNews({
-      name: "NOTICIA",
+      name: "Celebracion del fin de la campaña",
       content:
         "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Error in autem, at deleniti eum ut vitae voluptatem. Incidunt, dolorem, laudantium aperiam, possimus numquam porro hic ratione vitae ut ipsam doloremque. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quam quia provident obcaecati explicabo ex omnis aut ipsam dolore asperiores magni vel in mollitia, ratione itaque doloribus suscipit error numquam quis!Lorem, ipsum dolor sit amet consectetur adipisicing elit. Exercitationem voluptates repellendus cupiditate labore soluta facilis similique blanditiis ab nisi dolorem. Voluptatem sunt provident ea dicta rem libero, incidunt ipsam necessitatibus!",
       image:
         "https://images.unsplash.com/photo-1603228254119-e6a4d095dc59?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2071&q=80",
       category: "Evento",
       type: "Noticia",
+      createdAt: "2022-05-20",
     });
     // fetchData();
   }, []);
@@ -43,15 +44,18 @@ const NewsDetails = () => {
     <div className="container mx-auto">
       <div className="w-full py-8 px-4">
         <h1 className="text-4xl text-center font-bold">{name}</h1>
-
-        {image && (
-          <img
-            className="w-full my-4 max-h-96 object-cover "
-            src={image}
-            alt={`${name} image`}
-          />
-        )}
-        <p className="mt-3 mb-1">{content}</p>
+        <div className="xl:flex xl:justify-around">
+          {image && (
+            <div className="w-full xl:h-96">
+              <img
+                className="max-w-full max-h-full mx-auto my-4 object-cover "
+                src={image}
+                alt={`${name} image`}
+              />
+            </div>
+          )}
+          <p className="mt-3 mb-1 text-justify xl:w-3/4">{content}</p>
+        </div>
       </div>
       <div className="bg-blue-400 w-full h-1 rounded"></div>
       <div className="sm:flex align-middle justify-between mt-1">
