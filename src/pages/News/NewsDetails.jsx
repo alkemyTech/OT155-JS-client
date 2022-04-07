@@ -58,7 +58,7 @@ const NewsDetails = () => {
         </div>
       </div>
       <div className="bg-blue-400 w-full h-1 rounded"></div>
-      <div className="sm:flex align-middle justify-between mt-1">
+      <div className="sm:flex align-middle justify-between mt-1 ml-4 sm:ml-0">
         <h4 className="text-sm">
           Tipo: <span className="font-bold">{type}</span>
         </h4>
