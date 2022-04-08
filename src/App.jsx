@@ -1,6 +1,6 @@
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
-import Contacts from "./pages/Contacts/ContactsList";
+import ContactsList from "./pages/Contacts/ContactsList";
 import { UserList } from "./components/UserList/UserList";
 import Home from "./pages/Home";
 import News from "./pages/News";
@@ -16,16 +16,19 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/news" element={<News />} />
-        <Route path="/contact" element={<ContactForm />} />
-        <Route path="/register" element={<Register />}></Route>
+        <Route path="news" element={<News />} />
+        <Route path="contact" element={<ContactForm />} />
+        <Route path="register" element={<Register />} />
+        <Route path="login" element={<Login />} />
 
-        <Route path="/login" element={<Login />}></Route>
-
-        <Route path="/backoffice/contacts" element={<Contacts />}></Route>
         {/* To add to private routes soon */}
-        <Route path="/backoffice/users" element={<UserList />} />
-        {/* <Route path="/backoffice/users/edituser:id" element={<UserList />} /> */}
+        <Route path="backoffice">
+          <Route path="contacts" element={<ContactsList />} />
+          <Route path="users">
+            <Route index element={<UserList />} />
+            {/* <Route path="/backoffice/users/edituser:id" element={<UserList />} /> */}
+          </Route>
+        </Route>
       </Routes>
       <Footer />
     </>
