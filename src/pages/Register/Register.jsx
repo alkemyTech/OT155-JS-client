@@ -91,7 +91,7 @@ const Register = () => {
   return (
     <div className="w-full h-screen bg-slate-200 flex flex-col items-center justify-center">
       <div className="w-screen h-screen lg:w-1/2 lg:h-5/6 xl:w-1/3 xl:h-5/6 bg-white rounded-md shadow-md flex flex-col items-center justify-center ">
-        <div className="text-2xl text-blue-600">Crear nuevo usuario</div>
+        <div className="text-2xl text-ong-blue-700">Crear nuevo usuario</div>
         <form
           className=" w-3/4 h-5/6 flex flex-col items-start justify-start p-2 "
           onSubmit={formik.handleSubmit}
@@ -150,13 +150,13 @@ const Register = () => {
             </SubmitButton>
           </div>
           <div className="w-full flex flex-row items-center justify-center">
-            <a className="text-sm text-indigo-500 hover:underline" href="#">
+            <a className="text-sm text-ong-blue-700 hover:underline" href="#">
               Ya tengo una cuenta
             </a>
-            <span className="mx-6 font-bold text-xl text-indigo-600 ">
+            <span className="mx-6 font-bold text-xl text-ong-blue-600 ">
               &#183;
             </span>
-            <a className="text-sm text-indigo-500 hover:underline" href="#">
+            <a className="text-sm text-ong-blue-700 hover:underline" href="#">
               Acerca de ONG somos más
             </a>
           </div>

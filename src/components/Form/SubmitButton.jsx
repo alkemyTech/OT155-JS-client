@@ -3,11 +3,14 @@ import React from "react";
 const SubmitButton = ({ children, isSubmitting }) => {
   return (
     <button
-      className="w-full bg-blue-300 text-white px-4 py-2 rounded-md text-1xl font-medium hover:bg-blue-700 transition duration-300 mt-6"
+      className="w-full font-semibold bg-ong-blue-700 text-white px-4 py-2 mb-4 rounded-md text-1xl transition duration-300
+        lg:w-fit lg:px-8 
+        hover:bg-ong-blue-600   
+        disabled:bg-ong-blue-500"
       type="submit"
       disabled={isSubmitting}
     >
-      {children}
+      {isSubmitting ? "Validando..." : children}
     </button>
   );
 };

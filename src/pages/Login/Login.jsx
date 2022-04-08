@@ -54,7 +54,7 @@ const Login = () => {
 
   return (
     <div className="flex">
-      <div className="bg-blue-300	 w-1/2 h-screen"></div>
+      <div className="bg-ong-blue-500	 w-1/2 h-screen"></div>
       <div className="mx-auto flex flex-col justify-center">
         <p className="w-full text-left">Bienvenido</p>
         <h2 className="w-full text-left text-4xl">
@@ -92,7 +92,7 @@ const Login = () => {
         <div className="mt-6">
           <p className="text-left">
             No tienes cuenta?{" "}
-            <a href="#" className="text-blue-600">
+            <a href="#" className="text-ong-blue-700">
               Join free today
             </a>
           </p>
