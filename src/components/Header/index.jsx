@@ -22,7 +22,7 @@ const header = () => {
       <div className="flex items-center">
         <nav className="px-10">
           {routes.map((link, i) => (
-            <Link className="route" to={"/" + link.route}>
+            <Link key={link.name} className="route" to={"/" + link.route}>
               {link.name}
             </Link>
           ))}

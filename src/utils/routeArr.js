@@ -17,7 +17,7 @@ export const routes = [
   },
   {
     name: "Contacto",
-    route: "contacto",
+    route: "contact",
   },
   {
     name: "Contribuye",

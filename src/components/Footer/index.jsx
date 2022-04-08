@@ -12,7 +12,7 @@ const Footer = () => {
           <img src={"https://i.imgur.com/wQoZYOF.png"} alt="logo somos mas" />
         </div>
         {routes.map((link, i) => (
-          <Link className="route text-white" to={link.route} key={i}>
+          <Link key={link.name} className="route text-white" to={link.route}>
             {link.name}
           </Link>
         ))}

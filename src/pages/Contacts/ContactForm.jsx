@@ -5,7 +5,7 @@ import { apiConnectionWithoutToken } from "../../helpers/apiConnection";
 import Input from "../../components/Form/Input";
 import TextArea from "../../components/Form/TextArea";
 
-const Contact = () => {
+const ContactForm = () => {
   const validate = (values) => {
     const errors = {};
     if (!values.contactName) {
@@ -50,9 +50,9 @@ const Contact = () => {
   });
 
   return (
-    <div className="container m-auto">
+    <div className="container m-auto my-14">
       <div className="lg:flex p-8">
-        <div className="lg:w-1/2 mb-8">
+        <div className="lg:w-1/2 p-5 mb-8">
           <h1 className="text-4xl text-center font-bold mb-6">
             ¿Quieres contribuir?
           </h1>
@@ -63,7 +63,7 @@ const Contact = () => {
             vel nesciunt, modi mollitia repudiandae?
           </p>
         </div>
-        <div className="lg:w-1/2">
+        <div className="lg:w-1/2 p-5">
           <h2 className="text-3xl text-center font-bold mb-4">
             ¡Contactáte con nosotros!
           </h2>
@@ -116,4 +116,4 @@ const Contact = () => {
   );
 };
 
-export default Contact;
+export default ContactForm;

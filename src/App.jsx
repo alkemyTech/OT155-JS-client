@@ -1,10 +1,10 @@
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
-import Contacts from "./pages/Contacts/Contacts";
+import Contacts from "./pages/Contacts/ContactsList";
 import { UserList } from "./components/UserList/UserList";
 import Home from "./pages/Home";
 import News from "./pages/News";
-import Contact from "./pages/Contact/Contact";
+import ContactForm from "./pages/Contacts/ContactForm";
 import Register from "./pages/Register/Register";
 import Login from "../src/pages/Login/Login";
 import Header from "./components/Header";
@@ -17,7 +17,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/news" element={<News />} />
-        <Route path="/contact" element={<Contact />} />
+        <Route path="/contact" element={<ContactForm />} />
         <Route path="/register" element={<Register />}></Route>
 
         <Route path="/login" element={<Login />}></Route>
