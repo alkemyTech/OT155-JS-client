@@ -3,10 +3,11 @@ import { useFormik } from "formik";
 import { apiConnectionWithoutToken } from "../../helpers/apiConnection";
 import { useNavigate } from "react-router-dom";
 import { errorAlert } from "../../helpers/AlertService";
+import Input from "../../components/Form/Input";
+import SubmitButton from "../../components/Form/SubmitButton";
 
 const Login = () => {
   const navigate = useNavigate();
- 
 
   const validate = (values) => {
     const errors = {};
@@ -39,12 +40,12 @@ const Login = () => {
             window.sessionStorage.setItem("jwt", JSON.stringify(data.jwt));
             navigate("/");
           } else {
-            errorAlert("Error.", "Datos inválidos.")
+            errorAlert("Error.", "Datos inválidos.");
             formik.setSubmitting(false);
           }
         })
         .catch((err) => {
-          errorAlert("Error.", "Datos inválidos.")
+          errorAlert("Error.", "Datos inválidos.");
           formik.setSubmitting(false);
           return err;
         });
@@ -54,53 +55,37 @@ const Login = () => {
   return (
     <div className="flex">
       <div className="bg-blue-300	 w-1/2 h-screen"></div>
-      <div className="mt-7 m-auto">
+      <div className="mx-auto flex flex-col justify-center">
         <p className="w-full text-left">Bienvenido</p>
         <h2 className="w-full text-left text-4xl">
           Inicia sesión en tu cuenta!
         </h2>
         <form className="mt-8 text-left" onSubmit={formik.handleSubmit}>
-          <div>
-            <label>Email</label>
-            <input
-              className="text-xl block px-3 py-2 rounded-lg w-full bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none "
-              type="email"
-              name="email"
-              placeholder="Ingresa tu email"
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              value={formik.values.email}
-            />
-            <div className="text-red-600">
-              {formik.errors.email &&
-                formik.touched.email &&
-                formik.errors.email}
-            </div>
-          </div>
-          <div className="mt-8">
-            <label>Contraseña</label>
-            <input
-              className="text-xl block px-3 py-2 rounded-lg w-full bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none"
-              type="password"
-              name="password"
-              placeholder="Ingresa tu password"
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              value={formik.values.password}
-            />
-            <div className="text-red-600">
-              {formik.errors.password &&
-                formik.touched.password &&
-                formik.errors.password}
-            </div>
-          </div>
-          <button
-            className="w-full bg-blue-300 text-white px-4 py-2 rounded-md text-1xl font-medium hover:bg-blue-700 transition duration-300 mt-6"
-            type="submit"
-            disabled={formik.isSubmitting}
-          >
+          <Input
+            label="Email"
+            error={formik.errors.email}
+            touched={formik.touched.email}
+            type="email"
+            name="email"
+            placeholder="Ingresa tu email"
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.email}
+          />
+          <Input
+            label="Contraseña"
+            error={formik.errors.password}
+            touched={formik.touched.password}
+            type="password"
+            name="password"
+            placeholder="Ingresa tu password"
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.password}
+          />
+          <SubmitButton isSubmitting={formik.isSubmitting}>
             Login Now
-          </button>
+          </SubmitButton>
         </form>
         <div className="mt-6">
           <p className="text-left">
@@ -111,7 +96,6 @@ const Login = () => {
           </p>
         </div>
       </div>
-    
     </div>
   );
 };
