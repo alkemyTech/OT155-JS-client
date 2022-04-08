@@ -20,8 +20,11 @@ const Footer = () => {
       <div className="flex flex-col center-center contain__network mt-10">
         <div className="flex justify-center my-5">
           {networks.map((network, i) => (
-            <div className="network rounded-full bg-white cursor-pointer">
-              <a href={network.route} key={i}>
+            <div
+              key={network.route}
+              className="network rounded-full bg-white cursor-pointer"
+            >
+              <a href={network.route}>
                 <img src={network.image} alt="" />
               </a>
             </div>
