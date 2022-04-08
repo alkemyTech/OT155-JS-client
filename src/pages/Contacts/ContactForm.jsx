@@ -4,6 +4,7 @@ import { informationAlert, errorAlert } from "../../helpers/AlertService";
 import { apiConnectionWithoutToken } from "../../helpers/apiConnection";
 import Input from "../../components/Form/Input";
 import TextArea from "../../components/Form/TextArea";
+import SubmitButton from "../../components/Form/SubmitButton";
 
 const ContactForm = () => {
   const validate = (values) => {
@@ -102,13 +103,12 @@ const ContactForm = () => {
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
             />
-            <button
-              className="w-full bg-blue-500 hover:bg-blue-700 disabled:bg-blue-300  text-white px-4 py-2 rounded-md text-1xl font-medium  transition duration-300 mt-6"
-              type="submit"
-              disabled={formik.isSubmitting}
-            >
-              Enviar
-            </button>
+
+            <div className="w-full h-16 my-4 flex flex-col items-end justify-center">
+              <SubmitButton isSubmitting={formik.isSubmitting}>
+                Enviar mensaje
+              </SubmitButton>
+            </div>
           </form>
         </div>
       </div>
