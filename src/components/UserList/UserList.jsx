@@ -14,7 +14,7 @@ export const UserList = () => {
     const queryAPI = async () => {
       try {
         const { data } = await apiConnectionWithoutToken('/users');
-        setUsers(data.users.rows);
+        setUsers(data.users);
         setLoading(false);
       } catch (error) {
         console.log(error);
