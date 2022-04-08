@@ -83,9 +83,11 @@ const Login = () => {
             onBlur={formik.handleBlur}
             value={formik.values.password}
           />
-          <SubmitButton isSubmitting={formik.isSubmitting}>
-            Login Now
-          </SubmitButton>
+          <div className="w-full h-16 my-4 flex flex-col items-end justify-center">
+            <SubmitButton isSubmitting={formik.isSubmitting}>
+              Login Now
+            </SubmitButton>
+          </div>
         </form>
         <div className="mt-6">
           <p className="text-left">
