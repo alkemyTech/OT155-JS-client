@@ -1,51 +1,88 @@
 import { useNavigate } from 'react-router-dom';
-import Swal from 'sweetalert2/dist/sweetalert2.all.js';
 import { errorAlert } from '../helpers/AlertService';
-import { useForm } from '../hooks/useForm';
-
+import { uploadImage } from '../helpers/UploadImage';
+import { useEffect, useState } from 'react';
 
 export const HomeEdit = () => {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
-  const [welcomeValues, handleWelcomeForm] = useForm({
+  const [image1, setImage1] = useState();
+  const [image2, setImage2] = useState();
+  const [image3, setImage3] = useState();
+  const [imageUrl1, setImageUrl1] = useState('');
+  const [imageUrl2, setImageUrl2] = useState('');
+  const [imageUrl3, setImageUrl3] = useState('');
+
+  const [welcomeValues, handleWelcomeForm] = useState({
     welcomeText: '',
   });
 
-  const [imageSlides1, handleImageSlides1] = useForm({
-      id1: '1',
-      imageUrl1: '',
-      text1: '',
+  const [imageSlides1, handleImageSlides1] = useState({
+    id1: '1',
+    imageUrl1: '',
+    text1: '',
   });
-  const [imageSlides2, handleImageSlides2] = useForm({
-      id2: '2',
-      imageUrl2: '',
-      text2: '',
+  const [imageSlides2, handleImageSlides2] = useState({
+    id2: '2',
+    imageUrl2: '',
+    text2: '',
   });
-  const [imageSlides3, handleImageSlides3] = useForm({
-      id3: '3',
-      imageUrl3: '',
-      text3: '',
+  const [imageSlides3, handleImageSlides3] = useState({
+    id3: '3',
+    imageUrl3: '',
+    text3: '',
   });
+
+  useEffect(() => {
+    handleImageSlides1({ ...imageSlides1, imageUrl1 });
+    handleImageSlides2({ ...imageSlides2, imageUrl2 });
+    handleImageSlides3({ ...imageSlides3, imageUrl3 });
+  }, [imageUrl1, imageUrl2, imageUrl3]);
 
   const { welcomeText } = welcomeValues;
-  const { imageUrl1, text1 } = imageSlides1;
-  const { imageUrl2, text2 } = imageSlides2;
-  const { imageUrl3, text3 } = imageSlides3;
-  
+  const { text1 } = imageSlides1;
+  const { text2 } = imageSlides2;
+  const { text3 } = imageSlides3;
 
-  const handleSubmit1 = (e) => {
-      e.preventDefault();
-      if(welcomeText.length < 20){
-        errorAlert('Error','El texto debe tener al menos 20 caracteres');
-            return;
-        }
-        console.log('envío 1');
-    }
-  
-  const handleSubmit2 = (e) => {
-    e.preventDefault();
-    console.log('envío 2');
+  const handleChange1 = (e) => {
+    setImage1(e.target.files[0]);
   };
+  const handleChange2 = (e) => {
+    setImage2(e.target.files[0]);
+  };
+  const handleChange3 = (e) => {
+    setImage3(e.target.files[0]);
+  };
+  const handleWelcomeChange = (e) => {
+    handleWelcomeForm({ ...welcomeValues, welcomeText: e.target.value });
+  };
+  const handleInputChange1 = (e) => {
+    handleImageSlides1({ ...imageSlides1, text1: e.target.value });
+  };
+  const handleInputChange2 = (e) => {
+    handleImageSlides2({ ...imageSlides2, text2: e.target.value });
+  };
+  const handleInputChange3 = (e) => {
+    handleImageSlides3({ ...imageSlides3, text3: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (welcomeText.length < 20) {
+      errorAlert('Error', 'El texto debe tener al menos 20 caracteres');
+      return;
+    }
+    console.log('envío 1');
+  };
+
+  const handleSubmit1 = async (e) => {
+    e.preventDefault();
+    setImageUrl1(await uploadImage(image1));
+    setImageUrl2(await uploadImage(image2));
+    setImageUrl3(await uploadImage(image3));
+  };
+
+  console.log(imageSlides1);
 
   const handleReturn = () => {
     navigate(-1);
@@ -53,10 +90,12 @@ export const HomeEdit = () => {
 
   return (
     <>
-        <h1 className='text-2xl sm:text-4xl m-10 text-center'>Editar Datos de Home</h1>
+      <h1 className="text-2xl sm:text-4xl m-10 text-center">
+        Editar Datos de Home
+      </h1>
       <div className="container mx-auto h-full lg:flex gap-4 mt-10">
         <div className="block p-6 rounded-lg shadow-lg bg-gray-200  container mx-auto mb-10 lg:m-0">
-          <form onSubmit={handleSubmit1}>
+          <form onSubmit={handleSubmit}>
             <h2 className="text-xl sm:text-2xl text-center">
               Modificar texto de Bienvenida
             </h2>
@@ -83,7 +122,7 @@ export const HomeEdit = () => {
                 placeholder="Tu mensaje"
                 name="welcomeText"
                 value={welcomeText}
-                onChange={handleWelcomeForm}
+                onChange={handleWelcomeChange}
                 min={20}
                 required={true}
               />
@@ -115,9 +154,8 @@ export const HomeEdit = () => {
             </div>
           </form>
         </div>
-
         <div className="block p-6 rounded-lg shadow-lg bg-gray-200 container mx-auto">
-          <form onSubmit={handleSubmit2}>
+          <form onSubmit={handleSubmit1}>
             <h2 className="text-xl sm:text-2xl text-center">
               Modificar texto y imágenes de Sliders
             </h2>
@@ -146,9 +184,9 @@ export const HomeEdit = () => {
                     ease-in-out
                     m-0
                     focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none mb-4"
-                    name='text1'
-                    value={text1}
-                    onChange={handleImageSlides1}
+                  name="text1"
+                  value={text1}
+                  onChange={handleInputChange1}
                 />
                 <label
                   htmlFor="formFile"
@@ -171,10 +209,10 @@ export const HomeEdit = () => {
                     ease-in-out
                     m-0
                     focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                  required={true}  
+                  required={true}
                   type="file"
-                  id="formFile"
                   accept="image/png, image/jpeg"
+                  onChange={handleChange1}
                 />
               </div>
             </div>
@@ -202,10 +240,10 @@ export const HomeEdit = () => {
                     ease-in-out
                     m-0
                     focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none mb-4"
-                    name='text2'
-                    value={text2}
-                    onChange={handleImageSlides2}
-                    required={true} 
+                  name="text2"
+                  value={text2}
+                  onChange={handleInputChange2}
+                  required={true}
                 />
                 <label
                   htmlFor="formFile"
@@ -231,7 +269,8 @@ export const HomeEdit = () => {
                   type="file"
                   id="formFile"
                   accept="image/png, image/jpeg"
-                  required
+                  required={true}
+                  onChange={handleChange2}
                 />
               </div>
             </div>
@@ -259,9 +298,10 @@ export const HomeEdit = () => {
                     ease-in-out
                     m-0
                     focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none mb-4"
-                    name='text3'
-                    value={text3}
-                    onChange={handleImageSlides3}
+                  name="text3"
+                  value={text3}
+                  required={true}
+                  onChange={handleInputChange3}
                 />
                 <label
                   htmlFor="formFile"
@@ -287,6 +327,8 @@ export const HomeEdit = () => {
                   type="file"
                   id="formFile"
                   accept="image/png, image/jpeg"
+                  required={true}
+                  onChange={handleChange3}
                 />
               </div>
             </div>
@@ -318,7 +360,8 @@ export const HomeEdit = () => {
         </div>
       </div>
       <div className="container mx-auto mt-5 mb-20 flex justify-center">
-        <button onClick={handleReturn}
+        <button
+          onClick={handleReturn}
           type="text"
           className="
                     px-6
