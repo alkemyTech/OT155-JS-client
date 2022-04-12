@@ -1,7 +1,10 @@
 import { useNavigate } from 'react-router-dom';
-import { errorAlert } from '../helpers/AlertService';
-import { uploadImage } from '../helpers/UploadImage';
+import {errorAlert} from '../../helpers/AlertService';
+import { uploadImage } from '../../helpers/UploadImage';
 import { useEffect, useState } from 'react';
+
+
+errorAlert
 
 export const HomeEdit = () => {
   const navigate = useNavigate();
