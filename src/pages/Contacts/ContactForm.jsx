@@ -4,8 +4,9 @@ import { informationAlert, errorAlert } from "../../helpers/AlertService";
 import { apiConnectionWithoutToken } from "../../helpers/apiConnection";
 import Input from "../../components/Form/Input";
 import TextArea from "../../components/Form/TextArea";
+import SubmitButton from "../../components/Form/SubmitButton";
 
-const Contact = () => {
+const ContactForm = () => {
   const validate = (values) => {
     const errors = {};
     if (!values.contactName) {
@@ -50,9 +51,9 @@ const Contact = () => {
   });
 
   return (
-    <div className="container m-auto">
+    <div className="container m-auto my-14">
       <div className="lg:flex p-8">
-        <div className="lg:w-1/2 mb-8">
+        <div className="lg:w-1/2 p-5 mb-8">
           <h1 className="text-4xl text-center font-bold mb-6">
             ¿Quieres contribuir?
           </h1>
@@ -63,7 +64,7 @@ const Contact = () => {
             vel nesciunt, modi mollitia repudiandae?
           </p>
         </div>
-        <div className="lg:w-1/2">
+        <div className="lg:w-1/2 p-5">
           <h2 className="text-3xl text-center font-bold mb-4">
             ¡Contactáte con nosotros!
           </h2>
@@ -102,13 +103,12 @@ const Contact = () => {
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
             />
-            <button
-              className="w-full bg-blue-500 hover:bg-blue-700 disabled:bg-blue-300  text-white px-4 py-2 rounded-md text-1xl font-medium  transition duration-300 mt-6"
-              type="submit"
-              disabled={formik.isSubmitting}
-            >
-              Enviar
-            </button>
+
+            <div className="w-full h-16 my-4 flex flex-col items-end justify-center">
+              <SubmitButton isSubmitting={formik.isSubmitting}>
+                Enviar mensaje
+              </SubmitButton>
+            </div>
           </form>
         </div>
       </div>
@@ -116,4 +116,4 @@ const Contact = () => {
   );
 };
 
-export default Contact;
+export default ContactForm;
