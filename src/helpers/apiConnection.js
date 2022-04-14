@@ -18,7 +18,7 @@ const apiConnectionWithToken = (url, data, method = 'get') => {
     return instance(url, {
       method,
       headers: {
-        token: token,
+        Authorization: token,
       },
     });
   }
@@ -28,7 +28,7 @@ const apiConnectionWithToken = (url, data, method = 'get') => {
     data,
     headers: {
       'Content-type': 'application/json',
-      token: token,
+      Authorization: token,
     },
   });
 };
