@@ -28,7 +28,6 @@ function App() {
 
         {/* To add to private routes soon */}
         <Route path="backoffice">
-          <Route index element={<BackOffice />} />
           <Route path="contacts" element={<ContactsList />} />
           <Route path="users">
             <Route index element={<UserList />} />
