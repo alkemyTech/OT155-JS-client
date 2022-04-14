@@ -1,8 +1,10 @@
 import React from "react";
-import { Formik } from "formik";
+import { useFormik } from "formik";
 import { apiConnectionWithoutToken } from "../../helpers/apiConnection";
 import { useNavigate } from "react-router-dom";
 import { errorAlert } from "../../helpers/AlertService";
+import Input from "../../components/Form/Input";
+import SubmitButton from "../../components/Form/SubmitButton";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -80,118 +82,85 @@ const Register = () => {
       });
   };
 
+  const formik = useFormik({
+    initialValues: { name: "", surname: "", email: "", password: "" },
+    validate: validateFormInputs,
+    onSubmit: handleRegister,
+  });
+
   return (
-    <div className="w-screen h-screen bg-slate-200 flex flex-col items-center justify-center">
+    <div className="w-full h-screen bg-slate-200 flex flex-col items-center justify-center">
       <div className="w-screen h-screen lg:w-1/2 lg:h-5/6 xl:w-1/3 xl:h-5/6 bg-white rounded-md shadow-md flex flex-col items-center justify-center ">
-        <div className="text-2xl text-indigo-600">Crear nuevo usuario</div>
-        <Formik
-          initialValues={{ name: "", surname: "", email: "", password: "" }}
-          validate={validateFormInputs}
-          onSubmit={(values) => {
-            return handleRegister(values);
-          }}
+        <div className="text-2xl text-ong-blue-700">Crear nuevo usuario</div>
+        <form
+          className=" w-3/4 h-5/6 flex flex-col items-start justify-start p-2 "
+          onSubmit={formik.handleSubmit}
         >
-          {({ errors, touched, handleSubmit, handleChange, isSubmitting }) => (
-            <form
-              className=" w-3/4 h-5/6 flex flex-col items-start justify-start p-2 "
-              onSubmit={handleSubmit}
-            >
-              <div className="w-full h-20 my-4 flex flex-col items-start justify-evenly">
-                <div className="w-full h-6 flex flex-row items-center justify-between">
-                  <label className="mb-2">Nombre:</label>
-                  <small className="text-red-500 text-sm mb-2">
-                    {errors.name && touched.name && errors.name}
-                  </small>
-                </div>
+          <Input
+            label="Nombre"
+            error={formik.errors.name}
+            touched={formik.touched.name}
+            type="text"
+            name="name"
+            placeholder="Ingresa tu nombre..."
+            value={formik.values.name}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+          />
 
-                <input
-                  name="name"
-                  className="w-full h-10 border border-solid border-gray-200 rounded-md px-2 focus:border-indigo-500 focus:border-2 outline-none"
-                  type="text"
-                  placeholder="Ingresa tu nombre..."
-                  onChange={handleChange}
-                ></input>
-              </div>
+          <Input
+            label="Apellido"
+            error={formik.errors.surname}
+            touched={formik.touched.surname}
+            type="text"
+            name="surname"
+            placeholder="Ingresa tu apellido..."
+            value={formik.values.surname}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+          />
 
-              <div className="w-full h-20 my-4 flex flex-col items-start justify-evenly">
-                <div className="w-full h-6 flex flex-row items-center justify-between">
-                  <label className="mb-2">Apellido: </label>
-                  <small className="text-red-500 text-sm mb-2">
-                    {errors.surname && touched.surname && errors.surname}
-                  </small>
-                </div>
+          <Input
+            label="Email"
+            error={formik.errors.email}
+            touched={formik.touched.email}
+            type="email"
+            name="email"
+            placeholder="example@example.com"
+            value={formik.values.email}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+          />
 
-                <input
-                  name="surname"
-                  className="w-full h-10 border border-solid border-gray-200 rounded-md px-2 focus:border-indigo-500 focus:border-2 outline-none"
-                  type="text"
-                  placeholder="Ingresa tu apellido..."
-                  onChange={handleChange}
-                ></input>
-              </div>
+          <Input
+            label="Contraseña"
+            error={formik.errors.password}
+            touched={formik.touched.password}
+            type="password"
+            name="password"
+            placeholder=""
+            value={formik.values.password}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+          />
 
-              <div className="w-full h-20 mb-4 flex flex-col items-start justify-evenly">
-                <div className="w-full h-6 flex flex-row items-center justify-between">
-                  <label className="mb-2">Email: </label>
-                  <small className="text-red-500 text-sm mb-2">
-                    {errors.email && touched.email && errors.email}
-                  </small>
-                </div>
-
-                <input
-                  name="email"
-                  className="w-full h-10 border border-solid border-gray-200 rounded-md px-2 focus:border-indigo-500 focus:border-2 outline-none"
-                  type="email"
-                  placeholder="example@example.com"
-                  onChange={handleChange}
-                ></input>
-              </div>
-
-              <div className="w-full h-20 my-4 flex flex-col items-start justify-evenly">
-                <div className="w-full h-6 flex flex-row items-center justify-between">
-                  <label className="mb-2">Contraseña:</label>
-                  <small className="text-red-500 text-sm mb-2">
-                    {errors.password && touched.password && errors.password}
-                  </small>
-                </div>
-
-                <input
-                  name="password"
-                  className="w-full h-10 border border-solid border-gray-200 rounded-md px-2 focus:border-indigo-500 focus:border-2 outline-none"
-                  type="password"
-                  placeholder=""
-                  onChange={handleChange}
-                ></input>
-              </div>
-
-              <div className="w-full h-16 my-4 flex flex-col items-center justify-center">
-                {isSubmitting ? (
-                  <span className="bg-indigo-600 text-white text-lg font-semibold px-16 py-2 rounded-md hover:bg-indigo-500 mb-4 hover:cursor-pointer">
-                    Validando...
-                  </span>
-                ) : (
-                  <button
-                    type="submit"
-                    className="bg-indigo-600 text-white text-lg font-semibold px-16 py-2 rounded-md hover:bg-indigo-500 mb-4 hover:cursor-pointer"
-                  >
-                    Crear usuario
-                  </button>
-                )}
-              </div>
-              <div className="w-full flex flex-row items-center justify-center">
-                <a className="text-sm text-indigo-500 hover:underline" href="#">
-                  Ya tengo una cuenta
-                </a>
-                <span className="mx-6 font-bold text-xl text-indigo-600 ">
-                  &#183;
-                </span>
-                <a className="text-sm text-indigo-500 hover:underline" href="#">
-                  Acerca de ONG somos más
-                </a>
-              </div>
-            </form>
-          )}
-        </Formik>
+          <div className="w-full h-16 my-4 flex flex-col items-end justify-center">
+            <SubmitButton isSubmitting={formik.isSubmitting}>
+              Crear usuario
+            </SubmitButton>
+          </div>
+          <div className="w-full flex flex-row items-center justify-center">
+            <a className="text-sm text-ong-blue-700 hover:underline" href="#">
+              Ya tengo una cuenta
+            </a>
+            <span className="mx-6 font-bold text-xl text-ong-blue-600 ">
+              &#183;
+            </span>
+            <a className="text-sm text-ong-blue-700 hover:underline" href="#">
+              Acerca de ONG somos más
+            </a>
+          </div>
+        </form>
       </div>
     </div>
   );
