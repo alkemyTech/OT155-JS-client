@@ -14,7 +14,6 @@ export const EditForm = () => {
     const firstNameValidate = ({errors, values}) => {
         if(!values.firstName){
             errors.firstName = 'El nombre es necesario'
-
         }
         return errors;
     }
@@ -22,10 +21,14 @@ export const EditForm = () => {
     const lastNameValidate = ({errors, values}) => {
         if(!values.lastName){
             errors.lastName = 'El apellido es necesario'
-
         }
         return errors;
     }
+ 
+        }
+        return errors;
+    }
+    
 
     const emailValidate = ({errors, values}) => {
         if(!values.email){
@@ -38,7 +41,6 @@ export const EditForm = () => {
     const handleSubmit = (values) => {
         console.log(values)
     }
-
 
   return (
     <section className="flex justify-center items-center h-screen mb-12 pb-12">
