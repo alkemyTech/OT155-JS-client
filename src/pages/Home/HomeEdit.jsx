@@ -85,8 +85,6 @@ export const HomeEdit = () => {
     setImageUrl3(await uploadImage(image3));
   };
 
-  console.log(imageSlides1);
-
   const handleReturn = () => {
     navigate(-1);
   };
