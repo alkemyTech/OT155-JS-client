@@ -7,7 +7,9 @@ import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import ContactsList from "./pages/Contacts/ContactsList";
 import { UserList } from "./components/UserList/UserList";
-import News from "./pages/News";
+import Home from "./pages/Home";
+import News from "./pages/News/News";
+import NewsDetails from "./pages/News/NewsDetails";
 import ContactForm from "./pages/Contacts/ContactForm";
 import Register from "./pages/Register/Register";
 import Login from "../src/pages/Login/Login";
@@ -20,7 +22,10 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="news" element={<News />} />
+        <Route path="news">
+          <Route index element={<News />} />
+          <Route path=":id" element={<NewsDetails />} />
+        </Route>
         <Route path="contact" element={<ContactForm />} />
         <Route path="register" element={<Register />} />
         <Route path="login" element={<Login />}/>
