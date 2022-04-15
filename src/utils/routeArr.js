@@ -9,15 +9,15 @@ export const routes = [
   },
   {
     name: "Novedades",
-    route: "novedades",
+    route: "news",
   },
   {
     name: "Testimonios",
-    route: "testimonios",
+    route: "testimonials",
   },
   {
     name: "Contacto",
-    route: "contact",
+    route: "contacts",
   },
   {
     name: "Contribuye",

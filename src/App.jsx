@@ -1,10 +1,8 @@
 import { useState } from "react";
 import logo from "./logo.svg";
-import Home from './pages/Home'
 import EditOrganization from "./pages/EditOrganization";
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
-import { Route, Routes } from "react-router-dom";
 import ContactsList from "./pages/Contacts/ContactsList";
 import { UserList } from "./components/UserList/UserList";
 import Home from "./pages/Home";
