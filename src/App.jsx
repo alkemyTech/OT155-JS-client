@@ -1,3 +1,8 @@
+import { useState } from "react";
+import logo from "./logo.svg";
+import Home from './pages/Home'
+import EditOrganization from "./pages/EditOrganization";
+import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import ContactsList from "./pages/Contacts/ContactsList";
@@ -23,16 +28,16 @@ function App() {
         </Route>
         <Route path="contact" element={<ContactForm />} />
         <Route path="register" element={<Register />} />
-        <Route path="login" element={<Login />} />
+        <Route path="login" element={<Login />}/>
 
+        <Route path="/backoffice/contacts" element={<Contacts />}></Route>
+        <Route path="/backoffice/edit-organization" element={<EditOrganization />}></Route>
         {/* To add to private routes soon */}
-        <Route path="backoffice">
-          <Route path="contacts" element={<ContactsList />} />
-          <Route path="users">
-            <Route index element={<UserList />} />
-            {/* <Route path="/backoffice/users/edituser:id" element={<UserList />} /> */}
-          </Route>
-        </Route>
+        <Route path="backoffice" />
+        <Route path="contacts" element={<ContactsList />} />
+        <Route path="users" />
+        <Route index element={<UserList />} />
+        {/* <Route path="/backoffice/users/edituser:id" element={<UserList />} /> */ }
       </Routes>
       <Footer />
     </>

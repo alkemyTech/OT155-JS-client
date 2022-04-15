@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
-import { BiEditAlt } from 'react-icons/Bi';
-import { MdDeleteForever } from 'react-icons/Md';
+import { BiEditAlt } from 'react-icons/bi';
+import { MdDeleteForever } from 'react-icons/md';
 
 export const ListItem = ({
   index,
