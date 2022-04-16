@@ -5,7 +5,7 @@ export const routes = [
   },
   {
     name: "Nosotros",
-    route: "nosotros",
+    route: "we",
   },
   {
     name: "Novedades",
@@ -21,6 +21,6 @@ export const routes = [
   },
   {
     name: "Contribuye",
-    route: "contribuye",
+    route: "Contributes",
   },
 ];
