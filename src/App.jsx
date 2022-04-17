@@ -9,6 +9,7 @@ import Home from "./pages/Home";
 import News from "./pages/News/News";
 import NewsDetails from "./pages/News/NewsDetails";
 import ContactForm from "./pages/Contacts/ContactForm";
+import FormActivities from './components/FormActivities'
 import Register from "./pages/Register/Register";
 import Login from "../src/pages/Login/Login";
 import Header from "./components/Header";
@@ -28,6 +29,7 @@ function App() {
         <Route path="register" element={<Register />} />
         <Route path="login" element={<Login />}/>
         <Route path='/backoffice/activities' element={<ActivitiesList/>}/>
+        <Route path='/backoffice/editActivities:id' element={<FormActivities/>}/>
         {/* <Route path="/backoffice/contacts" element={<Contacts />}></Route> */}
         <Route path="/backoffice/edit-organization" element={<EditOrganization />}></Route>
         {/* To add to private routes soon */}

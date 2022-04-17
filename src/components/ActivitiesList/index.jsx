@@ -8,14 +8,14 @@ import { ListItem } from './ListItem';
 
 export const ActivitiesList = () => {
   const [activities, setActivities] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const queryAPI = async () => {
       try {
-        // const { data } = await apiConnectionWithoutToken('/activities');
-        // setActivities(data.activities);
-        // setLoading(false);
+        const { data } = await apiConnectionWithoutToken('/activities');
+        setActivities(data.activities);
+        setLoading(false);
       } catch (error) {
         console.log(error);
       }

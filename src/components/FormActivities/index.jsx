@@ -3,7 +3,7 @@ import {CKEditor} from '@ckeditor/ckeditor5-react'
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
 import { apiConnectionWithoutToken } from '../../helpers/apiConnection'
 import { useFormik } from 'formik'
-import '../CKeditorNew/index.css'
+import '../CKeditorNews/index.css'
 
 export default ({obj = null}) => {
     const [content, setContent] = useState('')
