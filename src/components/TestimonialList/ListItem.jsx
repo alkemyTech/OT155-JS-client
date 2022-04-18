@@ -5,7 +5,7 @@ import { MdDeleteForever } from 'react-icons/md';
 export const ListItem = ({
   index,
   name,
-  img,
+  image,
   content,
   testimonialsId,
   handleDelete,
@@ -19,7 +19,7 @@ export const ListItem = ({
         {name}
       </td>
       <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-        <img src={img} alt=""  className="img__testimonials" />
+        <img src={image} alt=""  className="img__testimonials" />
       </td>
       <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
         {content}

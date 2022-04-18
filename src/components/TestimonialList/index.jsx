@@ -83,7 +83,7 @@ export const TestimonialsList = () => {
                       <ListItem
                         key={item.id}
                         name={item.name}
-                        img={item.img}
+                        image={item.image}
                         content={item.content}
                         index={index}
                         userId={item.id}
