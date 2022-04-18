@@ -7,6 +7,7 @@ import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import ContactsList from "./pages/Contacts/ContactsList";
 import { UserList } from "./components/UserList/UserList";
+import { NewsList } from "./components/NewsList";
 import Home from "./pages/Home";
 import News from "./pages/News/News";
 import NewsDetails from "./pages/News/NewsDetails";
@@ -31,6 +32,7 @@ function App() {
         <Route path="login" element={<Login />}/>
 
         <Route path="/backoffice/contacts" element={<Contacts />}></Route>
+        <Route path="/backoffice/news" element={<NewsList />}></Route>
         <Route path="/backoffice/edit-organization" element={<EditOrganization />}></Route>
         {/* To add to private routes soon */}
         <Route path="backoffice" />
