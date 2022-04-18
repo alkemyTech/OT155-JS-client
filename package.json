@@ -8,6 +8,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@ckeditor/ckeditor5-build-classic": "^33.0.0",
+    "@ckeditor/ckeditor5-react": "^4.0.1",
     "axios": "^0.26.1",
     "formik": "^2.2.9",
     "react": "^17.0.2",
@@ -15,6 +17,8 @@
     "react-icons": "^4.3.1",
     "react-redux": "^7.2.6",
     "react-router-dom": "^6.2.2",
+    "redux": "^4.1.2",
+    "redux-persist": "^6.0.0",
     "spinkit": "^2.0.1",
     "sweetalert2": "^11.4.6",
     "tw-elements": "^1.0.0-alpha11"
