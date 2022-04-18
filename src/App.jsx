@@ -1,4 +1,3 @@
-import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import ContactsList from "./pages/Contacts/ContactsList";
 import { UserList } from "./components/UserList/UserList";
