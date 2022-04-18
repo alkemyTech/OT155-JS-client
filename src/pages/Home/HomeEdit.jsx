@@ -1,10 +1,8 @@
 import { useNavigate } from 'react-router-dom';
-import {errorAlert} from '../../helpers/AlertService';
+import { errorAlert } from '../../helpers/AlertService';
 import { uploadImage } from '../../helpers/UploadImage';
 import { useEffect, useState } from 'react';
-
-
-errorAlert
+import { apiConnectionWithoutToken } from '../../helpers/apiConnection';
 
 export const HomeEdit = () => {
   const navigate = useNavigate();
@@ -21,17 +19,14 @@ export const HomeEdit = () => {
   });
 
   const [imageSlides1, handleImageSlides1] = useState({
-    id1: '1',
     imageUrl1: '',
     text1: '',
   });
   const [imageSlides2, handleImageSlides2] = useState({
-    id2: '2',
     imageUrl2: '',
     text2: '',
   });
   const [imageSlides3, handleImageSlides3] = useState({
-    id3: '3',
     imageUrl3: '',
     text3: '',
   });
@@ -69,13 +64,24 @@ export const HomeEdit = () => {
     handleImageSlides3({ ...imageSlides3, text3: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (welcomeText.length < 20) {
       errorAlert('Error', 'El texto debe tener al menos 20 caracteres');
       return;
     }
-    console.log('envío 1');
+    try {
+      await apiConnectionWithoutToken(
+        '/organizations',
+        {
+          id: 1,
+          welcomeText,
+        },
+        'PUT'
+      );
+    } catch (error) {
+      errorAlert('Error', error.message);
+    }
   };
 
   const handleSubmit1 = async (e) => {
@@ -83,6 +89,41 @@ export const HomeEdit = () => {
     setImageUrl1(await uploadImage(image1));
     setImageUrl2(await uploadImage(image2));
     setImageUrl3(await uploadImage(image3));
+
+    try {
+      await apiConnectionWithoutToken(
+        '/slide',
+        {
+          id: 1,
+          organizationId: 1,
+          imageUrl: imageSlides1.imageUrl1,
+          text: imageSlides1.text1,
+        },
+        'PUT'
+      );
+      await apiConnectionWithoutToken(
+        '/slide',
+        {
+          id: 2,
+          organizationId: 1,
+          imageUrl: imageSlides2.imageUrl2,
+          text: imageSlides2.text2,
+        },
+        'PUT'
+      );
+      await apiConnectionWithoutToken(
+        '/slide',
+        {
+          id: 3,
+          organizationId: 1,
+          imageUrl: imageSlides3.imageUrl3,
+          text: imageSlides3.text3,
+        },
+        'PUT'
+      );
+    } catch (error) {
+      errorAlert('Error', error.message);
+    }
   };
 
   const handleReturn = () => {
@@ -102,22 +143,7 @@ export const HomeEdit = () => {
             </h2>
             <div className="flex-col mt-6">
               <textarea
-                className="
-                        form-control
-                        block
-                        w-full
-                        px-3
-                        py-1.5
-                        text-base
-                        font-normal
-                        text-gray-700
-                        bg-white bg-clip-padding
-                        border border-solid border-gray-300
-                        rounded
-                        transition
-                        ease-in-out
-                        m-0
-                        focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                className="block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                 id="exampleFormControlTextarea1"
                 rows="5"
                 placeholder="Tu mensaje"
@@ -132,24 +158,7 @@ export const HomeEdit = () => {
             <div className="flex justify-between mt-4">
               <button
                 type="submit"
-                className="
-                    mx-auto
-                    px-6
-                    py-2.5
-                    bg-blue-600
-                    text-white
-                    font-medium
-                    text-xs
-                    leading-tight
-                    uppercase
-                    rounded
-                    shadow-md
-                    hover:bg-blue-700 hover:shadow-lg
-                    focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0
-                    active:bg-blue-800 active:shadow-lg
-                    transition
-                    duration-150
-                    ease-in-out">
+                className="mx-auto px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">
                 Guardar
               </button>
             </div>
@@ -170,21 +179,7 @@ export const HomeEdit = () => {
                 <input
                   type="text"
                   required={true}
-                  className="form-control
-                    block
-                    w-full
-                    px-3
-                    py-1.5
-                    text-base
-                    font-normal
-                    text-gray-700
-                    bg-white bg-clip-padding
-                    border border-solid border-gray-300
-                    rounded
-                    transition
-                    ease-in-out
-                    m-0
-                    focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none mb-4"
+                  className="block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none mb-4"
                   name="text1"
                   value={text1}
                   onChange={handleInputChange1}
@@ -195,21 +190,7 @@ export const HomeEdit = () => {
                   Imagen 1
                 </label>
                 <input
-                  className="form-control
-                    block
-                    w-full
-                    px-3
-                    py-1.5
-                    text-base
-                    font-normal
-                    text-gray-700
-                    bg-white bg-clip-padding
-                    border border-solid border-gray-300
-                    rounded
-                    transition
-                    ease-in-out
-                    m-0
-                    focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                  className="block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                   required={true}
                   type="file"
                   accept="image/png, image/jpeg"
@@ -226,21 +207,7 @@ export const HomeEdit = () => {
                 </label>
                 <input
                   type="text"
-                  className="form-control
-                    block
-                    w-full
-                    px-3
-                    py-1.5
-                    text-base
-                    font-normal
-                    text-gray-700
-                    bg-white bg-clip-padding
-                    border border-solid border-gray-300
-                    rounded
-                    transition
-                    ease-in-out
-                    m-0
-                    focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none mb-4"
+                  className="block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none mb-4"
                   name="text2"
                   value={text2}
                   onChange={handleInputChange2}
@@ -252,21 +219,7 @@ export const HomeEdit = () => {
                   Imagen 2
                 </label>
                 <input
-                  className="form-control
-                    block
-                    w-full
-                    px-3
-                    py-1.5
-                    text-base
-                    font-normal
-                    text-gray-700
-                    bg-white bg-clip-padding
-                    border border-solid border-gray-300
-                    rounded
-                    transition
-                    ease-in-out
-                    m-0
-                    focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                  className="block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                   type="file"
                   id="formFile"
                   accept="image/png, image/jpeg"
@@ -284,21 +237,7 @@ export const HomeEdit = () => {
                 </label>
                 <input
                   type="text"
-                  className="form-control
-                    block
-                    w-full
-                    px-3
-                    py-1.5
-                    text-base
-                    font-normal
-                    text-gray-700
-                    bg-white bg-clip-padding
-                    border border-solid border-gray-300
-                    rounded
-                    transition
-                    ease-in-out
-                    m-0
-                    focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none mb-4"
+                  className="block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none mb-4"
                   name="text3"
                   value={text3}
                   required={true}
@@ -310,21 +249,7 @@ export const HomeEdit = () => {
                   Imagen 3
                 </label>
                 <input
-                  className="form-control
-                    block
-                    w-full
-                    px-3
-                    py-1.5
-                    text-base
-                    font-normal
-                    text-gray-700
-                    bg-white bg-clip-padding
-                    border border-solid border-gray-300
-                    rounded
-                    transition
-                    ease-in-out
-                    m-0
-                    focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                  className="block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                   type="file"
                   id="formFile"
                   accept="image/png, image/jpeg"
@@ -336,24 +261,7 @@ export const HomeEdit = () => {
             <div className="flex mt-4">
               <button
                 type="submit"
-                className="
-                    mx-auto
-                    px-6
-                    py-2.5
-                    bg-blue-600
-                    text-white
-                    font-medium
-                    text-xs
-                    leading-tight
-                    uppercase
-                    rounded
-                    shadow-md
-                    hover:bg-blue-700 hover:shadow-lg
-                    focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0
-                    active:bg-blue-800 active:shadow-lg
-                    transition
-                    duration-150
-                    ease-in-out">
+                className="mx-auto px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">
                 Guardar
               </button>
             </div>
@@ -364,23 +272,7 @@ export const HomeEdit = () => {
         <button
           onClick={handleReturn}
           type="text"
-          className="
-                    px-6
-                    py-2.5
-                    bg-red-600
-                    text-white
-                    font-medium
-                    text-xs
-                    leading-tight
-                    uppercase
-                    rounded
-                    shadow-md
-                    hover:bg-red-700 hover:shadow-lg
-                    focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0
-                    active:bg-red-800 active:shadow-lg
-                    transition
-                    duration-150
-                    ease-in-out">
+          className="px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out">
           Volver sin guardar
         </button>
       </div>
