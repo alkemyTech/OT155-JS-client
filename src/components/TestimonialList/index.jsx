@@ -86,7 +86,7 @@ export const TestimonialsList = () => {
                         image={item.image}
                         content={item.content}
                         index={index}
-                        userId={item.id}
+                        testimonialsId={item.id}
                         handleDelete={handleDelete}
                       />
                     ))}
