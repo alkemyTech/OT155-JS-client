@@ -11,13 +11,13 @@ const ContactForm = () => {
   const [members, setMembers] = useState([]);
 
   useEffect(() => {
-    setMembers([
-      ...members,
-      {
-        name: "Franco Murabito",
-        imgUrl: "https://i.pravatar.cc/300?img=1",
-      },
-    ]);
+    apiConnectionWithoutToken("/members")
+      .then((res) => {
+        setMembers(res.data);
+      })
+      .catch((err) => {
+        errorAlert("Error", "Ha ocurrido un error al cargar los miembros");
+      });
   }, []);
 
   const validate = (values) => {
