@@ -10,6 +10,7 @@ import Login from "../src/pages/Login/Login";
 import EditOrganization from "./pages/EditOrganization";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import UserAuth from "./components/UserAuth/UserAuth";
 
 function App() {
   return (
@@ -26,7 +27,7 @@ function App() {
         <Route path="login" element={<Login />} />
 
         {/* To add to private routes soon */}
-        <Route path="backoffice">
+        <Route path="backoffice" element={<UserAuth/>}>
           <Route path="contacts" element={<ContactsList />} />
           <Route path="edit-organization" element={<EditOrganization />} />
           <Route path="users">
