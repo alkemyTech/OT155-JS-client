@@ -12,6 +12,7 @@ import ContactForm from "./pages/Contacts/ContactForm";
 import FormActivities from './components/FormActivities'
 import Register from "./pages/Register/Register";
 import Login from "../src/pages/Login/Login";
+import EditOrganization from "./pages/EditOrganization";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 
@@ -38,6 +39,16 @@ function App() {
         <Route path="/users" element={<UserList />}  />
         <Route index />
         {/* <Route path="/backoffice/users/edituser:id" element={<UserList />} /> */ }
+        <Route path="login" element={<Login />} />
+        {/* To add to private routes soon */}
+        <Route path="backoffice">
+          <Route path="contacts" element={<ContactsList />} />
+          <Route path="edit-organization" element={<EditOrganization />} />
+          <Route path="users">
+            <Route index element={<UserList />} />
+            {/* <Route path=":id/edit" element={<UserList />} /> */}
+          </Route>
+        </Route>
       </Routes>
       <Footer />
     </>
