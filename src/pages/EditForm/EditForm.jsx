@@ -25,10 +25,6 @@ export const EditForm = () => {
         return errors;
     }
  
-        }
-        return errors;
-    }
-    
 
     const emailValidate = ({errors, values}) => {
         if(!values.email){

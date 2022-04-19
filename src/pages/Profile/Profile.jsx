@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
-import { apiConnectionWithToken } from "../../helpers/apiConnection";
 import Modal from "react-modal/lib/components/Modal";
 import { errorAlert } from "../../helpers/AlertService";
 import { confirmationAlert } from "../../helpers/AlertService";
+import { connect } from "formik";
+import { deleteUser, deletUserFn } from "../../redux/actions/userActions";
 
-export const Profile = () => {
+export const Profile = ({ deletUser }) => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -49,7 +49,7 @@ export const Profile = () => {
       confirmationAlert("Exito", "Se ha eliminado su cuenta")
       setModalOpen(false)
       navigate("/")
-      await apiConnectionWithToken(`/users/${id}`, {}, 'DELETE');
+      deleteUser(id)
     }else{
       errorAlert("Error", 'Email incorrecto')
       setModalOpen(false)
@@ -89,4 +89,15 @@ export const Profile = () => {
   );
 };
 
-export default Profile;
+const mapStateToProps = state => {
+  return {
+    props: state.user
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    deletUser: () => dispatch(deletUserFn(id))
+  }
+}
+export default connect(mapStateToProps,mapDispatchToProps)(Profile);

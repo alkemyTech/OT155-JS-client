@@ -9,6 +9,10 @@ const reducer = (state = initialState, action) => {
       return action.payload;
     case "LOGOUT":
       return initialState;
+    case "DELETE_USER": 
+      return {
+        data: {}
+      }
     default:
       return state;
   }
