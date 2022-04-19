@@ -10,7 +10,9 @@ import Login from "../src/pages/Login/Login";
 import EditOrganization from "./pages/EditOrganization";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import UserAuth from "./components/UserAuth/UserAuth";
+import AdminAuth from "./components/UserAuth/AdminAuth";
+import LoggedAuth from "./components/UserAuth/LoggedAuth"
+import { EditForm } from "./pages/EditForm/EditForm";
 
 function App() {
   return (
@@ -26,8 +28,13 @@ function App() {
         <Route path="register" element={<Register />} />
         <Route path="login" element={<Login />} />
 
+        <Route path="user" element={<LoggedAuth/>}>
+          <Route path="edit" element={<EditForm/>}>
+        </Route>
+        
+        </Route>
         {/* To add to private routes soon */}
-        <Route path="backoffice" element={<UserAuth/>}>
+        <Route path="backoffice" element={<AdminAuth/>}>
           <Route path="contacts" element={<ContactsList />} />
           <Route path="edit-organization" element={<EditOrganization />} />
           <Route path="users">
