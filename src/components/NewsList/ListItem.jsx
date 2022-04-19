@@ -20,10 +20,10 @@ export const ListItem = ({
         {name}
       </td>
       <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-        {image}
+        <img src={image} alt="" />
       </td>
       <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-        {content}
+        {content.length > 20 ? content.slice(0,20) + '...' : content}
       </td>
       <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
         {type}

@@ -36,7 +36,7 @@ export const NewsList = () => {
 
   return (
     <>
-      {loading ? (
+      {!loading ? (
         <Loader />
       ) : (
         <div className="flex flex-col container mx-auto">
@@ -59,12 +59,17 @@ export const NewsList = () => {
                       <th
                         scope="col"
                         className="text-sm font-medium text-gray-900 px-6 py-4 text-left">
-                        Apellido
+                        Imagen
+                      </th>  
+                      <th
+                        scope="col"
+                        className="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+                        Contenido
                       </th>
                       <th
                         scope="col"
                         className="text-sm font-medium text-gray-900 px-6 py-4 text-left">
-                        Email
+                        Tipo
                       </th>
                       <th
                         scope="col"
@@ -83,7 +88,7 @@ export const NewsList = () => {
                       <ListItem
                         key={item.id}
                         name={item.name}
-                        image={item.image}
+                        image={item.imageUrl}
                         content={item.content}
                         type={item.type}
                         index={index} 
