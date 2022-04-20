@@ -5,11 +5,9 @@ const BackOfficeCard = ({ title, icon, link }) => {
   return (
     <div className="bg-white flex flex-col justify-around items-center shadow-md px-8 py-4 rounded-md">
       <h3 className="text-ong-blue-700 font-semibold">{title}</h3>
-      <div className="rounded-full bg-red-400 w-16 h-16">
-        {/* <img src={icon} alt="img" /> */}
-      </div>
+      <div className="w-24 h-24">{icon}</div>
       <Link
-        className="bg-emerald-700 mt-3 text-sm text-white font-medium px-3 py-1 rounded"
+        className="bg-ong-blue-900 hover:bg-ong-blue-700 mt-6 text-sm text-white font-medium px-3 py-1 rounded"
         to={link}
       >
         Ir
