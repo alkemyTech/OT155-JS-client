@@ -1,20 +1,22 @@
 import axios from "axios";
-import { apiConnectionWithoutToken, apiConnectionWithToken } from "../../helpers/apiConnection";
+import { apiConnectionWithoutToken } from "../../helpers/apiConnection";
 
 export const loginUser = (email, password) => {
   return (dispatch) => {
-    const loginValues = {email,password}
-     apiConnectionWithoutToken("/users/login", loginValues, "post")
-
-    .then((token) => {
-      localStorage.setItem("jwt", JSON.stringify(token.data));
-      dispatch({
-        type: "LOGIN",
-        token: token.data
+    const loginValues = { email, password };
+    apiConnectionWithoutToken("/users/login", loginValues, "post")
+      .then(({ data }) => {
+        const { token, user } = data;
+        dispatch({
+          type: "LOGIN",
+          payload: {
+            user: user,
+            token: token,
+          },
+        });
       })
-    })
-    .catch((err) => console.log(err.response))
-  }
+      .catch((err) => console.log(err.response));
+  };
 };
 
 export const logoutUser = () => {
