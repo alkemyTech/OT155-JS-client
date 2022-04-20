@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 import { apiConnectionWithoutToken } from "../../helpers/apiConnection";
 import { useNavigate } from "react-router-dom";
@@ -86,6 +87,7 @@ const News = () => {
         </button>
       </div>
     </>
+
   );
 };
 
