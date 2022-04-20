@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from "react";
 import { apiConnectionWithoutToken } from "../../helpers/apiConnection";
 import { useNavigate } from "react-router-dom";
@@ -20,7 +19,7 @@ const News = () => {
 
   return (
     <>
-      <header className="w-screen h-16 border-b border-gray-300 shadow shadow-md"></header>
+      <header className="w-screen h-16 border-b border-gray-300 shadow-md"></header>
       {latestNews.length ? (
         <section className="w-full min-h-screen">
           <div className="w-full h-44 flex justify-center items-center">
@@ -87,7 +86,6 @@ const News = () => {
         </button>
       </div>
     </>
-
   );
 };
 
