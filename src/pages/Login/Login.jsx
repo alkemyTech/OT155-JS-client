@@ -1,13 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import { useFormik } from "formik";
 import { apiConnectionWithoutToken } from "../../helpers/apiConnection";
 import { useNavigate } from "react-router-dom";
 import { errorAlert } from "../../helpers/AlertService";
 import Input from "../../components/Form/Input";
 import SubmitButton from "../../components/Form/SubmitButton";
+import { connect, useDispatch } from "react-redux";
+import { loginUser } from "../../redux/actions/userActions";
 
-const Login = () => {
+const Login = ({userLogIn, logIn}) => {
   const navigate = useNavigate();
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const dispatch = useDispatch();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("Aca", email)
+    console.log(userLogIn)
+    dispatch(loginUser(email,password))
+  }
 
   const validate = (values) => {
     const errors = {};
@@ -29,27 +41,27 @@ const Login = () => {
       email: "",
       password: "",
     },
-    validate,
-    onSubmit: (values) => {
-      const loginValues = values;
+    validate
+    // onSubmit: (values) => {
+    //   const loginValues = values;
 
-      apiConnectionWithoutToken("/users/login", loginValues, "post")
-        .then((res) => {
-          const data = res.data;
-          if (data.value) {
-            window.sessionStorage.setItem("jwt", JSON.stringify(data.jwt));
-            navigate("/");
-          } else {
-            errorAlert("Error.", "Datos inválidos.");
-            formik.setSubmitting(false);
-          }
-        })
-        .catch((err) => {
-          errorAlert("Error.", "Datos inválidos.");
-          formik.setSubmitting(false);
-          return err;
-        });
-    },
+    //   apiConnectionWithoutToken("/users/login", loginValues, "post")
+    //     .then((res) => {
+    //       const data = res.data;
+    //       if (data.value) {
+    //         window.sessionStorage.setItem("jwt", JSON.stringify(data.jwt));
+    //         navigate("/");
+    //       } else {
+    //         errorAlert("Error.", "Datos inválidos.");
+    //         formik.setSubmitting(false);
+    //       }
+    //     })
+    //     .catch((err) => {
+    //       errorAlert("Error.", "Datos inválidos.");
+    //       formik.setSubmitting(false);
+    //       return err;
+    //     });
+    // },
   });
 
   return (
@@ -60,7 +72,7 @@ const Login = () => {
         <h2 className="w-full text-left text-4xl">
           Inicia sesión en tu cuenta!
         </h2>
-        <form className="mt-8 text-left" onSubmit={formik.handleSubmit}>
+        <form className="mt-8 text-left" onSubmit={handleSubmit}>
           <Input
             label="Email"
             error={formik.errors.email}
@@ -68,9 +80,9 @@ const Login = () => {
             type="email"
             name="email"
             placeholder="Ingresa tu email"
-            onChange={formik.handleChange}
+            onChange={(e) => setEmail(e.target.value)}
             onBlur={formik.handleBlur}
-            value={formik.values.email}
+            value={email}
           />
           <Input
             label="Contraseña"
@@ -79,9 +91,9 @@ const Login = () => {
             type="password"
             name="password"
             placeholder="Ingresa tu password"
-            onChange={formik.handleChange}
+            onChange={(e) => setPassword(e.target.value)}
             onBlur={formik.handleBlur}
-            value={formik.values.password}
+            value={password}
           />
           <div className="w-full h-16 my-4 flex flex-col items-end justify-center">
             <SubmitButton isSubmitting={formik.isSubmitting}>
@@ -102,4 +114,16 @@ const Login = () => {
   );
 };
 
-export default Login;
+const mapStateToProps = (state) => {
+ return {
+   userLogIn : state.user
+ }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    logIn: () => dispatch(loginUser())
+  }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(Login);

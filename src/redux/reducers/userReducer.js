@@ -1,6 +1,9 @@
 const initialState = {
-  data: {},
-  token: "",
+  token: localStorage.getItem("jwt"),
+  firstName: "",
+  lastName: "",
+  email: "",
+  roleId: null
 };
 
 const reducer = (state = initialState, action) => {
