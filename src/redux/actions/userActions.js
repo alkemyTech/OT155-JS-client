@@ -6,12 +6,12 @@ export const loginUser = (email, password) => {
     const loginValues = { email, password };
     apiConnectionWithoutToken("/users/login", loginValues, "post")
       .then(({ data }) => {
-        const { token, user } = data;
+        const { jwt, user } = data;
         dispatch({
           type: "LOGIN",
           payload: {
             user: user,
-            token: token,
+            token: jwt,
           },
         });
       })
