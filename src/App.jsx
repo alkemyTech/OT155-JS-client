@@ -1,6 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import ContactsList from "./pages/Contacts/ContactsList";
 import { UserList } from "./components/UserList/UserList";
+
 import Home from "./pages/Home";
 import News from "./pages/News/News";
 import NewsDetails from "./pages/News/NewsDetails";
