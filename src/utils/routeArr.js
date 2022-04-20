@@ -9,7 +9,7 @@ export const routes = [
   },
   {
     name: "Novedades",
-    route: "novedades",
+    route: "news",
   },
   {
     name: "Testimonios",
