@@ -10,9 +10,9 @@ import Login from "../src/pages/Login/Login";
 import EditOrganization from "./pages/EditOrganization";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import AdminAuth from "./components/UserAuth/AdminAuth";
-import LoggedAuth from "./components/UserAuth/LoggedAuth"
 import { EditForm } from "./pages/EditForm/EditForm";
+import Profile from "./pages/Profile/Profile";
+import AdminAuth from "./components/Auth/AdminAuth";
 
 function App() {
   return (
@@ -27,7 +27,7 @@ function App() {
         <Route path="contact" element={<ContactForm />} />
         <Route path="register" element={<Register />} />
         <Route path="login" element={<Login />} />
-
+        <Profile path="profile" element={<Profile/>}/>
         <Route path="user" element={<LoggedAuth/>}>
           <Route path="edit" element={<EditForm/>}>
         </Route>
