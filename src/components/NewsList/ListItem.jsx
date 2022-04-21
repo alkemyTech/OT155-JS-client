@@ -1,15 +1,14 @@
 import { Link } from 'react-router-dom';
-
 import { BiEditAlt } from 'react-icons/bi';
 import { MdDeleteForever } from 'react-icons/md';
 
-
 export const ListItem = ({
   index,
-  firstName,
-  lastName,
-  email,
-  userId,
+  name,
+  image,
+  content,
+  newsId,
+  type,
   handleDelete,
 }) => {
   return (
@@ -18,16 +17,19 @@ export const ListItem = ({
         {index + 1}
       </td>
       <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-        {firstName}
+        {name}
       </td>
       <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-        {lastName}
+        <img src={image} alt="" />
       </td>
       <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-        {email}
+        {content.length > 20 ? content.slice(0,20) + '...' : content}
       </td>
       <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-        <Link to={`/edituser/${userId}`} className="block mx-auto ">
+        {type}
+      </td>
+      <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+        <Link to={`/editNews/${newsId}`} className="block mx-auto ">
           <BiEditAlt className=" text-cyan-500 text-xl" />
         </Link>
       </td>
@@ -35,7 +37,7 @@ export const ListItem = ({
         <button
           className="block mx-auto"
           onClick={() => {
-            handleDelete(userId);
+            handleDelete(newsId);
           }}>
           <MdDeleteForever className="mx-auto text-red-600 text-xl cursor-pointer" />
         </button>
