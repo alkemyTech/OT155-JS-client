@@ -21,6 +21,7 @@ import { HomeEdit } from "./pages/Home/HomeEdit";
 import { TestimonialsList } from "./components/TestimonialList";
 import AdminAuth from "./components/Auth/AdminAuth";
 import Profile from "./pages/Profile/Profile";
+import ActivityDetail from "./pages/Activities/ActivityDetail";
 
 function App() {
   return (
@@ -40,6 +41,7 @@ function App() {
         <Route path="backoffice" element={<AdminAuth/>}>
           <Route index element={<BackOffice />} />
           <Route path="activities">
+           
             <Route index element={<ActivitiesList />} />
             <Route path=":id/edit" element={<FormActivities />} />
           </Route>
@@ -57,6 +59,7 @@ function App() {
             {/* <Route path=":id/edit" element={<UserList />} /> */}
           </Route>
         </Route>
+        <Route path="/activities/:id" element= {<ActivityDetail/>}/>
       </Routes>
       <Footer />
     </>
