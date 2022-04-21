@@ -1,7 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import ContactsList from "./pages/Contacts/ContactsList";
 import { UserList } from "./components/UserList/UserList";
-import Home from "./pages/Home";
 import News from "./pages/News/News";
 import NewsDetails from "./pages/News/NewsDetails";
 import ContactForm from "./pages/Contacts/ContactForm";
@@ -10,6 +9,7 @@ import Login from "../src/pages/Login/Login";
 import EditOrganization from "./pages/EditOrganization";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import FormCategories from "./components/FormCategories";
 import BackOffice from "./pages/BackOffice/BackOffice";
 import { HomeEdit } from './pages/Home/HomeEdit';
 
@@ -17,6 +17,7 @@ function App() {
   return (
     <>
       <Header />
+      <FormCategories/>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="news">
@@ -27,6 +28,8 @@ function App() {
         <Route path="register" element={<Register />} />
         <Route path="login" element={<Login />} />
 
+        {/* <Route path="/backoffice/contacts" element={<Contacts />}></Route> */}
+        <Route path="/backoffice/edit-organization" element={<EditOrganization />}></Route>
         {/* To add to private routes soon */}
         <Route path="backoffice">
           <Route index element={<BackOffice />} />
