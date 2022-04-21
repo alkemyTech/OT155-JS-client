@@ -11,7 +11,7 @@ const Input = ({ label, error, touched, ...props }) => {
       </div>
 
       <input
-        className="w-full h-10 border border-solid border-gray-200 rounded-md px-2 focus:border-ong-blue-700 focus:border-2 outline-none"
+        className="w-full h-10 border border-solid border-gray-200 rounded-md px-2 hover:border-ong-blue-700 focus:border-ong-blue-700 outline-none"
         {...props}
       ></input>
     </div>

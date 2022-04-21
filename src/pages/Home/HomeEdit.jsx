@@ -1,8 +1,8 @@
-import { useNavigate } from 'react-router-dom';
-import { errorAlert } from '../../helpers/AlertService';
-import { uploadImage } from '../../helpers/UploadImage';
-import { useEffect, useState } from 'react';
-import { apiConnectionWithoutToken } from '../../helpers/apiConnection';
+import { useNavigate } from "react-router-dom";
+import { errorAlert } from "../../helpers/AlertService";
+import { uploadImage } from "../../helpers/uploadImage";
+import { useEffect, useState } from "react";
+import { apiConnectionWithoutToken } from "../../helpers/apiConnection";
 
 export const HomeEdit = () => {
   const navigate = useNavigate();
@@ -10,25 +10,25 @@ export const HomeEdit = () => {
   const [image1, setImage1] = useState();
   const [image2, setImage2] = useState();
   const [image3, setImage3] = useState();
-  const [imageUrl1, setImageUrl1] = useState('');
-  const [imageUrl2, setImageUrl2] = useState('');
-  const [imageUrl3, setImageUrl3] = useState('');
+  const [imageUrl1, setImageUrl1] = useState("");
+  const [imageUrl2, setImageUrl2] = useState("");
+  const [imageUrl3, setImageUrl3] = useState("");
 
   const [welcomeValues, handleWelcomeForm] = useState({
-    welcomeText: '',
+    welcomeText: "",
   });
 
   const [imageSlides1, handleImageSlides1] = useState({
-    imageUrl1: '',
-    text1: '',
+    imageUrl1: "",
+    text1: "",
   });
   const [imageSlides2, handleImageSlides2] = useState({
-    imageUrl2: '',
-    text2: '',
+    imageUrl2: "",
+    text2: "",
   });
   const [imageSlides3, handleImageSlides3] = useState({
-    imageUrl3: '',
-    text3: '',
+    imageUrl3: "",
+    text3: "",
   });
 
   useEffect(() => {
@@ -67,20 +67,20 @@ export const HomeEdit = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (welcomeText.length < 20) {
-      errorAlert('Error', 'El texto debe tener al menos 20 caracteres');
+      errorAlert("Error", "El texto debe tener al menos 20 caracteres");
       return;
     }
     try {
       await apiConnectionWithoutToken(
-        '/organizations',
+        "/organizations",
         {
           id: 1,
           welcomeText,
         },
-        'PUT'
+        "PUT"
       );
     } catch (error) {
-      errorAlert('Error', error.message);
+      errorAlert("Error", error.message);
     }
   };
 
@@ -92,37 +92,37 @@ export const HomeEdit = () => {
 
     try {
       await apiConnectionWithoutToken(
-        '/slide',
+        "/slide",
         {
           id: 1,
           organizationId: 1,
           imageUrl: imageSlides1.imageUrl1,
           text: imageSlides1.text1,
         },
-        'PUT'
+        "PUT"
       );
       await apiConnectionWithoutToken(
-        '/slide',
+        "/slide",
         {
           id: 2,
           organizationId: 1,
           imageUrl: imageSlides2.imageUrl2,
           text: imageSlides2.text2,
         },
-        'PUT'
+        "PUT"
       );
       await apiConnectionWithoutToken(
-        '/slide',
+        "/slide",
         {
           id: 3,
           organizationId: 1,
           imageUrl: imageSlides3.imageUrl3,
           text: imageSlides3.text3,
         },
-        'PUT'
+        "PUT"
       );
     } catch (error) {
-      errorAlert('Error', error.message);
+      errorAlert("Error", error.message);
     }
   };
 
@@ -158,7 +158,8 @@ export const HomeEdit = () => {
             <div className="flex justify-between mt-4">
               <button
                 type="submit"
-                className="mx-auto px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">
+                className="mx-auto px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
+              >
                 Guardar
               </button>
             </div>
@@ -173,7 +174,8 @@ export const HomeEdit = () => {
               <div className="mb-3 w-full">
                 <label
                   htmlFor="formFile"
-                  className="form-label inline-block mb-2 text-gray-700">
+                  className="form-label inline-block mb-2 text-gray-700"
+                >
                   Texto 1
                 </label>
                 <input
@@ -186,7 +188,8 @@ export const HomeEdit = () => {
                 />
                 <label
                   htmlFor="formFile"
-                  className="form-label inline-block mb-2 text-gray-700">
+                  className="form-label inline-block mb-2 text-gray-700"
+                >
                   Imagen 1
                 </label>
                 <input
@@ -202,7 +205,8 @@ export const HomeEdit = () => {
               <div className="mb-3 w-full">
                 <label
                   htmlFor="formFile"
-                  className="form-label inline-block mb-2 text-gray-700">
+                  className="form-label inline-block mb-2 text-gray-700"
+                >
                   Texto 2
                 </label>
                 <input
@@ -215,7 +219,8 @@ export const HomeEdit = () => {
                 />
                 <label
                   htmlFor="formFile"
-                  className="form-label inline-block mb-2 text-gray-700">
+                  className="form-label inline-block mb-2 text-gray-700"
+                >
                   Imagen 2
                 </label>
                 <input
@@ -232,7 +237,8 @@ export const HomeEdit = () => {
               <div className="mb-3 w-full">
                 <label
                   htmlFor="formFile"
-                  className="form-label inline-block mb-2 text-gray-700">
+                  className="form-label inline-block mb-2 text-gray-700"
+                >
                   Texto 3
                 </label>
                 <input
@@ -245,7 +251,8 @@ export const HomeEdit = () => {
                 />
                 <label
                   htmlFor="formFile"
-                  className="form-label inline-block mb-2 text-gray-700">
+                  className="form-label inline-block mb-2 text-gray-700"
+                >
                   Imagen 3
                 </label>
                 <input
@@ -261,7 +268,8 @@ export const HomeEdit = () => {
             <div className="flex mt-4">
               <button
                 type="submit"
-                className="mx-auto px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">
+                className="mx-auto px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
+              >
                 Guardar
               </button>
             </div>
@@ -272,7 +280,8 @@ export const HomeEdit = () => {
         <button
           onClick={handleReturn}
           type="text"
-          className="px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out">
+          className="px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out"
+        >
           Volver sin guardar
         </button>
       </div>
