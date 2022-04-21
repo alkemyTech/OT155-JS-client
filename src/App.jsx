@@ -1,6 +1,7 @@
 import EditOrganization from "./pages/EditOrganization";
 import ContactsList from "./pages/Contacts/ContactsList";
 import { UserList } from "./components/UserList/UserList";
+import { NewsList } from "./components/NewsList";
 import Home from "./pages/Home";
 import { CategoriesList } from "./components/CategoriesList";
 import News from "./pages/News/News";
@@ -29,6 +30,8 @@ function App() {
         <Route path="contact" element={<ContactForm />} />
         <Route path="register" element={<Register />} />
         <Route path="login" element={<Login />} />
+        <Route path="/backoffice/contacts" element={<Contacts />}></Route>
+        <Route path="/backoffice/news" element={<NewsList />}></Route>
         {/* <Route path="/backoffice/contacts" element={<Contacts />}></Route> */}
         <Route path="/backoffice/categories" element={<CategoriesList />}></Route>
 
