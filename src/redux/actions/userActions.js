@@ -1,5 +1,5 @@
 import axios from "axios";
-import { apiConnectionWithoutToken } from "../../helpers/apiConnection";
+import { apiConnectionWithoutToken, apiConnectionWithToken } from "../../helpers/apiConnection";
 
 export const loginUser = (email, password) => {
   return (dispatch) => {
@@ -24,3 +24,19 @@ export const logoutUser = () => {
     type: "LOGOUT",
   };
 };
+
+export const deleteUser = (id) => {
+  return async(dispatch) => {
+    await apiConnectionWithToken(`/users/${id}`, {}, 'DELETE')
+    .then(
+      dispatch({
+        type: "DELETE_USER",
+        payload: {
+          user: {},
+          token: ""
+        }
+      })
+    )
+
+  }
+}
