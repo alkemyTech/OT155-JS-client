@@ -1,12 +1,25 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useFormik } from "formik";
 import { informationAlert, errorAlert } from "../../helpers/AlertService";
 import { apiConnectionWithoutToken } from "../../helpers/apiConnection";
 import Input from "../../components/Form/Input";
 import TextArea from "../../components/Form/TextArea";
 import SubmitButton from "../../components/Form/SubmitButton";
+import MemberCard from "../../components/Card/MemberCard";
 
 const ContactForm = () => {
+  const [members, setMembers] = useState([]);
+
+  useEffect(() => {
+    apiConnectionWithoutToken("/members")
+      .then((res) => {
+        setMembers(res.data);
+      })
+      .catch((err) => {
+        errorAlert("Error", "Ha ocurrido un error al cargar los miembros");
+      });
+  }, []);
+
   const validate = (values) => {
     const errors = {};
     if (!values.contactName) {
@@ -52,6 +65,20 @@ const ContactForm = () => {
 
   return (
     <div className="container m-auto my-14">
+      <div>
+        <h1 className="text-4xl text-center font-bold mb-6">
+          Nuestro equipo de trabajo
+        </h1>
+        <div className="flex flex-wrap justify-center">
+          {members.map((member) => (
+            <MemberCard
+              key={member.name}
+              name={member.name}
+              imgUrl={member.imgUrl}
+            />
+          ))}
+        </div>
+      </div>
       <div className="lg:flex p-8">
         <div className="lg:w-1/2 p-5 mb-8">
           <h1 className="text-4xl text-center font-bold mb-6">
