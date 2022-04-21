@@ -24,3 +24,19 @@ export const logoutUser = () => {
     type: "LOGOUT",
   };
 };
+
+export const deleteUser = (id) => {
+  return async(dispatch) => {
+    await apiConnectionWithToken(`/users/${id}`, {}, 'DELETE')
+    .then(
+      dispatch({
+        type: "DELETE_USER",
+        payload: {
+          user: {},
+          token: ""
+        }
+      })
+    )
+
+  }
+}
