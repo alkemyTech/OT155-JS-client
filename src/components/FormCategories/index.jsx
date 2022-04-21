@@ -1,12 +1,9 @@
 import React, {useState} from 'react'
-import {CKEditor} from '@ckeditor/ckeditor5-react'
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
 import { apiConnectionWithoutToken } from '../../helpers/apiConnection'
 import { useFormik } from 'formik'
 import '../CKeditorNews/index.css'
 
 export default ({obj = null}) => {
-    const [content, setContent] = useState('')
     const [error, setError] = useState(false)
     const submitData = async (data) => {
         const method = obj ? 'PATCH' : 'POST'
@@ -14,11 +11,11 @@ export default ({obj = null}) => {
         try{
             const newData = {
                 name: data.name,
-                content,
+                description: data.description,
             }
             console.log(newData)
             const res = await apiConnectionWithoutToken(
-                !obj ? '/activities/activities' : `activities/update-activity/`, 
+                !obj ? '/categories/create' : `categories/update/`, 
                 !obj ? newData : {id:obj.id, ...newData}, 
                 method
             )
@@ -32,15 +29,16 @@ export default ({obj = null}) => {
         if(!obj){
             if(!values.name)
                 errors.name = 'El nombre es requerido'
-            if(!content)
-                errors.content = 'El contenido es requerido'
+            if(!values.description)
+                errors.description = 'La descripcion es requerida'
         }
         return errors
     }
 
     const formik = useFormik({
         initialValues:{
-            name: obj ? obj.name : ''
+            name: obj ? obj.name : '',
+            description: obj ? obj.description : '',
         },
         onSubmit:submitData,
         validate
@@ -49,7 +47,7 @@ export default ({obj = null}) => {
   return (
     <div className="flex h-full justify-center items-center" style={{height: '100vh'}}>
         <form className='form__news' onSubmit={formik.handleSubmit} >
-            <div className='container__input'>
+        <div className='container__input'>
                 <label htmlFor="name">
                     Nombre
                 </label>
@@ -64,16 +62,20 @@ export default ({obj = null}) => {
                 />
                 <p className='text__error'>{formik.errors.name}</p>
             </div>
-            <div className="content">
-                <CKEditor
-                    editor={ ClassicEditor }
-                    data={obj ? obj.content : ''}
-                    onChange={(event, editor) => 
-                        setContent(editor.getData())
-                    }
-                    className="content"
+            <div className='container__input'>
+                <label htmlFor="description">
+                Descripcion
+                </label>
+                <input 
+                    type="text" 
+                    name='description' 
+                    id='description' 
+                    placeholder="Ingrese una Descripcion" 
+                    onChange={formik.handleChange} 
+                    onBlur={formik.handleBlur} 
+                    value={formik.values.description}
                 />
-                <p className='text__error'>{formik.errors.content}</p>
+                <p className='text__error'>{formik.errors.description}</p>
             </div>
             {error && <p className='text-center mt-10 text__error'>hubo un error</p>}
             <button className="submit save"type="submit">{obj ? 'Guardar' : 'Crear'}</button>

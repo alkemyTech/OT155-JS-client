@@ -5,15 +5,15 @@ export const routes = [
   },
   {
     name: "Nosotros",
-    route: "nosotros",
+    route: "we",
   },
   {
     name: "Novedades",
-    route: "novedades",
+    route: "news",
   },
   {
     name: "Testimonios",
-    route: "testimonios",
+    route: "testimonials",
   },
   {
     name: "Contacto",
@@ -21,6 +21,6 @@ export const routes = [
   },
   {
     name: "Contribuye",
-    route: "contribuye",
+    route: "Contributes",
   },
 ];
