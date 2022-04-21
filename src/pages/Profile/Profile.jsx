@@ -5,6 +5,7 @@ import { errorAlert } from "../../helpers/AlertService";
 import { confirmationAlert } from "../../helpers/AlertService";
 import { deleteUser } from "../../redux/actions/userActions";
 import { useDispatch } from "react-redux";
+import { apiConnectionWithToken } from "../../helpers/apiConnection";
 
 export const Profile = () => {
   const [firstName, setFirstName] = useState("");
@@ -34,7 +35,7 @@ export const Profile = () => {
   }, []);
 
   const handleEdit = () => {
-    navigate("/users/edit");
+    navigate("/edit");
   };
 
   const handleDelete = () => {
