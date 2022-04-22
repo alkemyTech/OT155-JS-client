@@ -1,8 +1,9 @@
-import React from "react";
+import React,{useState} from "react";
 import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { routes } from "../../utils/routeArr";
 import "./index.css";
+import {FaBars,FaTimes} from 'react-icons/fa'
 import { useDispatch } from "react-redux";
 import { logoutUser } from "../../redux/actions/userActions";
 
@@ -16,7 +17,8 @@ const header = () => {
     navigate("/");
   }
   
-
+const header = () => {
+  const [close,setClose] = useState('w-80')
   return (
     <header
       className="flex justify-between items-center px-10 w-100 py-10"
@@ -32,10 +34,11 @@ const header = () => {
         />
       </div>
       {/* Navbar */}
-      <div className="flex items-center">
-        <nav className="px-10">
+      <div className={`flex items-center routes-register ${close}`}>
+        <nav className="flex pr-10 routes">
+          <FaTimes className='times' onClick={() => setClose('w-0')}/>
           {routes.map((link, i) => (
-            <Link key={link.name} className="route" to={"/" + link.route}>
+            <Link key={link.name} className="route-h hover:text-ong-blue-700" to={"/" + link.route}>
               {link.name}
             </Link>
           ))}
@@ -55,8 +58,10 @@ const header = () => {
               Logout
             </Link>
           )}
+
         </div>
       </div>
+      <FaBars className="bars" onClick={() => setClose('w-80')}/>
     </header>
   );
 };
