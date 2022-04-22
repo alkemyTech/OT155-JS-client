@@ -1,11 +1,11 @@
-import { Link } from 'react-router-dom';
-import { BiEditAlt } from 'react-icons/bi';
-import { MdDeleteForever } from 'react-icons/md';
+import { Link } from "react-router-dom";
+import { BiEditAlt } from "react-icons/bi";
+import { MdDeleteForever } from "react-icons/md";
 
 export const ListItem = ({
   index,
   name,
-  description,
+  content,
   activiteId,
   handleDelete,
 }) => {
@@ -17,8 +17,11 @@ export const ListItem = ({
       <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
         {name}
       </td>
-      <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap" title={description}>
-        {description.length > 24 ? description.slice(0,20) + '...' : description}
+      <td
+        className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+        title={content}
+      >
+        {content.length > 24 ? content.slice(0, 20) + "..." : content}
       </td>
       <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
         <Link to={`/edituser/${activiteId}`} className="block mx-auto ">
@@ -30,7 +33,8 @@ export const ListItem = ({
           className="block mx-auto"
           onClick={() => {
             handleDelete(activiteId);
-          }}>
+          }}
+        >
           <MdDeleteForever className="mx-auto text-red-600 text-xl cursor-pointer" />
         </button>
       </td>

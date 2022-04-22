@@ -1,10 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 import {
   apiConnectionWithoutToken,
   apiConnectionWithToken,
-} from '../../helpers/apiConnection';
-import { Loader } from '../Loader/Loader';
-import { ListItem } from './ListItem';
+} from "../../helpers/apiConnection";
+import { Loader } from "../Loader/Loader";
+import { ListItem } from "./ListItem";
 
 export const ActivitiesList = () => {
   const [activities, setActivities] = useState([]);
@@ -13,7 +13,7 @@ export const ActivitiesList = () => {
   useEffect(() => {
     const queryAPI = async () => {
       try {
-        const { data } = await apiConnectionWithoutToken('/activities');
+        const { data } = await apiConnectionWithoutToken("/activities");
         setActivities(data.activities);
         setLoading(false);
       } catch (error) {
@@ -27,8 +27,10 @@ export const ActivitiesList = () => {
 
   const handleDelete = async (activitieId) => {
     try {
-      await apiConnectionWithToken(`/activities/${activitieId}`, {}, 'DELETE');
-      setActivities(activities.filter((activitie) => activitie.id !== activitieId));
+      await apiConnectionWithToken(`/activities/${activitieId}`, {}, "DELETE");
+      setActivities(
+        activities.filter((activitie) => activitie.id !== activitieId)
+      );
     } catch (error) {
       console.log(error.response.data.msg);
     }
@@ -48,27 +50,32 @@ export const ActivitiesList = () => {
                     <tr>
                       <th
                         scope="col"
-                        className="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+                        className="text-sm font-medium text-gray-900 px-6 py-4 text-left"
+                      >
                         #
                       </th>
                       <th
                         scope="col"
-                        className="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+                        className="text-sm font-medium text-gray-900 px-6 py-4 text-left"
+                      >
                         Nombre
                       </th>
                       <th
                         scope="col"
-                        className="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+                        className="text-sm font-medium text-gray-900 px-6 py-4 text-left"
+                      >
                         Descripcion
                       </th>
                       <th
                         scope="col"
-                        className="text-sm font-medium text-gray-900 px-6 py-4 text-center">
+                        className="text-sm font-medium text-gray-900 px-6 py-4 text-center"
+                      >
                         Editar
                       </th>
                       <th
                         scope="col"
-                        className="text-sm font-medium text-gray-900 px-6 py-4 text-center">
+                        className="text-sm font-medium text-gray-900 px-6 py-4 text-center"
+                      >
                         Eliminar
                       </th>
                     </tr>
@@ -78,7 +85,7 @@ export const ActivitiesList = () => {
                       <ListItem
                         key={item.id}
                         name={item.name}
-                        description={item.description}
+                        content={item.content}
                         index={index}
                         activiteId={item.id}
                         handleDelete={handleDelete}
