@@ -22,17 +22,15 @@ const ContactForm = () => {
 
   const validate = (values) => {
     const errors = {};
-    if (!values.contactName) {
-      errors.contactName = "Debes ingresar un nombre";
-    } else if (values.contactName.length <= 4) {
-      errors.contactName = "El nombre debe tener al menos 5 caracteres";
+    if (!values.name) {
+      errors.name = "Debes ingresar un nombre";
+    } else if (values.name.length <= 4) {
+      errors.name = "El nombre debe tener al menos 5 caracteres";
     }
-    if (!values.contactEmail) {
-      errors.contactEmail = "Debes ingresar tu mail";
-    } else if (
-      !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.contactEmail)
-    ) {
-      errors.contactEmail = "Por favor ingresa un mail valido";
+    if (!values.email) {
+      errors.email = "Debes ingresar tu mail";
+    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
+      errors.email = "Por favor ingresa un mail valido";
     }
     if (!values.message) {
       errors.message = "Debes ingresar un mensaje";
@@ -44,13 +42,14 @@ const ContactForm = () => {
 
   const formik = useFormik({
     initialValues: {
-      contactName: "",
-      contactEmail: "",
+      name: "",
+      email: "",
+      phone: "",
       message: "",
     },
     validate,
     onSubmit: (values, { resetForm }) => {
-      apiConnectionWithoutToken("/contact", values, "post")
+      apiConnectionWithoutToken("/contacts", values, "post")
         .then(() => {
           informationAlert("Mensaje enviado", "Gracias por contactarnos");
           console.log(values);
@@ -98,24 +97,36 @@ const ContactForm = () => {
           <form onSubmit={formik.handleSubmit}>
             <Input
               label="Nombre"
-              error={formik.errors.contactName}
-              touched={formik.touched.contactName}
+              error={formik.errors.name}
+              touched={formik.touched.name}
               type="text"
-              name="contactName"
+              name="name"
               placeholder="Tu nombre"
-              value={formik.values.contactName}
+              value={formik.values.name}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
             />
 
             <Input
               label="Email"
-              error={formik.errors.contactEmail}
-              touched={formik.touched.contactEmail}
+              error={formik.errors.email}
+              touched={formik.touched.email}
               type="email"
-              name="contactEmail"
+              name="email"
               placeholder="Tu email"
-              value={formik.values.contactEmail}
+              value={formik.values.email}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+            />
+
+            <Input
+              label="Telefono"
+              error={formik.errors.phone}
+              touched={formik.touched.phone}
+              type="text"
+              name="phone"
+              placeholder="Tu telefono"
+              value={formik.values.phone}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
             />

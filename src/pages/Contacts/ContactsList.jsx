@@ -1,7 +1,15 @@
-import React from "react";
-import dataContacts from "./dataContacts";
+import React, { useState, useEffect } from "react";
+import { apiConnectionWithToken } from "../../helpers/apiConnection";
 
 const ContactsList = () => {
+  const [contacts, setContacts] = useState([]);
+
+  useEffect(() => {
+    apiConnectionWithToken("/contacts").then((res) => {
+      setContacts(res.data.contacts);
+    });
+  }, []);
+
   return (
     <div>
       <h1 className="text-2xl ml-12 mt-6">Contactos</h1>
@@ -24,16 +32,34 @@ const ContactsList = () => {
                     >
                       Email
                     </th>
+                    <th
+                      scope="col"
+                      className="text-sm font-medium text-white px-6 py-4 text-center"
+                    >
+                      Telefono
+                    </th>
+                    <th
+                      scope="col"
+                      className="text-sm font-medium text-white px-6 py-4 text-center"
+                    >
+                      Mensaje
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
-                  {dataContacts.map((item) => (
+                  {contacts.map((item) => (
                     <tr key={item.id} className="border-b">
                       <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap text-center">
                         {item.name}
                       </td>
                       <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap text-center">
                         {item.mail}
+                      </td>
+                      <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap text-center">
+                        {item.phone}
+                      </td>
+                      <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap text-center">
+                        {item.message}
                       </td>
                     </tr>
                   ))}
