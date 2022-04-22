@@ -43,15 +43,17 @@ export const deleteUser = (id) => {
 
 
 export const editUser = (firstName,lastName,email,role,id) => {
+
   return async(dispatch) => {
     await apiConnectionWithToken(`/users/${id}`, {
       firstName: firstName,
       lastName: lastName,
       email: email,
-      role: role
+      roleId: role
     } , 'PUT')
     .then(({data}) => {
       const { jwt, user } = data;
+
       dispatch({
         type: "EDIT_USER",
         payload: {
