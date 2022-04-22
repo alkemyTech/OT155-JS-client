@@ -16,7 +16,6 @@ const header = () => {
     navigate("/");
   }
   
-
   return (
     <header
       className="flex justify-between items-center px-10 w-100 py-10"
