@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Modal from "react-modal/lib/components/Modal";
+// import Modal from "react-modal/lib/components/Modal";
 import { errorAlert } from "../../helpers/AlertService";
 import { confirmationAlert } from "../../helpers/AlertService";
 import { deleteUser } from "../../redux/actions/userActions";
 import { useDispatch } from "react-redux";
+import { apiConnectionWithToken } from "../../helpers/apiConnection";
+import { data } from "autoprefixer";
 
 export const Profile = () => {
   const [firstName, setFirstName] = useState("");
@@ -31,10 +33,10 @@ export const Profile = () => {
       }
     };
     queryAPI();
-  }, []);
+  }, [data]);
 
   const handleEdit = () => {
-    navigate("/users/edit");
+    navigate("/edit");
   };
 
   const handleDelete = () => {
@@ -58,7 +60,7 @@ export const Profile = () => {
   };
   return (
     <div className="flex justify-center items-center h-screen text-center bg-[#EEF4FB]">
-      <Modal isOpen={isModalOpen} ariaHideApp={false}>
+      {/* <Modal isOpen={isModalOpen} ariaHideApp={false}>
         <div className="flex flex-col justify-center text-black font-medium text-xs">
           <label>Insert E-mail</label>
           <input
@@ -79,7 +81,7 @@ export const Profile = () => {
             Close
           </button>
         </div>
-      </Modal>
+      </Modal> */}
       <div className="flex flex-col justify-center rounded-lg bg-white shadow-lg p-8 text-center m-8">
         <h1 className="font-bold text-3xl">
           {firstName} {lastName}

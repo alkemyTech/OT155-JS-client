@@ -11,6 +11,8 @@ const reducer = (state = initialState, action) => {
       return initialState;
     case "DELETE_USER":
       return initialState;
+    case "EDIT_USER":
+      return action.payload;
     default:
       return state;
   }
