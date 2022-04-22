@@ -21,6 +21,7 @@ import { HomeEdit } from "./pages/Home/HomeEdit";
 import { TestimonialsList } from "./components/TestimonialList";
 import AdminAuth from "./components/Auth/AdminAuth";
 import Profile from "./pages/Profile/Profile";
+import { EditForm } from "./pages/EditForm/EditForm";
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
         </Route>
         <Route path="register" element={<Register />} />
         <Route path="profile" element={<Profile/>}/>
+        <Route path="edit" element={<EditForm/>}/>
         {/* To add to private routes soon */}
         <Route path="backoffice" element={<AdminAuth/>}>
           <Route index element={<BackOffice />} />
