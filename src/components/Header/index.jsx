@@ -11,14 +11,12 @@ const header = () => {
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [close,setClose] = useState('w-80')
 
   const logOut = () => {
     dispatch(logoutUser());
     navigate("/");
   }
-  
-const header = () => {
-  const [close,setClose] = useState('w-80')
   return (
     <header
       className="flex justify-between items-center px-10 w-100 py-10"
