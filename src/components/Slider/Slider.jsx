@@ -24,27 +24,6 @@ export const Slider = () => {
     }
   }, []);
 
-  const data = [
-    {
-      id: '1',
-      imageUrl:
-        'https://cdn.pixabay.com/photo/2020/10/21/18/07/laptop-5673901__340.jpg',
-      text: 'Texto 1',
-    },
-    {
-      id: '2',
-      imageUrl:
-        'https://cdn.pixabay.com/photo/2015/01/08/18/25/desk-593327__340.jpg',
-      text: 'Texto 2',
-    },
-    {
-      id: '3',
-      imageUrl:
-        'https://cdn.pixabay.com/photo/2016/04/04/14/12/monitor-1307227__340.jpg',
-      text: 'Texto 3',
-    },
-  ];
-
   return (
     <>
       {loading ? (
