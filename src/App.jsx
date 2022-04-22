@@ -19,6 +19,8 @@ import FormCategories from "./components/FormCategories";
 import BackOffice from "./pages/BackOffice/BackOffice";
 import { HomeEdit } from "./pages/Home/HomeEdit";
 import { TestimonialsList } from "./components/TestimonialList";
+import AdminAuth from "./components/Auth/AdminAuth";
+import Profile from "./pages/Profile/Profile";
 
 function App() {
   return (
@@ -33,9 +35,9 @@ function App() {
           <Route path=":id" element={<NewsDetails />} />
         </Route>
         <Route path="register" element={<Register />} />
-
+        <Route path="profile" element={<Profile/>}/>
         {/* To add to private routes soon */}
-        <Route path="backoffice">
+        <Route path="backoffice" element={<AdminAuth/>}>
           <Route index element={<BackOffice />} />
           <Route path="activities">
             <Route index element={<ActivitiesList />} />

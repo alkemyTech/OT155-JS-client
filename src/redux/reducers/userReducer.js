@@ -1,9 +1,6 @@
 const initialState = {
-  token: localStorage.getItem("jwt"),
-  firstName: "",
-  lastName: "",
-  email: "",
-  roleId: null
+  user: {},
+  token: "",
 };
 
 const reducer = (state = initialState, action) => {
@@ -11,6 +8,8 @@ const reducer = (state = initialState, action) => {
     case "LOGIN":
       return action.payload;
     case "LOGOUT":
+      return initialState;
+    case "DELETE_USER":
       return initialState;
     default:
       return state;
