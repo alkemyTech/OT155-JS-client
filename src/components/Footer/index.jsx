@@ -37,7 +37,7 @@ const Footer = () => {
           <img src={"https://i.imgur.com/wQoZYOF.png"} alt="logo somos mas" />
         </div>
         {routes.map((link, i) => (
-          <Link key={link.name} className="route text-white" to={link.route}>
+          <Link key={link.name} className="route-f  hover:text-ong-blue-700" to={link.route}>
             {link.name}
           </Link>
         ))}
@@ -66,7 +66,7 @@ const Footer = () => {
             </>
           )}
         </div>
-        <p className="Copyright">2022 by Alkemy. All Rights Reserved.</p>
+        <p className="Copyright text-center">2022 by Alkemy. All Rights Reserved.</p>
       </div>
     </footer>
   );

@@ -4,7 +4,7 @@
   padding-bottom: 140px;
 }
 
-.route {
+.route-f {
   padding: 10px;
   margin: 0 10px;
   font-size: 15px;
@@ -22,8 +22,8 @@
   color: #ffffffcc;
 }
 
-.route:hover {
-  font-weight: bold;
+.route-f{
+  color:#fff;
 }
 
 .logo__footer {
@@ -73,4 +73,16 @@
     #bc1888 100%
   );
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f09433', endColorstr='#bc1888',GradientType=1 );
+}
+
+
+
+@media only screen and (max-width: 762px){
+  .nav{
+    flex-direction: column;
+    align-items: center;
+  }
+  .nav a{
+    margin:20px 0;
+  }
 }

@@ -11,16 +11,14 @@
     height:80px;
 }
 
-.route{
+.route-h{
     padding:10px;
     margin:0 10px;
     font-size:15px;
     transition:all .1s linear;
+    color:#111;
+    font-weight:bold;
 }
-.route:hover{
-    font-weight: bold;
-}
-
 .login{
     width:40px;
     height:20px;
@@ -31,8 +29,77 @@
 
 .register{
     width:40px;
-    height:20px;
+    height:25px;
     padding:8px 20px;
     border-radius:30px;
-    background:#E5E5E5;
+    color:#fff;
+    font-weight: bold;
+}
+.bars, .times{
+    display:none;
+    cursor:pointer;
+}
+.w-0,.w-80{
+    width:auto;
+}
+
+
+@media only screen and (max-width: 1130px){
+    .nav{
+        padding:0;
+    }
+    .routes-register{
+        z-index: 10;
+        top:0;
+        right:0;
+        height:100vh;
+        position:fixed;
+        background:#e2e2e2;
+        flex-direction: column;
+        padding:40px 0;
+        overflow: hidden;
+        transition: all .1s linear;
+    }
+    .w-0{
+        width:0;
+    }
+    .w-80{
+        width:80%;
+    }
+    .route-h{
+        margin:20px 0;
+    }
+    .routes, .register-login{
+        flex-direction: column;
+    }
+    .register-login{
+        display:flex;
+    }
+    .bars, .times{
+        display:block;
+    }
+    .times{
+        position:absolute;
+        top:15px;
+        right:15px;
+    }
+    .login{
+        width:120px;
+        border-radius: 6px;
+        padding:0;
+        height:30px;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+    }
+    .register{
+        height:30px;
+        margin:0;
+        margin-top:15px;
+        padding:0;
+        width:120px;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+    }
 }
