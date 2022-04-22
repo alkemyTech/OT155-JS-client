@@ -12,13 +12,14 @@ const apiConnectionWithoutToken = (url, data, method = 'get') => {
 };
 
 const apiConnectionWithToken = (url, data, method = 'get') => {
-  const token = localStorage.getItem('token') || '';
+  const token = localStorage.getItem('persist:user') || '';
+  const parsedToken = JSON.parse(token)
 
   if (method === 'get') {
     return instance(url, {
       method,
       headers: {
-        Authorization: token,
+        Authorization: parsedToken.token.replaceAll('"',''),
       },
     });
   }

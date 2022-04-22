@@ -1,7 +1,7 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import "./index.css";
-
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { Slider } from '../../components/Slider/Slider';
+import './index.css';
 
 const Home = () => {
   const news = [];
@@ -24,10 +24,14 @@ const Home = () => {
             deportes, primera infancia, salud, alimentación y trabajo social.
           </p>
           <div className="flex justify-center mt-5">
-            <Link to='/contact' className="contact">Contáctenos</Link>
+            <Link to="/contact" className="contact">
+              Contáctenos
+            </Link>
           </div>
         </div>
-        <div className="slider width__mean"></div>
+        <div className=" width__mean">
+          <Slider />
+        </div>
       </div>
       <div className="flex flex-col center-center my-20">
         <h2 className="subtitle text-center">Ultimas Novedades</h2>
