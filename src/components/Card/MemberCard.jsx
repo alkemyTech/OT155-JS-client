@@ -2,7 +2,7 @@ import React from "react";
 
 const MemberCard = ({ name, imgUrl }) => {
   return (
-    <div className="shadow-sm py-3 px-6 flex flex-col justify-center items-center w-48 rounded-md">
+    <div className="shadow-sm py-3 px-3 mx-2 flex flex-col justify-center items-center w-48 rounded-md bg-ong-blue-300">
       <h3 className="font-bold">{name}</h3>
       <div className="rounded-full mt-4">
         <img

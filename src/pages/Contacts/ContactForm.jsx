@@ -71,9 +71,9 @@ const ContactForm = () => {
         <div className="flex flex-wrap justify-center">
           {members.map((member) => (
             <MemberCard
-              key={member.name}
+              key={member.id}
               name={member.name}
-              imgUrl={member.imgUrl}
+              imgUrl={member.imageUrl}
             />
           ))}
         </div>
