@@ -1,10 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 import {
   apiConnectionWithoutToken,
   apiConnectionWithToken,
-} from '../../helpers/apiConnection';
-import { Loader } from '../Loader/Loader';
-import { ListItem } from './ListItem';
+} from "../../helpers/apiConnection";
+import { Loader } from "../Loader/Loader";
+import { ListItem } from "./ListItem";
 
 export const NewsList = () => {
   const [news, setNews] = useState([]);
@@ -13,7 +13,7 @@ export const NewsList = () => {
   useEffect(() => {
     const queryAPI = async () => {
       try {
-        const { data } = await apiConnectionWithoutToken('/entries');
+        const { data } = await apiConnectionWithoutToken("/entries/news");
         setNews(data.news);
         setLoading(false);
       } catch (error) {
@@ -27,7 +27,7 @@ export const NewsList = () => {
 
   const handleDelete = async (userId) => {
     try {
-      await apiConnectionWithToken(`/entries/${userId}`, {}, 'DELETE');
+      await apiConnectionWithToken(`/entries/${userId}`, {}, "DELETE");
       setNews(news.filter((user) => user.id !== userId));
     } catch (error) {
       console.log(error.response.data.msg);
@@ -48,37 +48,44 @@ export const NewsList = () => {
                     <tr>
                       <th
                         scope="col"
-                        className="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+                        className="text-sm font-medium text-gray-900 px-6 py-4 text-left"
+                      >
                         #
                       </th>
                       <th
                         scope="col"
-                        className="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+                        className="text-sm font-medium text-gray-900 px-6 py-4 text-left"
+                      >
                         Nombre
                       </th>
                       <th
                         scope="col"
-                        className="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+                        className="text-sm font-medium text-gray-900 px-6 py-4 text-left"
+                      >
                         Imagen
-                      </th>  
+                      </th>
                       <th
                         scope="col"
-                        className="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+                        className="text-sm font-medium text-gray-900 px-6 py-4 text-left"
+                      >
                         Contenido
                       </th>
                       <th
                         scope="col"
-                        className="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+                        className="text-sm font-medium text-gray-900 px-6 py-4 text-left"
+                      >
                         Tipo
                       </th>
                       <th
                         scope="col"
-                        className="text-sm font-medium text-gray-900 px-6 py-4 text-center">
+                        className="text-sm font-medium text-gray-900 px-6 py-4 text-center"
+                      >
                         Editar
                       </th>
                       <th
                         scope="col"
-                        className="text-sm font-medium text-gray-900 px-6 py-4 text-center">
+                        className="text-sm font-medium text-gray-900 px-6 py-4 text-center"
+                      >
                         Eliminar
                       </th>
                     </tr>
@@ -91,8 +98,8 @@ export const NewsList = () => {
                         image={item.imageUrl}
                         content={item.content}
                         type={item.type}
-                        index={index} 
-                        userId={item.id}
+                        index={index}
+                        newId={item.id}
                         handleDelete={handleDelete}
                       />
                     ))}
