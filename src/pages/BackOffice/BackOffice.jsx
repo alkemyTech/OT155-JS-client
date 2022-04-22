@@ -47,7 +47,7 @@ const BackOffice = () => {
               <BackOfficeCard
                 title="Organización"
                 icon={<GiOrganigram className="w-full h-full rounded-full" />}
-                link="/backoffice/organization"
+                link="/backoffice/edit-organization"
               />
 
               <BackOfficeCard
