@@ -1,5 +1,7 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./index.css";
+
 
 const Home = () => {
   const news = [];
@@ -7,7 +9,7 @@ const Home = () => {
     <main className="mt-4">
       <div className="flex justify-center flex-col lg:flex-row sm:flex-col">
         <div className="flex flex-col center-center info__main width__mean">
-          <h1 className="title">Somos Más</h1>
+          <h1 className="title text-center">Somos Más</h1>
           <p className="text">
             Desde 1997 en Somos Más trabajamos con los chicos y chicas, mamás y
             papás, abuelos y vecinos del barrio La Cava generando procesos de
@@ -22,13 +24,13 @@ const Home = () => {
             deportes, primera infancia, salud, alimentación y trabajo social.
           </p>
           <div className="flex justify-center mt-5">
-            <button className="contact">Contáctenos</button>
+            <Link to='/contact' className="contact">Contáctenos</Link>
           </div>
         </div>
         <div className="slider width__mean"></div>
       </div>
       <div className="flex flex-col center-center my-20">
-        <h2 className="subtitle">Ultimas Novedades</h2>
+        <h2 className="subtitle text-center">Ultimas Novedades</h2>
         <div className="flex justify-center flex-col lg:flex-row sm:flex-col sm:items-center">
           {news.map((news, i) => (
             <div key={i} className="item__news flex items-end">
