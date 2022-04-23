@@ -37,36 +37,36 @@ const Footer = () => {
           <img src={"https://i.imgur.com/wQoZYOF.png"} alt="logo somos mas" />
         </div>
         {routes.map((link, i) => (
-          <Link key={link.name} className="route text-white" to={link.route}>
+          <Link key={link.name} className="route-f  hover:text-ong-blue-700" to={link.route}>
             {link.name}
           </Link>
         ))}
       </nav>
       <div className="flex flex-col center-center contain__network mt-10">
         <div className="flex justify-center my-5 ">
-          {!loading ? (
+          {loading ? (
             <Loader />
           ) : (
             <>
               <div className=" flex justify-center items-center network rounded-lg bg-white cursor-pointer">
-                <a href={organizationData.urlFacebook}>
+                <a href={organizationData.urlFacebook} target='_blank'>
                   <ImFacebook2 className="text-4xl text-[#3b5998] " />
                 </a>
               </div>
               <div className=" flex justify-center items-center network rounded-lg bg-white cursor-pointer instagram">
-                <a href={organizationData.urlInstagram} className="">
+                <a href={organizationData.urlInstagram} target='_blank'>
                   <IoLogoInstagram className=" text-4xl text-white" />
                 </a>
               </div>
               <div className=" flex justify-center items-center network rounded-lg bg-white cursor-pointer">
-                <a href={organizationData.urlLinkedin} className="">
+                <a href={organizationData.urlLinkedin} target='_blank'>
                   <BsLinkedin className=" text-4xl text-[#0A66C2] " />
                 </a>
               </div>
             </>
           )}
         </div>
-        <p className="Copyright">2022 by Alkemy. All Rights Reserved.</p>
+        <p className="Copyright text-center">2022 by Alkemy. All Rights Reserved.</p>
       </div>
     </footer>
   );

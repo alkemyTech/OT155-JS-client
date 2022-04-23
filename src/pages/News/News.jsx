@@ -17,6 +17,8 @@ const News = () => {
     navigate(`${id}`);
   };
 
+  console.log(latestNews);
+
   return (
     <>
       <header className="w-screen h-16 border-b border-gray-300 shadow-md"></header>
