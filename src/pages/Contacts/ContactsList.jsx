@@ -58,7 +58,7 @@ const ContactsList = () => {
                       <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap text-center">
                         {item.phone}
                       </td>
-                      <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap text-center">
+                      <td className="text-sm text-gray-900 font-light px-6 py-4">
                         {item.message}
                       </td>
                     </tr>

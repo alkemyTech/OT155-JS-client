@@ -51,9 +51,9 @@ const BackOffice = () => {
               />
 
               <BackOfficeCard
-                title="Slides"
+                title="Home"
                 icon={<BsFileSlides className="w-full h-full rounded-full" />}
-                link="/backoffice/slides"
+                link="/backoffice/home-edit"
               />
 
               <BackOfficeCard
