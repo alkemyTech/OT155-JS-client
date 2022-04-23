@@ -17,11 +17,10 @@ export const ListItem = ({
       <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
         {name}
       </td>
-      <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap" title={description}>
-        {description.length > 24 ? description.slice(0,20) + '...' : description}
+      <td  dangerouslySetInnerHTML={{ __html: description && description.length > 24 ? description.slice(0,20) + '...' : description }}  className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap" title={description}>
       </td>
       <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-        <Link to={`/edituser/${activiteId}`} className="block mx-auto ">
+        <Link to={`/backoffice/activities/edit/${activiteId}`} className="block mx-auto ">
           <BiEditAlt className=" text-cyan-500 text-xl" />
         </Link>
       </td>

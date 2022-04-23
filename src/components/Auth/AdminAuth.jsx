@@ -3,7 +3,7 @@ import useRole from "../../hooks/useRole";
 import { Outlet, Navigate } from "react-router-dom";
 
 const AdminAuth = () => {
-  const isAdmin = useRole();
+  const isAdmin = true
 
   return isAdmin ? <Outlet/> : <Navigate to="/"/>
 };

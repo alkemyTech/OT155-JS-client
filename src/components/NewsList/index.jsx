@@ -13,7 +13,7 @@ export const NewsList = () => {
   useEffect(() => {
     const queryAPI = async () => {
       try {
-        const { data } = await apiConnectionWithoutToken('/entries');
+        const { data } = await apiConnectionWithoutToken('/entries/news');
         setNews(data.news);
         setLoading(false);
       } catch (error) {
@@ -36,7 +36,7 @@ export const NewsList = () => {
 
   return (
     <>
-      {!loading ? (
+      {loading ? (
         <Loader />
       ) : (
         <div className="flex flex-col container mx-auto">

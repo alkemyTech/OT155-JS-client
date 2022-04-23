@@ -4,10 +4,6 @@ export const routes = [
     route: "",
   },
   {
-    name: "Nosotros",
-    route: "we",
-  },
-  {
     name: "Novedades",
     route: "news",
   },
@@ -18,9 +14,5 @@ export const routes = [
   {
     name: "Contacto",
     route: "contact",
-  },
-  {
-    name: "Contribuye",
-    route: "Contributes",
   },
 ];
