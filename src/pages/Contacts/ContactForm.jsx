@@ -65,7 +65,7 @@ const ContactForm = () => {
   return (
     <div className="container m-auto my-14">
       <div>
-        <h1 className="text-4xl text-center font-bold mb-6">
+        <h1 className="text-4xl text-center font-bold mb-6 text-ong-blue-800">
           Nuestro equipo de trabajo
         </h1>
         <div className="flex flex-wrap justify-center">
@@ -74,24 +74,26 @@ const ContactForm = () => {
               key={member.id}
               name={member.name}
               imgUrl={member.imageUrl}
+              role={member.role}
             />
           ))}
         </div>
       </div>
       <div className="lg:flex p-8">
         <div className="lg:w-1/2 p-5 mb-8">
-          <h1 className="text-4xl text-center font-bold mb-6">
+          <h1 className="text-4xl text-center font-bold mb-6 text-ong-blue-800">
             ¿Quieres contribuir?
           </h1>
-          <p>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vitae
-            velit dolores repudiandae cum voluptatem. Dicta animi fugit
-            blanditiis aliquam rem eveniet aspernatur, totam laudantium voluptas
-            vel nesciunt, modi mollitia repudiandae?
+          <p className="text-justify text-xl leading-10">
+            Hay muchas formas en las que podes colaborar con nosotros, desde
+            voluntariado hasta donando dinero.
+            <br />
+            <br /> Si estas interesado en ayudar envianos un mensaje, y nos
+            pondremos en contacto.
           </p>
         </div>
         <div className="lg:w-1/2 p-5">
-          <h2 className="text-3xl text-center font-bold mb-4">
+          <h2 className="text-3xl text-center font-bold mb-4 text-ong-blue-800">
             ¡Contactáte con nosotros!
           </h2>
           <form onSubmit={formik.handleSubmit}>

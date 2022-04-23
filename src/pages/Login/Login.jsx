@@ -37,7 +37,13 @@ const Login = ({ userLogIn, logIn }) => {
 
   return (
     <div className="flex">
-      <div className="bg-ong-blue-500	 w-1/2 h-screen"></div>
+      <div className="bg-ong-blue-500	 w-1/2 h-screen">
+        <img
+          className="w-full h-full rounded-none"
+          src="https://i.imgur.com/ys4CjeT.jpg"
+          alt=""
+        />
+      </div>
       <div className="mx-auto flex flex-col justify-center">
         <p className="w-full text-left">Bienvenido</p>
         <h2 className="w-full text-left text-4xl">

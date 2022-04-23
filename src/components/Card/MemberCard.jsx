@@ -1,9 +1,10 @@
 import React from "react";
 
-const MemberCard = ({ name, imgUrl }) => {
+const MemberCard = ({ name, imgUrl, role }) => {
   return (
-    <div className="shadow-sm py-3 px-3 mx-2 flex flex-col justify-center items-center w-48 rounded-md bg-ong-blue-300">
+    <div className="shadow-sm py-3 px-3 mx-2 my-2 flex flex-col justify-center items-center w-48 rounded-md bg-ong-blue-300 ">
       <h3 className="font-bold">{name}</h3>
+      <h4 className="text-sm text-center">{role}</h4>
       <div className="rounded-full mt-4">
         <img
           className="rounded-full w-24 h-24"
