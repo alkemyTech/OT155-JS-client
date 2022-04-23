@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import {
   apiConnectionWithoutToken,
   apiConnectionWithToken,
 } from "../../helpers/apiConnection";
 import { Loader } from "../Loader/Loader";
 import { ListItem } from "./ListItem";
+import "./index.css";
 
 export const ActivitiesList = () => {
   const [activities, setActivities] = useState([]);
@@ -42,6 +44,12 @@ export const ActivitiesList = () => {
         <Loader />
       ) : (
         <div className="flex flex-col container mx-auto">
+          <Link
+            to="create"
+            className="bg-ong-blue-700 text-white font-bold px-5 mt-10 mb-5 create"
+          >
+            Crear
+          </Link>
           <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div className="py-2 inline-block min-w-full sm:px-6 lg:px-8">
               <div className="overflow-hidden">
@@ -85,7 +93,7 @@ export const ActivitiesList = () => {
                       <ListItem
                         key={item.id}
                         name={item.name}
-                        content={item.content}
+                        description={item.content}
                         index={index}
                         activiteId={item.id}
                         handleDelete={handleDelete}

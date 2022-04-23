@@ -1,27 +1,44 @@
 import React, {useState} from 'react'
 import {CKEditor} from '@ckeditor/ckeditor5-react'
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
-import { apiConnectionWithoutToken } from '../../helpers/apiConnection'
+import { apiConnectionWithoutToken, apiConnectionWithToken } from '../../helpers/apiConnection'
 import { useFormik } from 'formik'
 import '../CKeditorNews/index.css'
+import { useNavigate,useParams } from 'react-router-dom'
 
-export default ({obj = null}) => {
+export default () => {
+    const {id} = useParams()
+    const navigate = useNavigate();
+    const [obj,setObj] = useState(null)
     const [content, setContent] = useState('')
     const [error, setError] = useState(false)
+    const getActivities = async () => {
+        try{
+            const res = await apiConnectionWithToken('/activities/' + id)
+            setObj(res.data.activity)
+        }catch{
+
+        }
+    }
+    React.useEffect(() => {
+        id && getActivities()
+    },[])
     const submitData = async (data) => {
-        const method = obj ? 'PATCH' : 'POST'
+        const method = obj ? 'PUT' : 'POST'
         setError(false)
         try{
             const newData = {
-                name: data.name,
+                name: obj ? obj.name : data.name,
+                image:'url',
                 content,
             }
-            console.log(newData)
-            const res = await apiConnectionWithoutToken(
-                !obj ? '/activities/activities' : `activities/update-activity/`, 
-                !obj ? newData : {id:obj.id, ...newData}, 
+            const res = await apiConnectionWithToken(
+                !obj ? '/activities/' : `activities/`, 
+                !obj ? newData : {id:`${obj.id}`, ...newData}, 
                 method
             )
+            console.log(res);
+            if(res.statusText == 'OK') navigate('/backoffice/activities')
         }catch(e){
             console.log(e)
             setError(true)
@@ -60,7 +77,7 @@ export default ({obj = null}) => {
                     placeholder="Ingrese un Nombre" 
                     onChange={formik.handleChange} 
                     onBlur={formik.handleBlur} 
-                    value={formik.values.name}
+                    value={formik.values.name || (obj &&obj.name )}
                 />
                 <p className='text__error'>{formik.errors.name}</p>
             </div>

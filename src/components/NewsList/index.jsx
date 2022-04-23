@@ -36,7 +36,7 @@ export const NewsList = () => {
 
   return (
     <>
-      {!loading ? (
+      {loading ? (
         <Loader />
       ) : (
         <div className="flex flex-col container mx-auto">
