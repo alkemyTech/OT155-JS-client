@@ -56,7 +56,8 @@ function App() {
           </Route>
           <Route path="categories">
             <Route index element={<CategoriesList />} />
-            <Route path="new" element={<FormCategories />} />
+            <Route path="create" element={<FormCategories />} />
+            <Route path="edit/:id" element={<FormCategories />} />
           </Route>
           <Route path="contacts" element={<ContactsList />} />
           <Route path="edit-organization" element={<EditOrganization />} />

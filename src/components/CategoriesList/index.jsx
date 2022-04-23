@@ -5,6 +5,7 @@ import {
 } from '../../helpers/apiConnection';
 import { Loader } from '../Loader/Loader';
 import { ListItem } from './ListItem';
+import {Link} from 'react-router-dom'
 
 export const CategoriesList = () => {
   const [categories, setCategories] = useState([]);
@@ -27,7 +28,7 @@ export const CategoriesList = () => {
 
   const handleDelete = async (categoriesId) => {
     try {
-      await apiConnectionWithToken(`/categories/${categoriesId}`, {}, 'DELETE');
+      await apiConnectionWithToken(`/categories/delete/${categoriesId}`, {}, 'DELETE');
       setCategories(categories.filter((user) => user.id !== categoriesId));
     } catch (error) {
       console.log(error.response.data.msg);
@@ -36,10 +37,16 @@ export const CategoriesList = () => {
 
   return (
     <>
-      {!loading ? (
+      {loading ? (
         <Loader />
       ) : (
         <div className="flex flex-col container mx-auto">
+          <Link
+            to="create"
+            className="bg-ong-blue-700 text-white font-bold px-5 mt-10 mb-5 create"
+          >
+            Crear
+          </Link>
           <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div className="py-2 inline-block min-w-full sm:px-6 lg:px-8">
               <div className="overflow-hidden">
