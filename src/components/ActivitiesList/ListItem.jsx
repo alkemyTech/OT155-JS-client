@@ -5,7 +5,7 @@ import { MdDeleteForever } from "react-icons/md";
 export const ListItem = ({
   index,
   name,
-  content,
+  description,
   activiteId,
   handleDelete,
 }) => {

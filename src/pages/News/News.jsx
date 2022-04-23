@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { apiConnectionWithoutToken } from "../../helpers/apiConnection";
 import { useNavigate } from "react-router-dom";
+import NewsCard from "../../components/Card/NewsCard";
 
 const News = () => {
   const navigate = useNavigate();
@@ -16,8 +17,6 @@ const News = () => {
   const handleNewsClick = (id) => {
     navigate(`${id}`);
   };
-
-  console.log(latestNews);
 
   return (
     <>
@@ -49,24 +48,11 @@ const News = () => {
           <section className="w-full h-5/6 flex flex-col justify-center items-center">
             <div className="w-3/4 h-5/6 grid grid-cols-4 hover:cursor-pointer">
               {latestNews.map((element) => (
-                <div
-                  className="w-64 h-52 flex flex-col m-4 border border-gray-200"
+                <NewsCard
                   key={element.id}
-                >
-                  <img
-                    src={element.imageUrl}
-                    className="w-full h-1/2"
-                    onClick={() => handleNewsClick(element.id)}
-                  />
-                  <div className="w-full h-1/2 flex justify-center items-start p-4 overflow-hidden">
-                    <p
-                      className="text-sm text-justify py-2"
-                      onClick={() => handleNewsClick(element.id)}
-                    >
-                      {element.content}
-                    </p>
-                  </div>
-                </div>
+                  element={element}
+                  handleNewsClick={handleNewsClick}
+                />
               ))}
             </div>
           </section>
