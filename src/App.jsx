@@ -21,7 +21,7 @@ import { HomeEdit } from "./pages/Home/HomeEdit";
 import { TestimonialsList } from "./components/TestimonialList";
 import AdminAuth from "./components/Auth/AdminAuth";
 import Profile from "./pages/Profile/Profile";
-
+import FormNews from './components/CKeditorNews'
 import ActivityDetail from "./pages/Activities/ActivityDetail";
 import { EditForm } from "./pages/EditForm/EditForm";
 
@@ -45,10 +45,14 @@ function App() {
         <Route path="backoffice" element={<AdminAuth/>}>
           <Route index element={<BackOffice />} />
           <Route path="activities">
-           
             <Route index element={<ActivitiesList />} />
             <Route path="edit/:id" element={<FormActivities />} />
             <Route path='create' element={<FormActivities/>}/>
+          </Route>
+          <Route path="news">
+            <Route index element={<NewsList />} />
+            <Route path="edit/:id" element={<FormNews />} />
+            <Route path="create" element={<FormNews />} />
           </Route>
           <Route path="categories">
             <Route index element={<CategoriesList />} />
@@ -57,7 +61,6 @@ function App() {
           <Route path="contacts" element={<ContactsList />} />
           <Route path="edit-organization" element={<EditOrganization />} />
           <Route path="home-edit" element={<HomeEdit />} />
-          <Route path="news" element={<NewsList />} />
           <Route path="testimonials" element={<TestimonialsList />} />
           <Route path="users">
             <Route index element={<UserList />} />
