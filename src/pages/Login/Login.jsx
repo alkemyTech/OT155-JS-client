@@ -1,25 +1,12 @@
 import React, { useState } from "react";
 import { useFormik } from "formik";
-import { apiConnectionWithoutToken } from "../../helpers/apiConnection";
-import { useNavigate } from "react-router-dom";
-import { errorAlert } from "../../helpers/AlertService";
 import Input from "../../components/Form/Input";
 import SubmitButton from "../../components/Form/SubmitButton";
 import { connect, useDispatch } from "react-redux";
 import { loginUser } from "../../redux/actions/userActions";
 
-const Login = ({userLogIn, logIn}) => {
-  const navigate = useNavigate();
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
+const Login = ({ userLogIn, logIn }) => {
   const dispatch = useDispatch();
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Aca", email)
-    console.log(userLogIn)
-    dispatch(loginUser(email,password))
-  }
 
   const validate = (values) => {
     const errors = {};
@@ -41,38 +28,28 @@ const Login = ({userLogIn, logIn}) => {
       email: "",
       password: "",
     },
-    validate
-    // onSubmit: (values) => {
-    //   const loginValues = values;
-
-    //   apiConnectionWithoutToken("/users/login", loginValues, "post")
-    //     .then((res) => {
-    //       const data = res.data;
-    //       if (data.value) {
-    //         window.sessionStorage.setItem("jwt", JSON.stringify(data.jwt));
-    //         navigate("/");
-    //       } else {
-    //         errorAlert("Error.", "Datos inválidos.");
-    //         formik.setSubmitting(false);
-    //       }
-    //     })
-    //     .catch((err) => {
-    //       errorAlert("Error.", "Datos inválidos.");
-    //       formik.setSubmitting(false);
-    //       return err;
-    //     });
-    // },
+    validate,
+    onSubmit: (values) => {
+      const { email, password } = values;
+      dispatch(loginUser(email, password));
+    },
   });
 
   return (
     <div className="flex">
-      <div className="bg-ong-blue-500	 w-1/2 h-screen"></div>
+      <div className="bg-ong-blue-500	 w-1/2 h-screen">
+        <img
+          className="w-full h-full rounded-none"
+          src="https://i.imgur.com/ys4CjeT.jpg"
+          alt=""
+        />
+      </div>
       <div className="mx-auto flex flex-col justify-center">
         <p className="w-full text-left">Bienvenido</p>
         <h2 className="w-full text-left text-4xl">
           Inicia sesión en tu cuenta!
         </h2>
-        <form className="mt-8 text-left" onSubmit={handleSubmit}>
+        <form className="mt-8 text-left" onSubmit={formik.handleSubmit}>
           <Input
             label="Email"
             error={formik.errors.email}
@@ -80,9 +57,9 @@ const Login = ({userLogIn, logIn}) => {
             type="email"
             name="email"
             placeholder="Ingresa tu email"
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={formik.handleChange}
             onBlur={formik.handleBlur}
-            value={email}
+            value={formik.values.email}
           />
           <Input
             label="Contraseña"
@@ -91,9 +68,9 @@ const Login = ({userLogIn, logIn}) => {
             type="password"
             name="password"
             placeholder="Ingresa tu password"
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={formik.handleChange}
             onBlur={formik.handleBlur}
-            value={password}
+            value={formik.values.password}
           />
           <div className="w-full h-16 my-4 flex flex-col items-end justify-center">
             <SubmitButton isSubmitting={formik.isSubmitting}>
@@ -115,15 +92,15 @@ const Login = ({userLogIn, logIn}) => {
 };
 
 const mapStateToProps = (state) => {
- return {
-   userLogIn : state.user
- }
-}
+  return {
+    userLogIn: state.user,
+  };
+};
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    logIn: () => dispatch(loginUser())
-  }
-}
+    logIn: () => dispatch(loginUser()),
+  };
+};
 
-export default connect(mapStateToProps,mapDispatchToProps)(Login);
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
