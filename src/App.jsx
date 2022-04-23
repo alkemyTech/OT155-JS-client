@@ -9,13 +9,13 @@ import { CategoriesList } from "./components/CategoriesList";
 import News from "./pages/News/News";
 import NewsDetails from "./pages/News/NewsDetails";
 import ContactForm from "./pages/Contacts/ContactForm";
-import FormActivities from "./components/FormActivities";
 import Register from "./pages/Register/Register";
 import Login from "../src/pages/Login/Login";
 import EditOrganization from "./pages/EditOrganization";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import FormCategories from "./components/FormCategories";
+import FormActivities from "./components/FormActivities";
 import BackOffice from "./pages/BackOffice/BackOffice";
 import { HomeEdit } from "./pages/Home/HomeEdit";
 import { TestimonialsList } from "./components/TestimonialList";
@@ -43,7 +43,8 @@ function App() {
           <Route index element={<BackOffice />} />
           <Route path="activities">
             <Route index element={<ActivitiesList />} />
-            <Route path=":id/edit" element={<FormActivities />} />
+            <Route path="edit/:id" element={<FormActivities />} />
+            <Route path='create' element={<FormActivities/>}/>
           </Route>
           <Route path="categories">
             <Route index element={<CategoriesList />} />
