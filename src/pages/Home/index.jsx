@@ -1,10 +1,33 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { Slider } from '../../components/Slider/Slider';
-import './index.css';
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import NewsCard from "../../components/Card/NewsCard";
+import { Slider } from "../../components/Slider/Slider";
+import { apiConnectionWithoutToken } from "../../helpers/apiConnection";
+import "./index.css";
 
 const Home = () => {
-  const news = [];
+  const navigate = useNavigate();
+  const [news, setNews] = useState([]);
+
+  useEffect(() => {
+    const queryAPI = async () => {
+      try {
+        const { data } = await apiConnectionWithoutToken("/entries/news");
+        console.log(data);
+        setNews(data.news);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    if (!news.length) {
+      queryAPI();
+    }
+  }, []);
+
+  const handleNewsClick = (id) => {
+    navigate(`news/${id}`);
+  };
+
   return (
     <main className="mt-4">
       <div className="flex justify-center flex-col lg:flex-row sm:flex-col">
@@ -36,14 +59,12 @@ const Home = () => {
       <div className="flex flex-col center-center my-20">
         <h2 className="subtitle text-center">Ultimas Novedades</h2>
         <div className="flex justify-center flex-col lg:flex-row sm:flex-col sm:items-center">
-          {news.map((news, i) => (
-            <div key={i} className="item__news flex items-end">
-              {/* <img
-								src={news.image}
-								alt=""
-							/> */}
-              <p>{news.content}</p>
-            </div>
+          {news.map((news) => (
+            <NewsCard
+              key={news.id}
+              element={news}
+              handleNewsClick={handleNewsClick}
+            />
           ))}
         </div>
       </div>

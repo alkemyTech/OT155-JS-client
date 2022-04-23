@@ -7,7 +7,7 @@ import { errorAlert } from "../../helpers/AlertService";
 const NewsDetails = () => {
   const { id } = useParams();
   const [news, setNews] = useState({});
-  const { name, content, image, category, type, createdAt } = news;
+  const { name, content, imageUrl, category, type, createdAt } = news;
   const [loading, setLoading] = useState(false);
 
   console.log(id);
@@ -40,11 +40,11 @@ const NewsDetails = () => {
       <div className="w-full py-8 px-4">
         <h1 className="text-4xl text-center font-bold">{name}</h1>
         <div className="xl:flex xl:justify-center">
-          {image && (
+          {imageUrl && (
             <div className="xl:w-1/2 w-full xl:h-96">
               <img
-                className="max-w-full max-h-full mx-auto my-4 object-cover "
-                src={image}
+                className="w-full h-full mx-auto my-4 object-cover "
+                src={imageUrl}
                 alt={`${name} image`}
               />
             </div>
