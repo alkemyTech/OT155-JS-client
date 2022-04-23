@@ -47,13 +47,13 @@ const BackOffice = () => {
               <BackOfficeCard
                 title="Organización"
                 icon={<GiOrganigram className="w-full h-full rounded-full" />}
-                link="/backoffice/organization"
+                link="/backoffice/edit-organization"
               />
 
               <BackOfficeCard
-                title="Slides"
+                title="Home"
                 icon={<BsFileSlides className="w-full h-full rounded-full" />}
-                link="/backoffice/slides"
+                link="/backoffice/home-edit"
               />
 
               <BackOfficeCard
