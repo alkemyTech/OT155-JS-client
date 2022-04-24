@@ -1,12 +1,27 @@
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import { useFormik } from "formik";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { usePreviewImage } from "../../hooks/usePreviewImage";
 import { apiConnectionWithoutToken } from "../../helpers/apiConnection";
 import { confirmationAlert, errorAlert } from "../../helpers/AlertService";
+import {useNavigate,useParams} from 'react-router-dom'
 
-export default function CkeditorTestimonialForm({ obj = null }) {
+export default function CkeditorTestimonialForm() {
+  const {id} = useParams()
+  const [obj,setObj] = useState(null)
+  const getTestimonial = async () => {
+    try{
+      const res = await apiConnectionWithoutToken('/testimonials/' + id, {},'GET')
+      setObj(res.data.new)
+    }catch{
+      console.log('error')
+    }
+  }
+  useEffect(() => {
+    id && getTestimonial()
+  })
+  const navigate = useNavigate()
   const [content, setContent] = useState(obj ? obj.content : "");
   const [image, preview, handleFile] = usePreviewImage(obj ? obj.imageUrl : "");
 
@@ -18,20 +33,20 @@ export default function CkeditorTestimonialForm({ obj = null }) {
       imageUrl: image,
       content: content,
     };
-
     apiConnectionWithoutToken(
       obj ? `/testimonials/${obj.id}` : "/testimonials",
       testimonial,
       method
     )
       .then((res) => {
-        if (res.ok) {
+        if (res.data) {
           confirmationAlert(
             obj
               ? "Testimonio guardado correctamente"
               : "Testimonio creado correctamente",
             ""
           );
+          navigate('/backoffice/testimonials');
         }
       })
       .catch((err) => {
@@ -49,7 +64,7 @@ export default function CkeditorTestimonialForm({ obj = null }) {
     const errors = {};
     if (!obj) {
       !values.name && (errors.name = "Debes ingresar un nombre");
-      !image && (errors.image = "Debes adjuntar una imagen");
+      // !image && (errors.image = "Debes adjuntar una imagen");
       !content && (errors.content = "El testimonio debe tener un contenido");
     }
     return errors;
@@ -87,7 +102,7 @@ export default function CkeditorTestimonialForm({ obj = null }) {
             onChange={formik.handleChange}
           ></input>
         </div>
-        <div className="w-full h-24 flex flex-col justify-evenly">
+        {/* <div className="w-full h-24 flex flex-col justify-evenly">
           {obj ? (
             <>
               <label className="text-md font-semibold">Editar imagen: </label>
@@ -111,7 +126,7 @@ export default function CkeditorTestimonialForm({ obj = null }) {
               {image && <img src={image} />}
             </>
           )}
-        </div>
+        </div> */}
         <div className="w-full h-auto">
           <label className="text-md font-semibold">Contenido: </label>
           <small className="text-red-500">{formik.errors.content}</small>
@@ -125,21 +140,13 @@ export default function CkeditorTestimonialForm({ obj = null }) {
           />
         </div>
         <div className="w-full h-24 flex flex-row items-center justify-center">
-          {obj ? (
             <button
               type="submit"
               className="p-4 rounded bg-blue-500 text-white font-semibold border border-blue-400 hover:cursor-pointer"
             >
-              Guardar Testimonio
+              {id ? 'Guardar' : 'Crear'} Testimonio
             </button>
-          ) : (
-            <button
-              type="submit"
-              className="p-4 rounded bg-blue-500 text-white font-semibold border border-blue-400 hover:cursor-pointer"
-            >
-              Crear Testimonio
-            </button>
-          )}
+
         </div>
       </form>
     </section>
