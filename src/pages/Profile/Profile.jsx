@@ -50,14 +50,14 @@ export const Profile = () => {
   const modalInformation = async () => {
     if (emailConfirmation === email) {
       setModalOpen(false);
-      dispatch(deleteUser(id,navigate));
+      dispatch(deleteUser(id, navigate));
     } else {
       errorAlert("Error", "Email incorrecto");
       setModalOpen(false);
     }
   };
   return (
-    <div className="flex justify-center items-center h-screen text-center bg-[#EEF4FB]">
+    <div className="flex flex-col justify-center items-center h-screen text-center bg-[#EEF4FB]">
       <Modal isOpen={isModalOpen} ariaHideApp={false}>
         <div className="flex flex-col justify-center text-black font-medium text-xs">
           <label>Insert E-mail</label>
@@ -100,6 +100,12 @@ export const Profile = () => {
           </button>
         </div>
       </div>
+      <button
+        className="bg-gray-200 px-6 py-2 rounded-2xl text-xl font-semibold"
+        onClick={() => navigate(-1)}
+      >
+        Volver
+      </button>
     </div>
   );
 };
