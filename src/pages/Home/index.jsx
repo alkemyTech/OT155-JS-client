@@ -1,18 +1,21 @@
-import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import NewsCard from "../../components/Card/NewsCard";
-import { Slider } from "../../components/Slider/Slider";
-import { apiConnectionWithoutToken } from "../../helpers/apiConnection";
-import "./index.css";
+import React, { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import NewsCard from '../../components/Card/NewsCard';
+import { Loader } from '../../components/Loader/Loader';
+import { Slider } from '../../components/Slider/Slider';
+import { apiConnectionWithoutToken } from '../../helpers/apiConnection';
+import './index.css';
 
 const Home = () => {
   const navigate = useNavigate();
   const [news, setNews] = useState([]);
+  const [organizationData, setOrganizationData] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const queryAPI = async () => {
       try {
-        const { data } = await apiConnectionWithoutToken("/entries/news");
+        const { data } = await apiConnectionWithoutToken('/entries/news');
         console.log(data);
         setNews(data.news);
       } catch (error) {
@@ -24,41 +27,61 @@ const Home = () => {
     }
   }, []);
 
+  useEffect(() => {
+    const queryAPI = async () => {
+      try {
+        const { data } = await apiConnectionWithoutToken(
+          '/organizations/1/public'
+        );
+        setOrganizationData(data);
+        setLoading(false);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    if (organizationData) {
+      queryAPI();
+    }
+  }, []);
+
   const handleNewsClick = (id) => {
     navigate(`news/${id}`);
   };
 
+  const { welcomeText } = organizationData;
+
   return (
-    <main className="mt-4">
-      <div className="flex justify-center flex-col lg:flex-row sm:flex-col">
-        <div className="flex flex-col center-center info__main width__mean">
-          <h1 className="title text-center">Somos Más</h1>
-          <p className="text">
-            Desde 1997 en Somos Más trabajamos con los chicos y chicas, mamás y
-            papás, abuelos y vecinos del barrio La Cava generando procesos de
-            crecimiento y de inserción social. Uniendo las manos de todas las
-            familias, las que viven en el barrio y las que viven fuera de él, es
-            que podemos pensar, crear y garantizar estos procesos. Somos una
-            asociación civil sin fines de lucro que se creó en 1997 con la
-            intención de dar alimento a las familias del barrio. Con el tiempo
-            fuimos involucrándonos con la comunidad y agrandando y mejorando
-            nuestra capacidad de trabajo. Hoy somos un centro comunitario que
-            acompaña a más de 700 personas a través de las áreas de: Educación,
-            deportes, primera infancia, salud, alimentación y trabajo social.
-          </p>
-          <div className="flex justify-center mt-5">
-            <Link to="/contact" className="contact">
+    <main className="mt-4 container mx-auto">
+      <div className="flex justify-center flex-col lg:flex-row sm:flex-col gap-4">
+        <div className="flex justify-between flex-col px-6 lg:px-12 w-full lg:w-1/2 rounded-lg shadow-md bg-slate-50">
+          <h1 className="text-4xl lg:text-6xl font-bold text-center p-5">
+            Somos Más
+          </h1>
+          {loading ? (
+            <Loader />
+          ) : (
+            <p className="text-sm sm:text-lg leading-5 tracking-wider">
+              {welcomeText}
+            </p>
+          )}
+          <div className="flex justify-center py-5">
+            <Link
+              to="/contact"
+              className="text-[20px] font-bold text-white bg-[#8DCAFF] w-40 py-3 px-5 rounded-2xl">
               Contáctenos
             </Link>
           </div>
         </div>
-        <div className=" width__mean">
+        <div className="w-full lg:w-1/2 flex rounded-lg shadow-md">
           <Slider />
         </div>
       </div>
-      <div className="flex flex-col center-center my-20">
-        <h2 className="subtitle text-center">Ultimas Novedades</h2>
-        <div className="flex justify-center flex-col lg:flex-row sm:flex-col sm:items-center">
+      <div className="flex flex-col center-center mb-5 p-5">
+        <h2 className=" text-2xl sm:text-3xl lg:text-4xl my-8 font-bold text-center ">
+          Ultimas Novedades
+        </h2>
+        {/* <div className="flex justify-center flex-col lg:flex-row sm:flex-col sm:items-center"> */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 justify-items-center gap-3 cursor-pointer">
           {news.map((news) => (
             <NewsCard
               key={news.id}
