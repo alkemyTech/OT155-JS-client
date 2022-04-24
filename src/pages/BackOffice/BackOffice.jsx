@@ -78,7 +78,7 @@ const BackOffice = () => {
           <BackOfficeCard
             title="Editar Perfil"
             icon={<FaUserEdit className="w-full h-full rounded-full" />}
-            link="/"
+            link="/profile"
           />
         </div>
         <Link
