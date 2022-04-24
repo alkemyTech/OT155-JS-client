@@ -8,12 +8,13 @@ import { ListItem } from './ListItem';
 
 export const UserList = () => {
   const [users, setUsers] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const queryAPI = async () => {
       try {
         const { data } = await apiConnectionWithoutToken('/users');
+        console.log(data)
         setUsers(data.users);
         setLoading(false);
       } catch (error) {
@@ -65,11 +66,6 @@ export const UserList = () => {
                         scope="col"
                         className="text-sm font-medium text-gray-900 px-6 py-4 text-left">
                         Email
-                      </th>
-                      <th
-                        scope="col"
-                        className="text-sm font-medium text-gray-900 px-6 py-4 text-center">
-                        Editar
                       </th>
                       <th
                         scope="col"

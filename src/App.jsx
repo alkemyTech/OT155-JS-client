@@ -25,6 +25,7 @@ import Profile from "./pages/Profile/Profile";
 import FormNews from './components/CKeditorNews'
 import ActivityDetail from "./pages/Activities/ActivityDetail";
 import { EditForm } from "./pages/EditForm/EditForm";
+import FormTestimonials from './components/CKeditorTestimonial'
 
 
 function App() {
@@ -65,7 +66,11 @@ function App() {
           <Route path="contacts" element={<ContactsList />} />
           <Route path="edit-organization" element={<EditOrganization />} />
           <Route path="home-edit" element={<HomeEdit />} />
-          <Route path="testimonials" element={<TestimonialsList />} />
+          <Route path="testimonials" >
+            <Route index element={<TestimonialsList />} />
+            <Route path='create' element={<FormTestimonials/>}/>
+            <Route path='edit/:id' element={<FormTestimonials/>}/>
+          </Route>
           <Route path="users">
             <Route index element={<UserList />} />
             {/* <Route path=":id/edit" element={<UserList />} /> */}
