@@ -34,9 +34,13 @@ const header = () => {
       {/* Navbar */}
       <div className={`flex items-center routes-register ${close}`}>
         <nav className="flex pr-10 routes">
-          <FaTimes className='times' onClick={() => setClose('w-0')}/>
+          <FaTimes className="times" onClick={() => setClose("w-0")} />
           {routes.map((link, i) => (
-            <Link key={link.name} className="route-h hover:text-ong-blue-700" to={"/" + link.route}>
+            <Link
+              key={link.name}
+              className="route-h hover:text-ong-blue-700"
+              to={"/" + link.route}
+            >
               {link.name}
             </Link>
           ))}
@@ -52,14 +56,18 @@ const header = () => {
               </Link>
             </>
           ) : (
-            <Link to="login" className="mr-2 login" onClick={logOut}>
-              Logout
-            </Link>
+            <>
+              <Link to="/profile" className="mr-2 login">
+              {user.user.firstName} {user.user.lastName}
+              </Link>
+              <Link to="login" className="mr-2 login" onClick={logOut}>
+                Logout
+              </Link>
+            </>
           )}
-
         </div>
       </div>
-      <FaBars className="bars" onClick={() => setClose('w-80')}/>
+      <FaBars className="bars" onClick={() => setClose("w-80")} />
     </header>
   );
 };

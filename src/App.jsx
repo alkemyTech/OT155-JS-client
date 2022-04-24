@@ -20,6 +20,7 @@ import BackOffice from "./pages/BackOffice/BackOffice";
 import { HomeEdit } from "./pages/Home/HomeEdit";
 import { TestimonialsList } from "./components/TestimonialList";
 import AdminAuth from "./components/Auth/AdminAuth";
+import UserAuth from "./components/Auth/UserAuth";
 import Profile from "./pages/Profile/Profile";
 import FormNews from './components/CKeditorNews'
 import ActivityDetail from "./pages/Activities/ActivityDetail";
@@ -40,8 +41,10 @@ function App() {
           <Route path=":id" element={<NewsDetails />} />
         </Route>
         <Route path="register" element={<Register />} />
-        <Route path="profile" elemenv t={<Profile/>}/>
+        <Route path="profile" element={<Profile/>}/>
+        <Route element={<UserAuth/>}>
         <Route path="edit" element={<EditForm/>}/>
+        </Route>
         {/* To add to private routes soon */}
         <Route path="backoffice" element={<AdminAuth/>}>
           <Route index element={<BackOffice />} />
