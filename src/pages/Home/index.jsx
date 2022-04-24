@@ -60,7 +60,7 @@ const Home = () => {
           {loading ? (
             <Loader />
           ) : (
-            <p className="text-sm sm:text-lg leading-5 tracking-wider">
+            <p className="text-sm sm:text-lg tracking-widest">
               {welcomeText}
             </p>
           )}
@@ -78,7 +78,7 @@ const Home = () => {
       </div>
       <div className="flex flex-col center-center mb-5 p-5">
         <h2 className=" text-2xl sm:text-3xl lg:text-4xl my-8 font-bold text-center ">
-          Ultimas Novedades
+        Últimas Novedades
         </h2>
         {/* <div className="flex justify-center flex-col lg:flex-row sm:flex-col sm:items-center"> */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 justify-items-center gap-3 cursor-pointer">

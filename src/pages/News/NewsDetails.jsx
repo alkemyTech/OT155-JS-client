@@ -8,7 +8,7 @@ const NewsDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [news, setNews] = useState({});
-  const { name, content, imageUrl, category, type, createdAt } = news;
+  const { name, content, imageUrl, type, createdAt } = news;
   const [loading, setLoading] = useState(false);
 
   const handleReturn = () => {
@@ -36,23 +36,21 @@ const NewsDetails = () => {
     return <Loader />;
   }
 
-  console.log(news);
-
   return (
     <div className="container mx-auto">
-      <div className="w-full py-8 px-4">
-        <h1 className="text-4xl text-center font-bold">{name}</h1>
-        <div className="xl:flex xl:justify-center">
+      <div className="w-full mt-10 py-8 px-4 shadow-md bg-slate-50">
+        <h1 className="text-4xl text-center font-bold mb-5">{name}</h1>
+        <div className="xl:flex items-center">
           {imageUrl && (
-            <div className="xl:w-1/2 w-full xl:h-96">
+            <div className=" w-full xl:h-[40rem]">
               <img
-                className="w-full h-full mx-auto my-4 object-cover "
+                className="w-full h-full mx-auto my-4 object-contain"
                 src={imageUrl}
                 alt={`${name} image`}
               />
             </div>
           )}
-          <p className="mt-3 mb-1 xl:ml-2 text-justify xl:w-3/4">{content}</p>
+          <p className=" p-5 mt-3 mb-1 xl:ml-2 text-justify xl:w-3/4 text-sm sm:text-lg xl:text-2xl tracking-widest">{content}</p>
         </div>
       </div>
       <div className="bg-blue-400 w-full h-1 rounded"></div>
