@@ -4,7 +4,7 @@ import NewsCard from '../../components/Card/NewsCard';
 import { Loader } from '../../components/Loader/Loader';
 import { Slider } from '../../components/Slider/Slider';
 import { apiConnectionWithoutToken } from '../../helpers/apiConnection';
-import './index.css';
+import 'animate.css';
 
 const Home = () => {
   const navigate = useNavigate();
@@ -16,7 +16,6 @@ const Home = () => {
     const queryAPI = async () => {
       try {
         const { data } = await apiConnectionWithoutToken('/entries/news');
-        console.log(data);
         setNews(data.news);
       } catch (error) {
         console.log(error);
@@ -52,7 +51,7 @@ const Home = () => {
 
   return (
     <main className="mt-4 container mx-auto">
-      <div className="flex justify-center flex-col lg:flex-row sm:flex-col gap-4">
+      <div className="flex justify-center flex-col lg:flex-row sm:flex-col gap-4 animate__animated animate__zoomIn">
         <div className="flex justify-between flex-col px-6 lg:px-12 w-full lg:w-1/2 rounded-lg shadow-md bg-slate-50">
           <h1 className="text-4xl lg:text-6xl font-bold text-center p-5">
             Somos Más
@@ -76,11 +75,10 @@ const Home = () => {
           <Slider />
         </div>
       </div>
-      <div className="flex flex-col center-center mb-5 p-5">
+      <div className="flex flex-col center-center mb-5 p-5 animate__animated animate__fadeInUpBig">
         <h2 className=" text-2xl sm:text-3xl lg:text-4xl my-8 font-bold text-center ">
         Últimas Novedades
         </h2>
-        {/* <div className="flex justify-center flex-col lg:flex-row sm:flex-col sm:items-center"> */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 justify-items-center gap-3 cursor-pointer">
           {news.map((news) => (
             <NewsCard

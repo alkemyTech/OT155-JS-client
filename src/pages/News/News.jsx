@@ -22,11 +22,11 @@ const News = () => {
     <>
       {latestNews.length ? (
         <main className="container mx-auto mt-16 w-[95%] lg:w-full">
-          <h1 className="mb-16 text-center text-4xl font-semibold">
+          <h1 className="mb-16 text-center text-4xl font-semibold animate__animated animate__backInDown">
             Últimas Novedades
           </h1>
 
-          <section className="flex flex-col items-center mb-16 shadow-md bg-slate-50">
+          <section className="flex flex-col items-center mb-16 shadow-md bg-slate-50 animate__animated animate__zoomIn">
             <div className="flex justify-center items-center">
               <img
                 src={latestNews[0].imageUrl}
@@ -45,7 +45,7 @@ const News = () => {
             </div>
           </section>
 
-          <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 justify-items-center gap-3 cursor-pointer">
+          <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 justify-items-center gap-3 cursor-pointer animate__animated animate__fadeInUpBig">
             {latestNews.map((element) => (
               <NewsCard
                 key={element.id}
