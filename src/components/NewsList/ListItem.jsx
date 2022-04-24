@@ -7,7 +7,7 @@ export const ListItem = ({
   name,
   image,
   content,
-  newsId,
+  newId,
   type,
   handleDelete,
 }) => {
@@ -19,17 +19,14 @@ export const ListItem = ({
       <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
         {name}
       </td>
-      <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-        <img src={image} alt="" />
-      </td>
-      <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-        {content.length > 20 ? content.slice(0,20) + '...' : content}
+      <td dangerouslySetInnerHTML={{
+          __html:content.length > 20 ? content.slice(0,20) + '...' : content }}  className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap" title={content}>
       </td>
       <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
         {type}
       </td>
       <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-        <Link to={`/editNews/${newsId}`} className="block mx-auto ">
+        <Link to={`edit/${newId}`} className="block mx-auto ">
           <BiEditAlt className=" text-cyan-500 text-xl" />
         </Link>
       </td>
@@ -37,7 +34,7 @@ export const ListItem = ({
         <button
           className="block mx-auto"
           onClick={() => {
-            handleDelete(newsId);
+            handleDelete(newId);
           }}>
           <MdDeleteForever className="mx-auto text-red-600 text-xl cursor-pointer" />
         </button>

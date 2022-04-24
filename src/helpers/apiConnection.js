@@ -19,7 +19,7 @@ const apiConnectionWithToken = (url, data, method = 'get') => {
     return instance(url, {
       method,
       headers: {
-        Authorization: parsedToken.token.replaceAll('"',''),
+        Authorization: parsedToken.token.replaceAll('"','')
       },
     });
   }
@@ -29,7 +29,7 @@ const apiConnectionWithToken = (url, data, method = 'get') => {
     data,
     headers: {
       'Content-type': 'application/json',
-      Authorization: token,
+      Authorization: parsedToken.token.replaceAll('"','')
     },
   });
 };

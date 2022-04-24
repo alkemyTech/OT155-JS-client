@@ -1,20 +1,37 @@
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 import {CKEditor} from '@ckeditor/ckeditor5-react'
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
 import { apiConnectionWithoutToken } from '../../helpers/apiConnection'
 import { useFormik } from 'formik'
 import { usePreviewImage } from '../../hooks/usePreviewImage'
 import {FcOrganization} from 'react-icons/fc'
+import { useParams, useNavigate } from 'react-router-dom'
 import './index.css'
 
-export default ({obj = null}) => {
+export default () => {
+    const navigate = useNavigate()
+    const {id} = useParams()
     const [content,setContent] = useState('')
+    const [obj,setObj] = useState(null)
     const [error,setError] = useState(false)
     const [image,preview,handleFile] = usePreviewImage(obj ? obj.imageUrl : '')
+    const getNews = async () => {
+        try{
+            const res = await apiConnectionWithoutToken('/entries/news/' + id)
+            console.log(res);
+            setObj(res.data.new)
+            setError(false)
+        }catch{
+            setError(true)
+        }
+    }
+    useEffect(() => {
+        id && getNews()
+    },[])
 
     const submitData = async (data) => {
         const method = obj ? 'PATCH' : 'POST'
-        let imageUrl = 'sdfsafd'
+        let imageUrl = ''
         try{
             if(image) {
                 imageUrl = await apiConnectionWithoutToken('/s3',image,'POST')
@@ -22,13 +39,14 @@ export default ({obj = null}) => {
     
             const newData =
             {
-                title: data.title,
+                name: data.title,
                 imageUrl,
                 content,
                 categoryId:'1',
             }
             console.log(newData)
             const res = await apiConnectionWithoutToken(!obj ? '/entries/news/' : `entries/news/${obj.id}`,newData, method)
+            if(res.data) navigate('/backoffice/news')
         }catch(e){
             console.log(e)
         }
@@ -40,15 +58,15 @@ export default ({obj = null}) => {
                 errors.title = 'Titulo requerido'
             if(!content)
                 errors.content = 'El contenido es requerido'
-            if(!image)
-                errors.image = 'la imagen es requerida'
+            // if(!image)
+            //     errors.image = 'la imagen es requerida'
         }
         return errors
     }
 
     const formik = useFormik({
         initialValues:{
-            title: obj ? obj.title : ''
+            title: obj ? obj.name : ''
         },
         onSubmit:submitData,
         validate
@@ -57,7 +75,7 @@ export default ({obj = null}) => {
   return (
     <div className="flex h-full justify-center items-center" style={{height: '100vh'}}>
         <form className='form__news' onSubmit={formik.handleSubmit} >
-            <div className="flex Logo">
+            {/* <div className="flex Logo">
                 <div className="preview">
                     <label htmlFor='logo'>
                         {preview ? 
@@ -75,7 +93,7 @@ export default ({obj = null}) => {
                     />
                 </div>
                 <p>Imagen</p>
-            </div>
+            </div> */}
             <div className='container__input'>
                 <label htmlFor="title">
                     TItulo
@@ -87,7 +105,7 @@ export default ({obj = null}) => {
                     placeholder="Ingrese un Titulo" 
                     onChange={formik.handleChange} 
                     onBlur={formik.handleBlur} 
-                    value={formik.values.title}
+                    value={formik.values.title || (obj && obj.name)}
                 />
                 <p className='text__error'>{formik.errors.title}</p>
             </div>
