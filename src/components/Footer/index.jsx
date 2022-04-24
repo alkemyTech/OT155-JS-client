@@ -29,12 +29,14 @@ const Footer = () => {
     }
   }, []);
 
+  const {imageUrl, urlFacebook, urlLinkedin, urlInstagram} = organizationData;
+
   return (
     <footer className="flex flex-col center-center pt-20 footer">
       <nav className=" nav flex justify-center border border-white border-solid relative">
         <div className="absolute logo__footer">
           {/* Change url to data from backend */}
-          <img src={"https://i.imgur.com/wQoZYOF.png"} alt="logo somos mas" />
+          <img src={imageUrl} alt="logo somos mas" />
         </div>
         {routes.map((link, i) => (
           <Link key={link.name} className="route-f  hover:text-ong-blue-700" to={link.route}>
@@ -49,17 +51,17 @@ const Footer = () => {
           ) : (
             <>
               <div className=" flex justify-center items-center network rounded-lg bg-white cursor-pointer">
-                <a href={organizationData.urlFacebook} target='_blank'>
+                <a href={urlFacebook} target='_blank'>
                   <ImFacebook2 className="text-4xl text-[#3b5998] " />
                 </a>
               </div>
               <div className=" flex justify-center items-center network rounded-lg bg-white cursor-pointer instagram">
-                <a href={organizationData.urlInstagram} target='_blank'>
+                <a href={urlInstagram} target='_blank'>
                   <IoLogoInstagram className=" text-4xl text-white" />
                 </a>
               </div>
               <div className=" flex justify-center items-center network rounded-lg bg-white cursor-pointer">
-                <a href={organizationData.urlLinkedin} target='_blank'>
+                <a href={urlLinkedin} target='_blank'>
                   <BsLinkedin className=" text-4xl text-[#0A66C2] " />
                 </a>
               </div>
