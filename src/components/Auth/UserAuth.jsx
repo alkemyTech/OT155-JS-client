@@ -1,11 +1,10 @@
-import React from 'react'
-import useRole from '../../hooks/useRole';
+import React from "react";
+import { useSelector } from "react-redux";
 import { Outlet, Navigate } from "react-router-dom";
 
 const UserAuth = () => {
-    const isAdmin = useRole();
-    const isUser = useRole();
-  return isAdmin || isUser ? <Outlet/> : <Navigate to="/login"/>
-}
+  const user = useSelector((state) => state.user);
+  return user ? <Outlet /> : <Navigate to="/login" />;
+};
 
-export default UserAuth
+export default UserAuth;

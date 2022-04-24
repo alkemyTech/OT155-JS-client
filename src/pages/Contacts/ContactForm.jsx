@@ -122,7 +122,7 @@ const ContactForm = () => {
             />
 
             <Input
-              label="Telefono"
+              label="Telefono (opcional)"
               error={formik.errors.phone}
               touched={formik.touched.phone}
               type="text"

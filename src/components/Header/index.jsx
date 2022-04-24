@@ -1,22 +1,24 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { routes } from "../../utils/routeArr";
-import "./index.css";
-import {FaBars,FaTimes} from 'react-icons/fa'
+import { FaBars, FaTimes } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import { logoutUser } from "../../redux/actions/userActions";
+import useRole from "../../hooks/useRole";
+import "./index.css";
 
 const header = () => {
   const user = useSelector((state) => state.user);
+  const isAdmin = useRole();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [close,setClose] = useState('w-80')
+  const [close, setClose] = useState("w-80");
 
   const logOut = () => {
     dispatch(logoutUser());
     navigate("/");
-  }
+  };
   return (
     <header
       className="flex justify-between items-center px-10 w-100 py-10"
@@ -57,9 +59,15 @@ const header = () => {
             </>
           ) : (
             <>
-              <Link to="/profile" className="mr-2 login">
-              {user.user.firstName} {user.user.lastName}
-              </Link>
+              {isAdmin ? (
+                <Link to="/backoffice" className="mr-2 login">
+                  Back Office
+                </Link>
+              ) : (
+                <Link to="/profile" className="mr-2 login">
+                  {user.user.firstName} {user.user.lastName}
+                </Link>
+              )}
               <Link to="login" className="mr-2 login" onClick={logOut}>
                 Logout
               </Link>

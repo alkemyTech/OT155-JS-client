@@ -80,7 +80,7 @@ export const EditForm = () => {
 
   return (
     <section className="flex justify-center items-center h-screen mb-12 pb-12">
-      <div className="block p-6 rounded-lg shadow-lg bg-white max-w-sm">
+      <div className="block p-6 rounded-lg shadow-lg bg-white w-1/2 min-w-sm">
         <form onSubmit={formik.handleSubmit}>
           <div className="form-group mb-6">
             <h1 className="text-red-500 text-sm mb-2">
