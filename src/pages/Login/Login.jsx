@@ -4,10 +4,11 @@ import Input from "../../components/Form/Input";
 import SubmitButton from "../../components/Form/SubmitButton";
 import { connect, useDispatch } from "react-redux";
 import { loginUser } from "../../redux/actions/userActions";
+import { useNavigate } from "react-router-dom";
 
 const Login = ({ userLogIn, logIn }) => {
   const dispatch = useDispatch();
-
+  const navigate = useNavigate();
   const validate = (values) => {
     const errors = {};
     if (!values.email) {
@@ -31,7 +32,7 @@ const Login = ({ userLogIn, logIn }) => {
     validate,
     onSubmit: (values) => {
       const { email, password } = values;
-      dispatch(loginUser(email, password));
+      dispatch(loginUser(email, password,navigate));
     },
   });
 
@@ -73,7 +74,7 @@ const Login = ({ userLogIn, logIn }) => {
             value={formik.values.password}
           />
           <div className="w-full h-16 my-4 flex flex-col items-end justify-center">
-            <SubmitButton isSubmitting={formik.isSubmitting}>
+            <SubmitButton>
               Login Now
             </SubmitButton>
           </div>

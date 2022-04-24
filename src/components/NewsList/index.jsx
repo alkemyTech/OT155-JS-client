@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import {Link} from 'react-router-dom'
 import {
   apiConnectionWithoutToken,
   apiConnectionWithToken,
@@ -27,7 +28,7 @@ export const NewsList = () => {
 
   const handleDelete = async (userId) => {
     try {
-      await apiConnectionWithToken(`/entries/${userId}`, {}, "DELETE");
+      await apiConnectionWithToken(`/entries/news/${userId}`, {}, "DELETE");
       setNews(news.filter((user) => user.id !== userId));
     } catch (error) {
       console.log(error.response.data.msg);
@@ -40,6 +41,12 @@ export const NewsList = () => {
         <Loader />
       ) : (
         <div className="flex flex-col container mx-auto">
+          <Link
+            to="create"
+            className="bg-ong-blue-700 text-white font-bold px-5 mt-10 mb-5 create"
+          >
+            Crear
+          </Link>
           <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div className="py-2 inline-block min-w-full sm:px-6 lg:px-8">
               <div className="overflow-hidden">
@@ -57,12 +64,6 @@ export const NewsList = () => {
                         className="text-sm font-medium text-gray-900 px-6 py-4 text-left"
                       >
                         Nombre
-                      </th>
-                      <th
-                        scope="col"
-                        className="text-sm font-medium text-gray-900 px-6 py-4 text-left"
-                      >
-                        Imagen
                       </th>
                       <th
                         scope="col"

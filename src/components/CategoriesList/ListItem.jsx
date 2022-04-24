@@ -21,7 +21,7 @@ export const ListItem = ({
         {description}
       </td>
       <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-        <Link to={`/editCategorieId/${categoriesId}`} className="block mx-auto ">
+        <Link to={`edit/${categoriesId}`} className="block mx-auto ">
           <BiEditAlt className=" text-cyan-500 text-xl" />
         </Link>
       </td>

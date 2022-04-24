@@ -1,24 +1,44 @@
-import React, {useState} from 'react'
+import React, {useState,useEffect} from 'react'
 import { apiConnectionWithoutToken } from '../../helpers/apiConnection'
 import { useFormik } from 'formik'
+import {useParams, useNavigate} from 'react-router-dom'
 import '../CKeditorNews/index.css'
 
-export default ({obj = null}) => {
+export default () => {
+    const navigate = useNavigate()
+    const { id } = useParams()
+    const [obj,setObj] = useState(null)
     const [error, setError] = useState(false)
+    const getCategory = async () => {
+        try{
+            const res = await apiConnectionWithoutToken('/categories/' + id)
+            console.log(res)
+            setObj(res.data.new)
+            setError(false)
+        }catch{
+            setError(true)
+        }
+    }
+    useEffect(() => {
+        id && getCategory()
+    },[])
+
     const submitData = async (data) => {
-        const method = obj ? 'PATCH' : 'POST'
+        const method = obj ? 'PUT' : 'POST'
         setError(false)
         try{
             const newData = {
-                name: data.name,
-                description: data.description,
+                id,
+                name: data.name || obj.name,
+                description: data.description || obj.description,
             }
-            console.log(newData)
             const res = await apiConnectionWithoutToken(
-                !obj ? '/categories/create' : `categories/update/`, 
-                !obj ? newData : {id:obj.id, ...newData}, 
+                !obj ? '/categories/' : `categories/` + id, 
+                newData,
                 method
             )
+            if(res.data) navigate('/backoffice/categories')
+            setError(false)
         }catch(e){
             console.log(e)
             setError(true)
@@ -58,7 +78,7 @@ export default ({obj = null}) => {
                     placeholder="Ingrese un Nombre" 
                     onChange={formik.handleChange} 
                     onBlur={formik.handleBlur} 
-                    value={formik.values.name}
+                    value={formik.values.name || (obj && obj.name)}
                 />
                 <p className='text__error'>{formik.errors.name}</p>
             </div>
@@ -73,7 +93,7 @@ export default ({obj = null}) => {
                     placeholder="Ingrese una Descripcion" 
                     onChange={formik.handleChange} 
                     onBlur={formik.handleBlur} 
-                    value={formik.values.description}
+                    value={formik.values.description || (obj && obj.description)}
                 />
                 <p className='text__error'>{formik.errors.description}</p>
             </div>
