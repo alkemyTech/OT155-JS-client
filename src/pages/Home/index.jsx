@@ -59,7 +59,7 @@ const Home = () => {
           {loading ? (
             <Loader />
           ) : (
-            <p className="text-sm sm:text-lg tracking-widest">
+            <p className="text-sm sm:text-lg tracking-widest text-center">
               {welcomeText}
             </p>
           )}
