@@ -1,13 +1,12 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 import {
   apiConnectionWithoutToken,
   apiConnectionWithToken,
-} from '../../helpers/apiConnection';
-import { Loader } from '../Loader/Loader';
-import { ListItem } from './ListItem';
+} from "../../helpers/apiConnection";
+import { Loader } from "../Loader/Loader";
+import { ListItem } from "./ListItem";
 import { IoMdArrowRoundBack } from "react-icons/io";
-import {Link} from 'react-router-dom'
-
+import { Link } from "react-router-dom";
 
 export const UserList = () => {
   const [users, setUsers] = useState([]);
@@ -16,7 +15,7 @@ export const UserList = () => {
   useEffect(() => {
     const queryAPI = async () => {
       try {
-        const { data } = await apiConnectionWithoutToken('/users');
+        const { data } = await apiConnectionWithToken("/users");
         setUsers(data.users);
         setLoading(false);
       } catch (error) {
@@ -30,7 +29,7 @@ export const UserList = () => {
 
   const handleDelete = async (userId) => {
     try {
-      await apiConnectionWithToken(`/users/${userId}`, {}, 'DELETE');
+      await apiConnectionWithToken(`/users/${userId}`, {}, "DELETE");
       setUsers(users.filter((user) => user.id !== userId));
     } catch (error) {
       console.log(error.response.data.msg);
@@ -66,27 +65,32 @@ export const UserList = () => {
                     <tr>
                       <th
                         scope="col"
-                        className="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+                        className="text-sm font-medium text-gray-900 px-6 py-4 text-left"
+                      >
                         #
                       </th>
                       <th
                         scope="col"
-                        className="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+                        className="text-sm font-medium text-gray-900 px-6 py-4 text-left"
+                      >
                         Nombre
                       </th>
                       <th
                         scope="col"
-                        className="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+                        className="text-sm font-medium text-gray-900 px-6 py-4 text-left"
+                      >
                         Apellido
                       </th>
                       <th
                         scope="col"
-                        className="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+                        className="text-sm font-medium text-gray-900 px-6 py-4 text-left"
+                      >
                         Email
                       </th>
                       <th
                         scope="col"
-                        className="text-sm font-medium text-gray-900 px-6 py-4 text-center">
+                        className="text-sm font-medium text-gray-900 px-6 py-4 text-center"
+                      >
                         Eliminar
                       </th>
                     </tr>
