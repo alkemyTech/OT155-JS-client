@@ -18,7 +18,6 @@ export default () => {
     const getNews = async () => {
         try{
             const res = await apiConnectionWithoutToken('/entries/news/' + id)
-            console.log(res);
             setObj(res.data.new)
             setError(false)
         }catch{
@@ -30,21 +29,19 @@ export default () => {
     },[])
 
     const submitData = async (data) => {
-        const method = obj ? 'PATCH' : 'POST'
+        const method = obj ? 'PUT' : 'POST'
         let imageUrl = ''
         try{
             if(image) {
                 imageUrl = await apiConnectionWithoutToken('/s3',image,'POST')
             }
-    
             const newData =
             {
-                name: data.title,
+                name: data.title || obj.name,
                 imageUrl,
                 content,
                 categoryId:'1',
             }
-            console.log(newData)
             const res = await apiConnectionWithoutToken(!obj ? '/entries/news/' : `entries/news/${obj.id}`,newData, method)
             if(res.data) navigate('/backoffice/news')
         }catch(e){

@@ -28,7 +28,7 @@ export default () => {
         setError(false)
         try{
             const newData = {
-                name: obj ? obj.name : data.name,
+                name: data.name || obj.name ,
                 image:'url',
                 content,
             }
@@ -37,7 +37,6 @@ export default () => {
                 !obj ? newData : {id:`${obj.id}`, ...newData}, 
                 method
             )
-            console.log(res);
             if(res.statusText == 'OK') navigate('/backoffice/activities')
         }catch(e){
             console.log(e)
