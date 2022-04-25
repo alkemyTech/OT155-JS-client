@@ -5,6 +5,9 @@ import {
 } from '../../helpers/apiConnection';
 import { Loader } from '../Loader/Loader';
 import { ListItem } from './ListItem';
+import { IoMdArrowRoundBack } from "react-icons/io";
+import {Link} from 'react-router-dom'
+
 
 export const UserList = () => {
   const [users, setUsers] = useState([]);
@@ -14,7 +17,6 @@ export const UserList = () => {
     const queryAPI = async () => {
       try {
         const { data } = await apiConnectionWithoutToken('/users');
-        console.log(data)
         setUsers(data.users);
         setLoading(false);
       } catch (error) {
@@ -41,6 +43,21 @@ export const UserList = () => {
         <Loader />
       ) : (
         <div className="flex flex-col container mx-auto">
+          <div className="flex justify-between items-center mt-10 mb-5">
+            <Link
+              to="create"
+              className="bg-ong-blue-700 text-white font-bold px-5 py-2 rounded-md flex items-center"
+            >
+              Crear
+            </Link>
+            <Link
+              to="/backoffice"
+              className="bg-gray-600 hover:bg-gray-400 text-white font-medium px-5 py-2 rounded-md flex items-center"
+            >
+              <IoMdArrowRoundBack className="mr-2 inline" />
+              Volver
+            </Link>
+          </div>
           <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div className="py-2 inline-block min-w-full sm:px-6 lg:px-8">
               <div className="overflow-hidden">
