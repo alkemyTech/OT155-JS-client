@@ -12,7 +12,6 @@ import ContactForm from "./pages/Contacts/ContactForm";
 import Register from "./pages/Register/Register";
 import Login from "../src/pages/Login/Login";
 import EditOrganization from "./pages/EditOrganization";
-import Header from "./components/Header";
 import Footer from "./components/Footer";
 import FormCategories from "./components/FormCategories";
 import FormActivities from "./components/FormActivities";
@@ -26,11 +25,11 @@ import FormNews from "./components/CKeditorNews";
 import ActivityDetail from "./pages/Activities/ActivityDetail";
 import { EditForm } from "./pages/EditForm/EditForm";
 import FormTestimonials from "./components/CKeditorTestimonial";
-
+import { Navbar } from "./components/Header/Navbar";
 function App() {
   return (
     <>
-      <Header />
+      <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="contact" element={<ContactForm />} />
