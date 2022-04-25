@@ -70,13 +70,13 @@ export const Profile = () => {
               onClick={modalInformation}
               className="inline-block w-3/6 px-6 py-2.5 bg-[#FAFA88] text-black font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-[#CCCC4F] hover:shadow-lg focus:bg-[#CCCC4F] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#CCCC4F] active:shadow-lg transition duration-150 ease-in-out m-2"
             >
-              Enter E-mail
+              Ingresar E-mail
             </button>
             <button
               onClick={() => setModalOpen(false)}
               className="inline-block w-3/6 px-6 py-2.5 bg-[#DB5752] text-black font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-[#BA4642] hover:shadow-lg focus:bg-[#DB5752] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#DB5752] active:shadow-lg transition duration-150 ease-in-out m-2"
             >
-              Close
+              Cerrar
             </button>
           </div>
         </div>
@@ -91,13 +91,13 @@ export const Profile = () => {
             className="inline-block px-6 py-2.5 bg-[#FAFA88] text-black font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-[#CCCC4F] hover:shadow-lg focus:bg-[#CCCC4F] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#CCCC4F] active:shadow-lg transition duration-150 ease-in-out m-2"
             onClick={handleEdit}
           >
-            Edit Account
+            Editar 
           </button>
           <button
             className="inline-block px-6 py-2.5 bg-[#DB5752] text-black font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-[#BA4642] hover:shadow-lg focus:bg-[#DB5752] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#DB5752] active:shadow-lg transition duration-150 ease-in-out m-2"
             onClick={handleDelete}
           >
-            Delete Account
+            Eliminar 
           </button>
         </div>
       </div>
