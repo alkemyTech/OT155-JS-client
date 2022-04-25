@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { errorAlert } from "../../helpers/AlertService";
 import { uploadImage } from "../../helpers/uploadImage";
 import { useEffect, useState } from "react";
-import { apiConnectionWithoutToken } from "../../helpers/apiConnection";
+import { apiConnectionWithToken } from "../../helpers/apiConnection";
 
 export const HomeEdit = () => {
   const navigate = useNavigate();
@@ -71,14 +71,14 @@ export const HomeEdit = () => {
       return;
     }
     try {
-      await apiConnectionWithoutToken(
-        "/organizations",
+      await apiConnectionWithToken(
+        "/organizations/1",
         {
-          id: 1,
           welcomeText,
         },
         "PUT"
       );
+      navigate(-1);
     } catch (error) {
       errorAlert("Error", error.message);
     }
@@ -91,7 +91,7 @@ export const HomeEdit = () => {
     setImageUrl3(await uploadImage(image3));
 
     try {
-      await apiConnectionWithoutToken(
+      await apiConnectionWithToken(
         "/slide",
         {
           id: 1,
@@ -101,7 +101,7 @@ export const HomeEdit = () => {
         },
         "PUT"
       );
-      await apiConnectionWithoutToken(
+      await apiConnectionWithToken(
         "/slide",
         {
           id: 2,
@@ -111,7 +111,7 @@ export const HomeEdit = () => {
         },
         "PUT"
       );
-      await apiConnectionWithoutToken(
+      await apiConnectionWithToken(
         "/slide",
         {
           id: 3,
@@ -121,6 +121,7 @@ export const HomeEdit = () => {
         },
         "PUT"
       );
+      navigate(-1);
     } catch (error) {
       errorAlert("Error", error.message);
     }
