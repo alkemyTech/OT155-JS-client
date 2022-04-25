@@ -26,6 +26,7 @@ import ActivityDetail from "./pages/Activities/ActivityDetail";
 import { EditForm } from "./pages/EditForm/EditForm";
 import FormTestimonials from "./components/CKeditorTestimonial";
 import { Navbar } from "./components/Header/Navbar";
+import { Testimonials } from "./pages/Testimonial/Testimonials";
 function App() {
   return (
     <>
@@ -34,6 +35,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="contact" element={<ContactForm />} />
         <Route path="login" element={<Login />} />
+        <Route path="testimonials" element={<Testimonials />} />
         <Route path="news">
           <Route index element={<News />} />
           <Route path=":id" element={<NewsDetails />} />
