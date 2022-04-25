@@ -10,26 +10,34 @@ import {useNavigate,useParams} from 'react-router-dom'
 export default function CkeditorTestimonialForm() {
   const {id} = useParams()
   const [obj,setObj] = useState(null)
+
   const getTestimonial = async () => {
-    try{
-      const res = await apiConnectionWithoutToken('/testimonials/' + id, {},'GET')
-      setObj(res.data.new)
-    }catch{
-      console.log('error')
+    try {
+      const res = await apiConnectionWithoutToken(
+        "/testimonials/" + id,
+        {},
+        "GET"
+      );
+      setObj(res.data.new);
+    } catch {
+      console.log("error");
     }
-  }
+  };
+
   useEffect(() => {
     id && getTestimonial()
-  })
+  }, [])
   const navigate = useNavigate()
   const [content, setContent] = useState(obj ? obj.content : "");
   const [image, preview, handleFile] = usePreviewImage(obj ? obj.imageUrl : "");
+  const [name, setName] = useState(obj ? obj.name : "")
 
+  
   const handleSubmit = (values) => {
-    const method = obj ? "PATH" : "POST";
+    const method = obj ? "PUT" : "POST";
 
     const testimonial = {
-      name: values.name,
+      name: name,
       imageUrl: image,
       content: content,
     };
@@ -72,7 +80,8 @@ export default function CkeditorTestimonialForm() {
 
   const formik = useFormik({
     initialValues: {
-      name: obj ? obj.name : "",
+      name: obj ? name : "",
+      concept: obj ? content : ""
     },
     onSubmit: handleSubmit,
     validate,
