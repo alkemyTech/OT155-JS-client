@@ -94,6 +94,8 @@ export default () => {
             </div>
             {error && <p className='text-center mt-10 text__error'>hubo un error</p>}
             <button className="submit save"type="submit">{obj ? 'Guardar' : 'Crear'}</button>
+            <button className="submit back " onClick={() => navigate(-1)}>Volver</button>
+
         </form>
     </div>
   )

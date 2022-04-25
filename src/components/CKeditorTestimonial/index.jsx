@@ -151,10 +151,11 @@ export default function CkeditorTestimonialForm() {
         <div className="w-full h-24 flex flex-row items-center justify-center">
             <button
               type="submit"
-              className="p-4 rounded bg-blue-500 text-white font-semibold border border-blue-400 hover:cursor-pointer"
+              className="submit save"
             >
-              {id ? 'Guardar' : 'Crear'} Testimonio
+              {id ? 'Guardar' : 'Crear'} 
             </button>
+            <button className="submit back " onClick={() => navigate(-1)}>Volver</button>
 
         </div>
       </form>
