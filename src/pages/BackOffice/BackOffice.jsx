@@ -14,7 +14,7 @@ const BackOffice = () => {
   const isAdmin = useRole();
   return (
     <div className="bg-gray-100">
-      <div className="container mx-auto h-screen flex flex-col justify-center items-center">
+      <div className="container i-2 mx-auto my-20 flex flex-col justify-center items-center ">
         <div className="grid lg:grid-cols-4 grid-cols-2 justify-items-center align-center gap-x-8 gap-y-12">
           {isAdmin && (
             <>
