@@ -39,8 +39,7 @@ const News = () => {
                 {latestNews[0].name}
               </h2>
 
-              <p className="text-md sm:text-lg md:text-xl text-justify overflow-y-auto p-4 sm:p-8">
-                {latestNews[0].content}
+              <p dangerouslySetInnerHTML={{__html:latestNews[0].content }} className="text-md sm:text-lg md:text-xl text-justify overflow-y-auto p-4 sm:p-8">
               </p>
             </div>
           </section>
