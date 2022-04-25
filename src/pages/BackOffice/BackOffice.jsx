@@ -63,12 +63,6 @@ const BackOffice = () => {
               />
 
               <BackOfficeCard
-                title="Miembros"
-                icon={<HiUserGroup className="w-full h-full rounded-full" />}
-                link="/backoffice/members"
-              />
-
-              <BackOfficeCard
                 title="Contactos"
                 icon={<GrContactInfo className="w-full h-full rounded-full" />}
                 link="/backoffice/contacts"
