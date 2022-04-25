@@ -72,12 +72,11 @@ const Register = () => {
         const data = res.data;
         if (data.value) {
           window.sessionStorage.setItem("jwt", JSON.stringify(data.jwt));
-          navigate("/");
+          navigate("/login");
         }
       })
       .catch((err) => {
         errorAlert("Error.", "Datos inválidos. Ese email ya está registrado.");
-
         return err;
       });
   };
