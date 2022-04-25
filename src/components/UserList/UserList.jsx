@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import {
-  apiConnectionWithoutToken,
   apiConnectionWithToken,
 } from "../../helpers/apiConnection";
 import { Loader } from "../Loader/Loader";
@@ -22,14 +21,14 @@ export const UserList = () => {
         console.log(error);
       }
     };
-    if (users) {
+    if (!users.length) {  
       queryAPI();
     }
   }, []);
 
   const handleDelete = async (userId) => {
     try {
-      await apiConnectionWithToken(`/users/${userId}`, {}, "DELETE");
+      apiConnectionWithToken(`/users/${userId}`, {}, "DELETE");
       setUsers(users.filter((user) => user.id !== userId));
     } catch (error) {
       console.log(error.response.data.msg);
@@ -42,13 +41,8 @@ export const UserList = () => {
         <Loader />
       ) : (
         <div className="flex flex-col container mx-auto">
-          <div className="flex justify-between items-center mt-10 mb-5">
-            <Link
-              to="create"
-              className="bg-ong-blue-700 text-white font-bold px-5 py-2 rounded-md flex items-center"
-            >
-              Crear
-            </Link>
+          <div className="flex justify-end items-center mt-10 mb-5">
+            
             <Link
               to="/backoffice"
               className="bg-gray-600 hover:bg-gray-400 text-white font-medium px-5 py-2 rounded-md flex items-center"
