@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import ContactsList from "./pages/Contacts/ContactsList";
 import { ActivitiesList } from "./components/ActivitiesList";
@@ -27,6 +26,9 @@ import { EditForm } from "./pages/EditForm/EditForm";
 import FormTestimonials from "./components/CKeditorTestimonial";
 import { Navbar } from "./components/Header/Navbar";
 import { Testimonials } from "./pages/Testimonial/Testimonials";
+import Activities from "./pages/Activities/Activities";
+import ActivitiesDetail from "./pages/Activities/ActivityDetail";
+
 function App() {
   return (
     <>
@@ -39,6 +41,10 @@ function App() {
         <Route path="news">
           <Route index element={<News />} />
           <Route path=":id" element={<NewsDetails />} />
+        </Route>
+        <Route path="activities">
+          <Route index element={<Activities />} />
+          <Route path=":id" element={<ActivitiesDetail />} />
         </Route>
         <Route path="register" element={<Register />} />
         <Route element={<UserAuth />}>
