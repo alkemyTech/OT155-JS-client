@@ -87,7 +87,7 @@ const EditOrganization = ({id}) => {
 				</div>
 				<div>
 					<button type="submit" className='buttonSave save'>Guardar</button>
-					<button type="submit" className='buttonSave cancel' onClick={() => navigate('/')}>Cancelar</button>
+					<button type="submit" className='buttonSave cancel' onClick={() => navigate(-1)}>Cancelar</button>
 				</div>
 			</form>
 		</div>
