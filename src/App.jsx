@@ -79,7 +79,6 @@ function App() {
           </Route>
           <Route path="users">
             <Route index element={<UserList />} />
-            {/* <Route path=":id/edit" element={<UserList />} /> */}
           </Route>
         </Route>
         <Route path="/activities/:id" element={<ActivityDetail />} />
