@@ -149,7 +149,7 @@ export const EditForm = () => {
             </div>
           )}
           <SubmitButton isSubmitting={formik.isSubmitting}>
-            Crear usuario
+            Editar usuario
           </SubmitButton>
         </form>
       </div>

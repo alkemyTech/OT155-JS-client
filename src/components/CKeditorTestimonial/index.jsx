@@ -30,14 +30,13 @@ export default function CkeditorTestimonialForm() {
   const navigate = useNavigate()
   const [content, setContent] = useState(obj ? obj.content : "");
   const [image, preview, handleFile] = usePreviewImage(obj ? obj.imageUrl : "");
-  const [name, setName] = useState(obj ? obj.name : "")
 
   
   const handleSubmit = (values) => {
     const method = obj ? "PUT" : "POST";
 
     const testimonial = {
-      name: name,
+      name: values.name || obj.name,
       imageUrl: image,
       content: content,
     };
@@ -80,7 +79,7 @@ export default function CkeditorTestimonialForm() {
 
   const formik = useFormik({
     initialValues: {
-      name: obj ? name : "",
+      name: obj && obj.name,
       concept: obj ? content : ""
     },
     onSubmit: handleSubmit,
@@ -107,7 +106,7 @@ export default function CkeditorTestimonialForm() {
             type="text"
             placeholder="Tu nombre..."
             className="w-full h-10 rounded px-2 focus:outline-none"
-            value={formik.values.name}
+            value={formik.values.name || (obj && obj.name)}
             onChange={formik.handleChange}
           ></input>
         </div>
@@ -151,10 +150,11 @@ export default function CkeditorTestimonialForm() {
         <div className="w-full h-24 flex flex-row items-center justify-center">
             <button
               type="submit"
-              className="p-4 rounded bg-blue-500 text-white font-semibold border border-blue-400 hover:cursor-pointer"
+              className="submit save"
             >
-              {id ? 'Guardar' : 'Crear'} Testimonio
+              {id ? 'Guardar' : 'Crear'} 
             </button>
+            <button className="submit back " onClick={() => navigate(-1)}>Volver</button>
 
         </div>
       </form>

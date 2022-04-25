@@ -21,7 +21,10 @@
 .save{
     background-color:#167fcf;
 }
-
+.back{
+    background-color: #4c5564;
+    margin-left: 5px;
+}
 .cancel {
     background-color: #e24567;
     margin-left:10px;

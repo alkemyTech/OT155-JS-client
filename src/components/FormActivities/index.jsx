@@ -28,7 +28,7 @@ export default () => {
         setError(false)
         try{
             const newData = {
-                name: obj ? obj.name : data.name,
+                name: data.name || obj.name ,
                 image:'url',
                 content,
             }
@@ -37,7 +37,6 @@ export default () => {
                 !obj ? newData : {id:`${obj.id}`, ...newData}, 
                 method
             )
-            console.log(res);
             if(res.statusText == 'OK') navigate('/backoffice/activities')
         }catch(e){
             console.log(e)
@@ -94,6 +93,8 @@ export default () => {
             </div>
             {error && <p className='text-center mt-10 text__error'>hubo un error</p>}
             <button className="submit save"type="submit">{obj ? 'Guardar' : 'Crear'}</button>
+            <button className="submit back " onClick={() => navigate(-1)}>Volver</button>
+
         </form>
     </div>
   )
