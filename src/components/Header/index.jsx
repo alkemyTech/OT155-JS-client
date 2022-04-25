@@ -53,7 +53,7 @@ const header = () => {
               <Link to="login" className="mr-2 login">
                 Login
               </Link>
-              <Link to="register" className="ml-2 register">
+              <Link to="register" className="ml-2 login">
                 Registrate
               </Link>
             </>

@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Modal from "react-modal/lib/components/Modal";
 import { errorAlert } from "../../helpers/AlertService";
-import { confirmationAlert } from "../../helpers/AlertService";
 import { deleteUser } from "../../redux/actions/userActions";
 import { useDispatch } from "react-redux";
 import { apiConnectionWithToken } from "../../helpers/apiConnection";
@@ -58,26 +57,28 @@ export const Profile = () => {
   };
   return (
     <div className="flex flex-col justify-center items-center h-screen text-center bg-[#EEF4FB]">
-      <Modal isOpen={isModalOpen} ariaHideApp={false}>
-        <div className="flex flex-col justify-center text-black font-medium text-xs">
-          <label>Insert E-mail</label>
+      <Modal isOpen={isModalOpen} ariaHideApp={false} >
+        <div className="flex flex-col justify-center text-black font-medium text-xs text-center m-8 ">
+          <label className="text-base font-bold">Insert E-mail</label>
           <input
             type="text"
             onChange={(e) => setEmailConfirmation(e.target.value)}
-            className="border-2"
+            className="border-2 h-10 text-lg focus:border-2 text-center w-96 self-center	"
           ></input>
-          <button
-            onClick={modalInformation}
-            className="inline-block px-6 py-2.5 bg-[#FAFA88] text-black font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-[#CCCC4F] hover:shadow-lg focus:bg-[#CCCC4F] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#CCCC4F] active:shadow-lg transition duration-150 ease-in-out m-2"
-          >
-            Enter E-mail
-          </button>
-          <button
-            onClick={() => setModalOpen(false)}
-            className="inline-block px-6 py-2.5 bg-[#DB5752] text-black font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-[#BA4642] hover:shadow-lg focus:bg-[#DB5752] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#DB5752] active:shadow-lg transition duration-150 ease-in-out m-2"
-          >
-            Close
-          </button>
+          <div >
+            <button
+              onClick={modalInformation}
+              className="inline-block w-3/6 px-6 py-2.5 bg-[#FAFA88] text-black font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-[#CCCC4F] hover:shadow-lg focus:bg-[#CCCC4F] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#CCCC4F] active:shadow-lg transition duration-150 ease-in-out m-2"
+            >
+              Enter E-mail
+            </button>
+            <button
+              onClick={() => setModalOpen(false)}
+              className="inline-block w-3/6 px-6 py-2.5 bg-[#DB5752] text-black font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-[#BA4642] hover:shadow-lg focus:bg-[#DB5752] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#DB5752] active:shadow-lg transition duration-150 ease-in-out m-2"
+            >
+              Close
+            </button>
+          </div>
         </div>
       </Modal>
       <div className="flex flex-col justify-center rounded-lg bg-white shadow-lg p-8 text-center m-8">
