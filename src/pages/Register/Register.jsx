@@ -92,7 +92,7 @@ const Register = () => {
       <div className="w-screen h-screen lg:w-1/2 lg:h-5/6 xl:w-1/3 xl:h-5/6 bg-white rounded-md shadow-md flex flex-col items-center justify-center ">
         <div className="text-2xl text-ong-blue-700">Crear nuevo usuario</div>
         <form
-          className=" w-3/4 h-5/6 flex flex-col items-start justify-start p-2 "
+          className=" w-3/4 h-5/6 flex flex-col items-start justify-start p-2"
           onSubmit={formik.handleSubmit}
         >
           <Input
@@ -137,7 +137,7 @@ const Register = () => {
             touched={formik.touched.password}
             type="password"
             name="password"
-            placeholder=""
+            placeholder="Ingrese su contraseña.."
             value={formik.values.password}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
