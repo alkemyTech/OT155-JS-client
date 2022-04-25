@@ -18,14 +18,14 @@ export const ListItem = ({
       <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
         {name}
       </td>
-      <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+      {/* <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
         <img src={image} alt=""  className="img__testimonials" />
+      </td> */}
+      <td dangerouslySetInnerHTML={{
+          __html:content.length > 20 ? content.slice(0,20) + '...' : content }} className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
       </td>
       <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-        {content}
-      </td>
-      <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-        <Link to={`/edituser/${testimonialsId}`} className="block mx-auto ">
+        <Link to={`edit/${testimonialsId}`} className="block mx-auto ">
           <BiEditAlt className=" text-cyan-500 text-xl" />
         </Link>
       </td>

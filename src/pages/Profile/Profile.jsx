@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-// import Modal from "react-modal/lib/components/Modal";
+import Modal from "react-modal/lib/components/Modal";
 import { errorAlert } from "../../helpers/AlertService";
 import { confirmationAlert } from "../../helpers/AlertService";
 import { deleteUser } from "../../redux/actions/userActions";
@@ -49,18 +49,16 @@ export const Profile = () => {
 
   const modalInformation = async () => {
     if (emailConfirmation === email) {
-      confirmationAlert("Exito", "Se ha eliminado su cuenta");
       setModalOpen(false);
-      navigate("/");
-      dispatch(deleteUser(id));
+      dispatch(deleteUser(id, navigate));
     } else {
       errorAlert("Error", "Email incorrecto");
       setModalOpen(false);
     }
   };
   return (
-    <div className="flex justify-center items-center h-screen text-center bg-[#EEF4FB]">
-      {/* <Modal isOpen={isModalOpen} ariaHideApp={false}>
+    <div className="flex flex-col justify-center items-center h-screen text-center bg-[#EEF4FB]">
+      <Modal isOpen={isModalOpen} ariaHideApp={false}>
         <div className="flex flex-col justify-center text-black font-medium text-xs">
           <label>Insert E-mail</label>
           <input
@@ -81,7 +79,7 @@ export const Profile = () => {
             Close
           </button>
         </div>
-      </Modal> */}
+      </Modal>
       <div className="flex flex-col justify-center rounded-lg bg-white shadow-lg p-8 text-center m-8">
         <h1 className="font-bold text-3xl">
           {firstName} {lastName}
@@ -102,6 +100,12 @@ export const Profile = () => {
           </button>
         </div>
       </div>
+      <button
+        className="bg-gray-200 px-6 py-2 rounded-2xl text-xl font-semibold"
+        onClick={() => navigate(-1)}
+      >
+        Volver
+      </button>
     </div>
   );
 };

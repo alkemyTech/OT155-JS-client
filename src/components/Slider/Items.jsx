@@ -6,11 +6,11 @@ export const Items = ({ text, imageUrl, index }) => {
     <div className={index === 0 ? option1 : option2}>
       <img
         src={imageUrl}
-        className="block w-full h-full rounded-md "
+        className="block w-full h-full rounded-md mb-10"
         alt="Loading...."
       />
       <div className="carousel-caption absolute text-center">
-        <p className="text-white text-xl font-bold bg-black/30">{text}</p>
+        <p className="text-white text-xl font-bold bg-[#8DCAFF]">{text}</p>
       </div>
     </div>
   );
