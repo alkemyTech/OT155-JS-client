@@ -37,18 +37,17 @@ const Login = ({ userLogIn, logIn }) => {
   });
 
   return (
-    <div className="flex">
-      <div className="bg-ong-blue-500	 w-1/2 h-screen">
+    <div className="lg:flex">
         <img
-          className="w-full h-full rounded-none"
+          className="w-full h-3/6 rounded-none lg:w-1/2 lg:h-screen"
           src="https://i.imgur.com/ys4CjeT.jpg"
           alt=""
         />
-      </div>
-      <div className="mx-auto flex flex-col justify-center">
+      <div className="m-10 lg:w-full m-20 ">
+      <div className="mx-auto flex flex-col">
         <p className="w-full text-left">Bienvenido</p>
         <h2 className="w-full text-left text-4xl">
-          Inicia sesión en tu cuenta!
+          ¡Inicia sesión en tu cuenta!
         </h2>
         <form className="mt-8 text-left" onSubmit={formik.handleSubmit}>
           <Input
@@ -75,18 +74,19 @@ const Login = ({ userLogIn, logIn }) => {
           />
           <div className="w-full h-16 my-4 flex flex-col items-end justify-center">
             <SubmitButton>
-              Login Now
+              Login
             </SubmitButton>
           </div>
         </form>
         <div className="mt-6">
-          <p className="text-left">
+          <p className="text-center">
             No tienes cuenta?{" "}
             <a href="#" className="text-ong-blue-700">
-              Join free today
+              Registrate 
             </a>
           </p>
         </div>
+      </div>
       </div>
     </div>
   );
