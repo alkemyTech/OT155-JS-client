@@ -13,18 +13,16 @@ export const Navbar = () => {
     { name: 'Contacto', link: '/contact' },
   ];
 
+  let [open, setOpen] = useState(false);
   const user = useSelector((state) => state.user);
   const isAdmin = useRole();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [close, setClose] = useState('w-80');
 
   const logOut = () => {
     dispatch(logoutUser());
     navigate('/');
   };
-
-  let [open, setOpen] = useState(false);
 
   return (
     <div className="shadow-md w-full relative top-0 left-0">
@@ -50,7 +48,7 @@ export const Navbar = () => {
           {Links.map((link) => (
             <li
               key={link.name}
-              className="md:ml-8 text-lg font-bold md:my-0 my-7">
+              className="md:ml-8 md:text-sm text-lg lg:text-lg font-bold md:my-0 my-7">
               <NavLink
                 to={link.link}
                 className={({ isActive }) =>
@@ -63,7 +61,7 @@ export const Navbar = () => {
           ))}
           {!user.token ? (
             <>
-              <li className="md:ml-8 text-lg md:my-0 my-7">
+              <li className="md:ml-8 md:text-sm text-lg lg:text-lg md:my-0 my-7">
                 <NavLink
                   to="login"
                   className={({ isActive }) =>
@@ -73,7 +71,7 @@ export const Navbar = () => {
                   Login
                 </NavLink>
               </li>
-              <li className="md:ml-8 text-lg md:my-0 my-7">
+              <li className="md:ml-8 md:text-sm text-lg lg:text-lg md:my-0 my-7">
                 <NavLink
                   to="register"
                   className={({ isActive }) =>
@@ -87,7 +85,7 @@ export const Navbar = () => {
           ) : (
             <>
               {isAdmin ? (
-                <li className="md:ml-8 text-lg md:my-0 my-7">
+                <li className="md:ml-8 md:text-sm text-lg lg:text-lg md:my-0 my-7">
                   <NavLink
                     to="/backoffice"
                     className={({ isActive }) =>
@@ -98,7 +96,7 @@ export const Navbar = () => {
                   </NavLink>
                 </li>
               ) : (
-                <li className="md:ml-8 text-lg md:my-0 my-7">
+                <li className="md:ml-8 md:text-sm text-lg lg:text-lg md:my-0 my-7">
                   <NavLink
                     to="/profile"
                     className={({ isActive }) =>
@@ -109,7 +107,7 @@ export const Navbar = () => {
                   </NavLink>
                 </li>
               )}
-              <li className="md:ml-8 text-lg md:my-0 my-7">
+              <li className="md:ml-8 md:text-sm text-lg lg:text-lg md:my-0 my-7">
                 <NavLink
                   to="login"
                   className={({ isActive }) =>
