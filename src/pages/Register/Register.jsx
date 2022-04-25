@@ -156,7 +156,7 @@ const Register = () => {
               &#183;
             </span>
             <a className="text-sm text-ong-blue-700 hover:underline" href="#">
-              Acerca de ONG somos más
+              Acerca de Somos Más
             </a>
           </div>
         </form>
